@@ -404,13 +404,39 @@ async function gate1ProceedAll() {
     );
     btn.textContent = 'Triggering draft…';
     await ghTriggerWorkflow('draft.yml');
-    btn.textContent = '✓ Draft queued';
     document.getElementById('ii-gate1-status').textContent = 'Draft Generating…';
     document.getElementById('ii-gate1-status').className   = 'ii-gate-status-pill pending';
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.disabled    = approved === 0;
-    }, 4000);
+
+    // Swap button for progress bar
+    btn.style.display = 'none';
+    const progressWrap = document.getElementById('ii-draft-progress');
+    const progressBar  = document.getElementById('ii-draft-progress-bar');
+    const progressPct  = document.getElementById('ii-draft-progress-pct');
+    const progressLbl  = document.getElementById('ii-draft-progress-label');
+    const gate2Link    = document.getElementById('ii-gate2-link');
+    progressWrap.style.display = 'block';
+
+    // Animate over 3 minutes to 95%, then snap to 100% and reveal Gate 2 link
+    const DURATION = 180;
+    let elapsed = 0;
+    const tick = setInterval(() => {
+      elapsed++;
+      const pct = Math.min(95, Math.round((elapsed / DURATION) * 95));
+      progressBar.style.width = pct + '%';
+      progressPct.textContent = pct + '%';
+      if (elapsed >= DURATION) {
+        clearInterval(tick);
+        progressBar.style.width = '100%';
+        progressPct.textContent = '100%';
+        progressLbl.textContent = 'Draft ready';
+        setTimeout(() => {
+          progressWrap.style.display = 'none';
+          gate2Link.style.display    = 'inline-flex';
+          document.getElementById('ii-gate1-status').textContent = 'Draft Ready';
+          document.getElementById('ii-gate1-status').className   = 'ii-gate-status-pill ready';
+        }, 800);
+      }
+    }, 1000);
   } catch (err) {
     btn.textContent = 'Error — retry';
     btn.disabled    = false;

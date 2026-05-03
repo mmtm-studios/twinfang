@@ -73,9 +73,21 @@
   <!-- ── STICKY ACTION BAR ────────────────────────────────── -->
   <div class="ii-gate-action-bar">
     <span class="ii-gate-tally" id="ii-gate1-tally">No stories loaded</span>
-    <button class="ii-btn primary" id="ii-gate1-proceed" disabled onclick="gate1ProceedAll()">
-      Approve &amp; Proceed to Drafting →
-    </button>
+    <div id="ii-gate1-right" style="display:flex;align-items:center;gap:16px">
+      <button class="ii-btn primary" id="ii-gate1-proceed" disabled onclick="gate1ProceedAll()">
+        Approve &amp; Proceed to Drafting →
+      </button>
+      <div id="ii-draft-progress" style="display:none;width:220px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+          <span style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3)" id="ii-draft-progress-label">Generating draft…</span>
+          <span style="font-size:9px;font-weight:700;color:var(--red)" id="ii-draft-progress-pct">0%</span>
+        </div>
+        <div class="ii-bar-track">
+          <div class="ii-bar-fill" id="ii-draft-progress-bar" style="width:0%;transition:width 1s linear"></div>
+        </div>
+      </div>
+      <a href="gate-2.html" id="ii-gate2-link" class="ii-btn primary" style="display:none">Open Gate 2 →</a>
+    </div>
   </div>
 
   <script src="assets/js/core.js"></script>
