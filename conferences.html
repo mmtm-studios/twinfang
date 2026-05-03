@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Calendar — Industry Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+</head>
+<body>
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="ii-nav" role="navigation" aria-label="Main navigation">
+    <a class="ii-brand" href="index.html">
+      <span class="ii-mark">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" fill="#E8272A"/>
+          <polygon points="11,8 22,15 11,22" fill="#EDEBE4"/>
+        </svg>
+      </span>
+      <span class="ii-pub-wrap">
+        <span class="ii-pub">Industry Insights</span>
+        <span class="ii-sub">Twinfang · Internal</span>
+      </span>
+    </a>
+    <div class="ii-nav-links">
+      <a class="ii-navlink" href="index.html"       data-page="index.html">Latest Issue</a>
+      <a class="ii-navlink" href="archive.html"     data-page="archive.html">Archive</a>
+      <a class="ii-navlink" href="conferences.html" data-page="conferences.html">Conferences</a>
+      <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
+    </div>
+    <div class="ii-nav-right">
+      <a class="ii-nav-gate" href="gate-1.html">Gate 1</a>
+      <a class="ii-nav-gate" href="gate-2.html">Gate 2</a>
+      <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ─────────────────────────────────────────────── -->
+  <main>
+    <div class="ii-page">
+
+      <div class="ii-issue-header" style="padding-top:32px;margin-bottom:28px">
+        <span class="ii-eyebrow">2026 Schedule</span>
+        <h1 class="ii-h2">Conference Calendar</h1>
+        <p class="ii-lead u-mt24" style="font-size:15px">
+          Games, art, tools, TTRPG, and film &amp; TV events tracked across the year.
+        </p>
+      </div>
+
+      <!-- Category legend -->
+      <div class="ii-cal-legend">
+        <div class="ii-legend-item">
+          <span class="ii-legend-dot" style="background:#3B82F6"></span>Games
+        </div>
+        <div class="ii-legend-item">
+          <span class="ii-legend-dot" style="background:#10B981"></span>Art &amp; Animation
+        </div>
+        <div class="ii-legend-item">
+          <span class="ii-legend-dot" style="background:#8B5CF6"></span>Tools &amp; Tech
+        </div>
+        <div class="ii-legend-item">
+          <span class="ii-legend-dot" style="background:#F59E0B"></span>TTRPG
+        </div>
+        <div class="ii-legend-item">
+          <span class="ii-legend-dot" style="background:#9CA3AF"></span>Film &amp; TV
+        </div>
+      </div>
+
+      <!-- Toolbar: month nav + filters -->
+      <div class="ii-cal-toolbar">
+        <div class="ii-cal-month-nav">
+          <button class="ii-cal-btn" onclick="calPrev()" aria-label="Previous month">&#8249;</button>
+          <h2 id="cal-month-label">Loading…</h2>
+          <button class="ii-cal-btn" onclick="calNext()" aria-label="Next month">&#8250;</button>
+        </div>
+        <div class="ii-filters">
+          <button class="ii-filter on" data-cat="games">Games</button>
+          <button class="ii-filter on" data-cat="art">Art</button>
+          <button class="ii-filter on" data-cat="tools">Tools</button>
+          <button class="ii-filter on" data-cat="ttrpg">TTRPG</button>
+          <button class="ii-filter on" data-cat="film">Film &amp; TV</button>
+        </div>
+      </div>
+
+      <!-- Calendar grid (rendered by core.js) -->
+      <div id="ii-calendar"></div>
+
+      <!-- Event detail panel (shown on event click) -->
+      <div id="ii-ev-detail" class="ii-ev-detail"></div>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <div class="ii-footer-wrap">
+    <footer class="ii-footer">
+      <span class="ii-footer-l">Twinfang — Confidential</span>
+      <span class="ii-footer-r">Industry Insights · 2026</span>
+    </footer>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+
+  <!--
+    NOTE ON LOCAL FILE:// TESTING
+    Browsers block fetch() on file:// for security.
+    To test locally either:
+      1. Use VS Code Live Server (recommended)
+      2. Run: python3 -m http.server 8080  in the industry-insights/ folder
+      3. Use any local HTTP server
+
+    The site will work perfectly on GitHub Pages and any HTTP server.
+  -->
+</body>
+</html>

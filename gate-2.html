@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gate 2 — Draft Review — Industry Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+</head>
+<body class="ii-gate-page">
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="ii-nav" role="navigation" aria-label="Main navigation">
+    <a class="ii-brand" href="index.html">
+      <span class="ii-mark">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" fill="#E8272A"/>
+          <polygon points="11,8 22,15 11,22" fill="#EDEBE4"/>
+        </svg>
+      </span>
+      <span class="ii-pub-wrap">
+        <span class="ii-pub">Industry Insights</span>
+        <span class="ii-sub">Twinfang · Internal</span>
+      </span>
+    </a>
+    <div class="ii-nav-links">
+      <a class="ii-navlink" href="index.html"       data-page="index.html">Latest Issue</a>
+      <a class="ii-navlink" href="archive.html"     data-page="archive.html">Archive</a>
+      <a class="ii-navlink" href="conferences.html" data-page="conferences.html">Conferences</a>
+      <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
+    </div>
+    <div class="ii-nav-right">
+      <a class="ii-nav-gate" href="gate-1.html">Gate 1</a>
+      <a class="ii-nav-gate act" href="gate-2.html" style="color:#E8272A;border-color:rgba(232,39,42,.5)">Gate 2</a>
+      <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+
+  <!-- ── GATE HERO ────────────────────────────────────────── -->
+  <div class="ii-gate-hero">
+    <div class="ii-gate-hero-inner">
+      <div>
+        <div class="ii-gate-label">Editorial Gate 2 of 2</div>
+        <div class="ii-gate-title">Draft Review</div>
+        <div class="ii-gate-subtitle">Review and edit each section. Approve all sections to publish the issue.</div>
+      </div>
+      <span class="ii-gate-status-pill" id="ii-gate2-status">Awaiting Draft</span>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────────────────────────── -->
+  <main>
+    <div class="ii-page">
+
+      <!-- How it works -->
+      <details style="margin-bottom:32px;border:1px solid var(--bd);padding:14px 20px;border-radius:2px">
+        <summary style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);cursor:pointer;list-style:none">
+          ▸ How Gate 2 Works
+        </summary>
+        <div class="ii-body u-mt24" style="max-width:640px">
+          <p>After Gate 1 approval, GPT-4o writes a full draft of each section based on the approved stories. The draft appears here section-by-section.</p>
+          <p style="margin-top:12px">Each section is <strong>directly editable</strong> — click into any text to revise inline. You can also click <strong>Re-draft</strong> to send a section back to GPT-4o with your edits as context.</p>
+          <p style="margin-top:12px">Once all sections are approved, click <strong>Publish Issue</strong> to compile the final HTML and deploy to GitHub Pages.</p>
+        </div>
+      </details>
+
+      <!-- Draft sections (populated by core.js from draft.json) -->
+      <div id="ii-draft-wrap"></div>
+
+    </div>
+  </main>
+
+  <!-- ── STICKY ACTION BAR ────────────────────────────────── -->
+  <div class="ii-gate-action-bar">
+    <span class="ii-gate-tally" id="ii-gate2-tally">Approve all sections to publish</span>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="ii-btn" href="gate-1.html">← Back to Gate 1</a>
+      <button class="ii-btn primary" id="ii-gate2-publish" disabled onclick="gate2Publish()">
+        Publish Issue →
+      </button>
+    </div>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+</body>
+</html>

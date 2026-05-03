@@ -1,0 +1,241 @@
+INDUSTRY INSIGHTS — SOURCE MAP
+Twinfang · Internal
+Last updated: May 2026
+================================================================
+
+TAG KEY
+  RSS      = Auto-fetched via RSS feed
+  API      = Programmatic API access
+  Web      = Scraped / manually checked
+  Manual   = Human-curated, no automation
+  Newsletter = Email subscription, manual intake
+  X        = X (Twitter) API or monitored account
+  Conf     = Conference feed / event site
+  TTRPG    = Tabletop RPG trade / community source
+  AI Gen   = AI-generated synthesis (no external source)
+
+================================================================
+SECTION 1 — STUDIO MOVES
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+GamesIndustry.biz               https://gamesindustry.biz               RSS
+Game Developer (GDMag)          https://gamedeveloper.com               RSS
+Kotaku                          https://kotaku.com                      RSS
+Polygon                         https://polygon.com                     RSS
+VentureBeat Games               https://venturebeat.com/games           RSS
+MCV/Develop                     https://mcvuk.com                       RSS
+Axios Gaming                    https://axios.com/gaming                Newsletter
+Bloomberg Technology            https://bloomberg.com/technology        RSS
+Reuters Tech                    https://reuters.com/technology          RSS
+Keywords Studios newsroom       https://keywordsstudios.com/news        Web
+Virtuos newsroom                https://virtuosgames.com/news           Web
+PTW newsroom                    https://ptw.com/news                    Web
+Technicolor Creative Studios    https://technicolorcreative.com         Web
+CD Projekt investor relations   https://cdprojekt.com/en/investors      Web
+
+================================================================
+SECTION 2 — PEOPLE ON THE MOVE
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+GamesIndustry.biz               https://gamesindustry.biz               RSS
+LinkedIn (manual checks)        https://linkedin.com                    Manual
+Game Developer                  https://gamedeveloper.com               RSS
+MobyGames credits               https://mobygames.com                   Web
+Game Dev LinkedIn groups        https://linkedin.com/groups             Manual
+Twitter/X — key art directors   (see X/Social section)                  X
+
+================================================================
+SECTION 3 — THE ART PIPELINE
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+80.lv                           https://80.lv                           RSS
+ArtStation Blog                 https://artstation.com/blog             RSS
+Concept Art Association         https://conceptartassociation.com       Newsletter
+SIGGRAPH Digital Library        https://dl.acm.org/conference/siggraph  Web
+Gnomon Workshop blog            https://gnomonworkshop.com/blog         Web
+Reallusion blog                 https://reallusion.com/blog             RSS
+Marvelous Designer news         https://marvelousdesigner.com/news      Web
+ZBrush blog (Maxon)             https://pixologic.com/blog              RSS
+Substance / Adobe blog          https://substance3d.com/blog            RSS
+CGSociety                       https://cgsociety.org                   RSS
+Computer Graphics World         https://cgw.com                         RSS
+Foundry blog                    https://foundry.com/insights            RSS
+Epic Games / Unreal newsroom    https://unrealengine.com/news           RSS
+Unity blog                      https://blog.unity.com                  RSS
+Autodesk area blogs             https://area.autodesk.com               RSS
+
+================================================================
+SECTION 4 — AI & THE CRAFT
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+80.lv (AI category)             https://80.lv/articles/tools/ai         RSS
+The Decoder                     https://the-decoder.com                 RSS
+Midjourney blog / changelog     https://midjourney.com/updates          Web
+Stability AI blog               https://stability.ai/news               RSS
+Runway ML blog                  https://runwayml.com/blog               RSS
+Adobe Firefly blog              https://blog.adobe.com                  RSS
+ComfyUI / open-source releases  https://github.com/comfyanonymous        Web
+Hugging Face blog               https://huggingface.co/blog             RSS
+Papers With Code (CV section)   https://paperswithcode.com/latest/cv    RSS
+ArtStation — AI discussions     https://artstation.com                  Web
+Concept Art Association (AI)    https://conceptartassociation.com       Newsletter
+Game Developer — AI section     https://gamedeveloper.com/tags/ai       RSS
+VentureBeat AI                  https://venturebeat.com/ai              RSS
+
+================================================================
+SECTION 5 — WHO'S BUYING WHAT
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+GamesIndustry.biz               https://gamesindustry.biz               RSS
+Axios Gaming                    https://axios.com/gaming                Newsletter
+Games Business / MCV            https://gamesbusiness.com               RSS
+Bloomberg Technology            https://bloomberg.com/technology        RSS
+Crunchbase (games sector)       https://crunchbase.com                  Web
+PitchBook (manual alerts)       https://pitchbook.com                   Manual
+SEC EDGAR filings               https://sec.gov/cgi-bin/browse-edgar    Web
+Embracer Group IR               https://embracer.com/investors          Web
+Tencent / NetEase news          https://gamesindustry.biz               RSS
+Take-Two / EA / Activision IR   (respective investor relations sites)   Web
+
+================================================================
+SECTION 6 — ON THE SHELF (Game Launches)
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+Steam New Releases (API)        https://store.steampowered.com/api      API
+SteamSpy                        https://steamspy.com/api.php            API
+PlayStation Store new releases  https://store.playstation.com           Web
+Nintendo eShop new releases     https://nintendo.com/store              Web
+Xbox / Microsoft Store          https://xbox.com/games                  Web
+IGN Release Calendar            https://ign.com/release-dates           RSS
+GameSpot Release Schedule       https://gamespot.com/release-dates      RSS
+Metacritic new releases         https://metacritic.com/game             Web
+VGChartz weekly charts          https://vgchartz.com                    Web
+
+================================================================
+SECTION 7 — THE FIELD (Competitors)
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+Keywords Studios newsroom       https://keywordsstudios.com/news        Web
+Virtuos newsroom                https://virtuosgames.com/news           Web
+PTW newsroom                    https://ptw.com/news                    Web
+Pole To Win International       https://ptw.com                         Web
+Mighty Kingdom news             https://mightykingdom.com/news          Web
+Airship Agency / Elsewhere      (respective studio sites)               Web
+Framestore news                 https://framestore.com/news             Web
+Luma Pictures                   https://lumapictures.com                Web
+One Of Us                       https://oneofus.co.uk                   Web
+Technicolor Creative Studios    https://technicolorcreative.com         Web
+WetaFX news                     https://wetafx.co.nz/news               Web
+DNEG news                       https://dneg.com/news                   Web
+XDS (External Dev Summit)       https://xds.events                      Conf
+
+================================================================
+SECTION 8 — X / SOCIAL MONITORING
+================================================================
+Source / Account                Handle                                  Tag
+------------------------------------------------------------------------------------------------
+Game art directors (manual list) Various                                X
+#gamedev hashtag                 X search                               X
+#conceptart hashtag              X search                               X
+#gameart hashtag                 X search                               X
+#AIart hashtag                   X search                               X
+#indiedev hashtag                X search                               X
+#TTRPGart hashtag                X search                               X
+Key studio accounts              Various                                X
+Key publisher accounts           Various                                X
+GamesIndustry.biz                @GamesIndustry                        X
+IGN                              @IGN                                   X
+Eurogamer                        @Eurogamer                            X
+
+NOTE: X API access requires a paid developer tier (~$100/mo Basic).
+      Alternative: manual monitoring via TweetDeck saved searches.
+
+================================================================
+SECTION 9 — CONFERENCES & EVENTS
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+GDC official                    https://gdconf.com                      Conf
+SIGGRAPH official               https://siggraph.org                    Conf
+Gamescom official               https://gamescom.global                 Conf
+Devcom official                 https://devcom.com                      Conf
+XDS official                    https://xds.events                      Conf
+PAX (all) official              https://paxsite.com                     Conf
+Tokyo Game Show official        https://tgs.cesa.or.jp                  Conf
+ChinaJoy official               https://chinajoy.net                    Conf
+Nordic Game official            https://nordicgame.com                  Conf
+Trojan Horse was a Unicorn      https://trojanhorsewasunicorn.com       Conf
+Annecy Animation Festival       https://annecyfestival.com              Conf
+SXSW official                   https://sxsw.com                        Conf
+Sundance Film Festival          https://sundance.org                    Conf
+E3 official                     https://e3expo.com                      Conf
+Game Developer (event coverage) https://gamedeveloper.com               RSS
+
+================================================================
+SECTION 10 — TTRPG INDUSTRY
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+EN World                        https://enworld.org                     TTRPG / RSS
+ICv2                            https://icv2.com                        TTRPG / RSS
+Dicebreaker                     https://dicebreaker.com                 TTRPG / RSS
+Bell of Lost Souls              https://belloflostsouls.net             TTRPG / RSS
+Polygon Tabletop                https://polygon.com/tabletop            RSS
+Wargamer                        https://wargamer.com                    TTRPG / RSS
+BoardGameGeek news              https://boardgamegeek.com/blog          TTRPG / Web
+DriveThruRPG bestsellers        https://drivethrurpg.com                TTRPG / Web
+D&D Beyond blog / announcements https://dndbeyond.com/posts             TTRPG / RSS
+Paizo blog                      https://paizo.com/community/blog        TTRPG / RSS
+Kobold Press news               https://koboldpress.com/blog            TTRPG / RSS
+Gen Con announcements           https://gencon.com/news                 Conf / TTRPG
+Origins Game Fair news          https://originsgamefair.com             Conf / TTRPG
+PAX Unplugged news              https://unplugged.paxsite.com           Conf / TTRPG
+
+================================================================
+SECTION 11 — GAP SCAN
+================================================================
+Source                          URL                                     Tag
+------------------------------------------------------------------------------------------------
+GPT-4o synthesis                N/A — generated from approved stories  AI Gen
+
+NOTE: The Gap Scan is not sourced externally. It is generated by
+GPT-4o at draft time, synthesising the approved stories from all
+other sections into a strategic analysis of threats, opportunities,
+and whitespace relevant to Twinfang's business.
+
+================================================================
+AUTOMATION SUMMARY
+================================================================
+
+  Fully automated (RSS)         ~30 sources
+  API-based (Steam, SteamSpy)    2 sources
+  Semi-automated (web scrape)   ~12 sources
+  Manual / newsletter intake    ~8 sources
+  X/Social (API or manual)       2 modes — paid API or TweetDeck
+  Conference tracking            15 events in calendar (data/conferences.json)
+  AI Generated                   1 (Gap Scan)
+
+TOTAL TRACKED SOURCES: 55+
+
+================================================================
+GITHUB ACTIONS NOTES
+================================================================
+
+RSS feeds: collected via Python feedparser in the collect.yml workflow.
+Steam API: GET https://store.steampowered.com/api/featuredcategories/
+           + /appdetails?appids=XXX — no key required for public data.
+SteamSpy:  GET https://steamspy.com/api.php?request=all — free, rate-limited.
+X API:     Requires paid Basic tier. Store bearer token in GitHub Secrets
+           as TWITTER_BEARER_TOKEN.
+OpenAI:    Store key in GitHub Secrets as OPENAI_API_KEY.
+
+================================================================
+END OF SOURCE MAP
+================================================================

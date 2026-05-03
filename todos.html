@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Dos — Founder Sync — Industry Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+  <style>
+    .ii-tag.owner-julian  { border-color: #E8272A; color: #E8272A; }
+    .ii-tag.owner-robby   { border-color: #3B82F6; color: #3B82F6; }
+    .ii-tag.owner-stephen { border-color: #10B981; color: #10B981; }
+
+    .ii-todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--bd);
+      border-left: 3px solid var(--red);
+      background: var(--bg2);
+      margin-bottom: 8px;
+      transition: border-left-color .15s, opacity .2s;
+    }
+    .ii-todo-item.done {
+      border-left-color: #10B981;
+      opacity: .45;
+    }
+
+    .ii-todo-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--bd);
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      transition: background .12s, border-color .12s;
+      background: transparent;
+      padding: 0;
+    }
+    .ii-todo-check:hover { border-color: var(--red); }
+    .ii-todo-item.done .ii-todo-check {
+      background: #10B981;
+      border-color: #10B981;
+    }
+    .ii-todo-check svg { display: none; }
+    .ii-todo-item.done .ii-todo-check svg { display: block; }
+
+    .ii-todo-body { flex: 1; min-width: 0; }
+
+    .ii-todo-owners {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .ii-todo-text {
+      font-size: var(--f-md);
+      font-weight: 500;
+      color: var(--tx);
+      line-height: 1.4;
+      transition: color .15s;
+    }
+    .ii-todo-item.done .ii-todo-text {
+      text-decoration: line-through;
+      color: var(--tx3);
+    }
+
+    .ii-note {
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      border-left: 3px solid var(--bd);
+      padding: 14px 18px;
+      margin-bottom: 8px;
+    }
+    .ii-note-label {
+      font-size: var(--f-xs);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-bottom: 8px;
+    }
+    .ii-note-text {
+      font-size: var(--f-sm);
+      color: var(--tx2);
+      line-height: 1.65;
+    }
+    .ii-note-text + .ii-note-text { margin-top: 8px; }
+    .ii-note-text strong { color: var(--tx); font-weight: 600; }
+
+    .ii-next-mtg {
+      border: 1px solid var(--bd);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .ii-next-mtg-date {
+      font-size: var(--f-2xl);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--tx);
+      line-height: 1;
+    }
+    .ii-next-mtg-sub {
+      font-size: var(--f-xs);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body class="ii-gate-page">
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="ii-nav" role="navigation" aria-label="Main navigation">
+    <a class="ii-brand" href="index.html">
+      <span class="ii-mark">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" fill="#E8272A"/>
+          <polygon points="11,8 22,15 11,22" fill="#EDEBE4"/>
+        </svg>
+      </span>
+      <span class="ii-pub-wrap">
+        <span class="ii-pub">Industry Insights</span>
+        <span class="ii-sub">Twinfang · Internal</span>
+      </span>
+    </a>
+    <div class="ii-nav-links">
+      <a class="ii-navlink" href="index.html"       data-page="index.html">Latest Issue</a>
+      <a class="ii-navlink" href="archive.html"     data-page="archive.html">Archive</a>
+      <a class="ii-navlink" href="conferences.html" data-page="conferences.html">Conferences</a>
+      <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
+    </div>
+    <div class="ii-nav-right">
+      <a class="ii-nav-gate" href="gate-1.html">Gate 1</a>
+      <a class="ii-nav-gate" href="gate-2.html">Gate 2</a>
+      <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <div class="ii-gate-hero">
+    <div class="ii-gate-hero-inner">
+      <div>
+        <div class="ii-gate-label">Founder Sync · 28 April 2026</div>
+        <div class="ii-gate-title">Action Items</div>
+        <div class="ii-gate-subtitle">Present: Julian · Robby · Stephen</div>
+      </div>
+      <span class="ii-gate-status-pill pending" id="ii-todo-pill">0 / 6 Done</span>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────────────────────────── -->
+  <main>
+    <div class="ii-page" style="max-width:820px">
+
+      <!-- Meeting Notes -->
+      <div class="ii-section-title u-mb16">Meeting Notes</div>
+
+      <div class="ii-note u-mb8">
+        <div class="ii-note-label">Julian Update</div>
+        <p class="ii-note-text"><strong>Vertical Slice RPG</strong> — Julian leading for now. No action needed. More info to come as project progresses.</p>
+        <p class="ii-note-text">Waiting on Jonas to sync — <strong>check in early May.</strong></p>
+      </div>
+
+      <div class="ii-note u-mb40">
+        <div class="ii-note-label">Other Updates</div>
+        <p class="ii-note-text"><strong>Robby</strong> is planning for <strong>GamesCom Asia</strong> in Bangkok — Late October.</p>
+      </div>
+
+      <!-- To-Do -->
+      <div class="ii-section-title u-mb16">To-Do</div>
+      <div id="ii-todo-list"></div>
+
+      <!-- Upcoming -->
+      <div class="ii-section-title u-mt40 u-mb16">Upcoming</div>
+      <div id="ii-upcoming-list"></div>
+
+      <!-- Next Meeting -->
+      <div class="ii-section-title u-mt40 u-mb16">Next Meeting</div>
+      <div class="ii-next-mtg">
+        <div>
+          <div class="ii-next-mtg-date">12 May 2026</div>
+          <div class="ii-next-mtg-sub">2 weeks from 28 Apr</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── STICKY BAR ───────────────────────────────────────── -->
+  <div class="ii-gate-action-bar">
+    <span class="ii-gate-tally" id="ii-todo-tally">Loading…</span>
+    <button class="ii-btn" onclick="resetTodos()">Reset All</button>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+  <script>
+    const STORAGE_KEY = 'ii-todos-2026-04-28';
+
+    const OWNER_CLASS = { Julian: 'owner-julian', Robby: 'owner-robby', Stephen: 'owner-stephen' };
+
+    const TODOS = [
+      { id: 'crm-client',     owners: ['Stephen', 'Robby'],          text: 'Build CRM — Client List — Reachout' },
+      { id: 'build-decks',    owners: ['Julian', 'Robby', 'Stephen'], text: 'Build Decks for outreach' },
+      { id: 'website-update', owners: ['Robby', 'Julian'],            text: 'Website update' },
+      { id: 'nda-paperwork',  owners: ['Robby', 'Stephen'],           text: 'Prepare NDA, Working Agreements & Indonesian paperwork (+ workflows)' },
+    ];
+
+    const UPCOMING = [
+      { id: 'first-hire',    owners: ['Robby', 'Julian'], text: 'Find potential first hire / roster incumbents' },
+      { id: 'jakarta-trip',  owners: [],                  text: 'Potential Jakarta Trip — 2nd Week of June' },
+    ];
+
+    const ALL = [...TODOS, ...UPCOMING];
+
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+    }
+
+    function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+
+    const SVG_TICK = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>`;
+
+    function itemHTML(item, state) {
+      const done = !!state[item.id];
+      const tags = item.owners.map(o => `<span class="ii-tag ${OWNER_CLASS[o] || ''}">${o}</span>`).join('');
+      return `
+        <div class="ii-todo-item${done ? ' done' : ''}" id="item-${item.id}">
+          <button class="ii-todo-check" onclick="toggle('${item.id}')" aria-label="Mark done">${SVG_TICK}</button>
+          <div class="ii-todo-body">
+            ${tags ? `<div class="ii-todo-owners">${tags}</div>` : ''}
+            <div class="ii-todo-text">${item.text}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderAll() {
+      const s = loadState();
+      document.getElementById('ii-todo-list').innerHTML     = TODOS.map(t => itemHTML(t, s)).join('');
+      document.getElementById('ii-upcoming-list').innerHTML = UPCOMING.map(t => itemHTML(t, s)).join('');
+      syncProgress(s);
+    }
+
+    function syncProgress(s) {
+      const done  = ALL.filter(t => s[t.id]).length;
+      const total = ALL.length;
+      const pill  = document.getElementById('ii-todo-pill');
+      pill.textContent = `${done} / ${total} Done`;
+      pill.className   = `ii-gate-status-pill ${done === total ? 'ready' : 'pending'}`;
+      document.getElementById('ii-todo-tally').innerHTML =
+        `<strong>${done}</strong> of <strong>${total}</strong> tasks complete`;
+    }
+
+    function toggle(id) {
+      const s = loadState();
+      s[id] = !s[id];
+      saveState(s);
+      document.getElementById(`item-${id}`).classList.toggle('done', !!s[id]);
+      syncProgress(s);
+    }
+
+    function resetTodos() {
+      saveState({});
+      renderAll();
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>
