@@ -310,6 +310,9 @@ async function loadGate1() {
     return;
   }
 
+  // Pre-approve all stories — kill the ones you don't want
+  gate1Stories.forEach(s => { gate1Decisions[s.id] = 'approved'; });
+
   renderGate1Stories();
 }
 
@@ -327,10 +330,17 @@ function renderGate1Stories() {
 
   let html = '';
   Object.entries(sections).forEach(([sec, stories]) => {
-    html += `<h2 class="ii-section-title" style="margin-top:32px">${sec}</h2>`;
+    html += `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:32px;padding-bottom:10px;border-bottom:1px solid var(--bd)">
+      <h2 class="ii-section-title" style="margin:0;border:0;padding:0">${sec}</h2>
+      <div style="display:flex;gap:6px;flex-shrink:0;margin-left:16px">
+        <button class="ii-btn approve" onclick="sectionApproveAll('${sec}')">✓ Approve All</button>
+        <button class="ii-btn kill"    onclick="sectionKillAll('${sec}')">✕ Kill All</button>
+      </div>
+    </div>`;
     stories.forEach(story => {
-      const dec = gate1Decisions[story.id] || 'pending';
-      html += `<div class="ii-story-card ${dec !== 'pending' ? dec : ''}" id="card-${story.id}">
+      const dec = gate1Decisions[story.id] || 'approved';
+      html += `<div class="ii-story-card ${dec}" id="card-${story.id}">
         <div class="ii-story-body">
           <div class="ii-story-title">${story.headline}</div>
           <div class="ii-story-source-line">${story.source} · ${story.date || ''}</div>
@@ -409,8 +419,18 @@ async function gate1ProceedAll() {
   }
 }
 
-window.gate1Decide = gate1Decide;
-window.gate1ProceedAll = gate1ProceedAll;
+function sectionApproveAll(section) {
+  gate1Stories.filter(s => s.section === section).forEach(s => gate1Decide(s.id, 'approved'));
+}
+
+function sectionKillAll(section) {
+  gate1Stories.filter(s => s.section === section).forEach(s => gate1Decide(s.id, 'killed'));
+}
+
+window.gate1Decide      = gate1Decide;
+window.gate1ProceedAll  = gate1ProceedAll;
+window.sectionApproveAll = sectionApproveAll;
+window.sectionKillAll    = sectionKillAll;
 
 
 /* ============================================================
