@@ -121,10 +121,29 @@ async function main() {
   for (const [sectionName, sectionStories] of Object.entries(bySec)) {
     process.stdout.write(`  ${sectionName}… `);
     const content = await draftSection(sectionName, sectionStories);
-    sections.push({ title: sectionName, content });
+    sections.push({
+      title:   sectionName,
+      content,
+      sources: sectionStories.map(s => ({ headline: s.headline, url: s.url, source: s.source })),
+    });
     console.log('done');
     await new Promise(r => setTimeout(r, 400));
   }
+
+  // Add empty placeholder sections for any standard sections with no approved stories
+  const ALL_SECTIONS = [
+    'Studio Moves', 'People on the Move', 'The Art Pipeline',
+    'AI & The Craft', "Who's Buying What", 'On the Shelf',
+    'The Field', 'TTRPG Industry',
+  ];
+  const draftedTitles = new Set(sections.map(s => s.title));
+  ALL_SECTIONS.forEach(title => {
+    if (!draftedTitles.has(title)) {
+      sections.push({ title, content: '<p><em>No stories approved for this section. Write manually or leave blank.</em></p>', sources: [] });
+    }
+  });
+  // Re-sort to canonical order
+  sections.sort((a, b) => ALL_SECTIONS.indexOf(a.title) - ALL_SECTIONS.indexOf(b.title));
 
   // Gap Scan
   console.log('\n[2/2] Generating Gap Scan…');

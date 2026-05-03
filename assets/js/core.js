@@ -493,30 +493,66 @@ function renderGate2Draft() {
   const wrap = document.getElementById('ii-draft-wrap');
   if (!wrap) return;
 
-  let html = '';
+  const date = gate2Draft.date
+    ? new Date(gate2Draft.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    : '';
+
+  let html = `
+    <div style="padding:32px 0 40px;border-bottom:1px solid var(--bd);margin-bottom:32px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span class="ii-issue-num-badge">Issue ${String(gate2Draft.issue || 1).padStart(3,'0')}</span>
+        <span class="ii-issue-date-badge">${date}</span>
+      </div>
+      <h1 class="ii-h2" style="margin-bottom:10px">${gate2Draft.headline || 'Draft'}</h1>
+      <p class="ii-lead" style="max-width:680px">${gate2Draft.lead || ''}</p>
+      <div style="display:flex;gap:16px;margin-top:20px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)">
+        <span>${gate2Draft.stats?.storiesApproved || 0} stories approved</span>
+        <span>·</span>
+        <span>${gate2Draft.sections?.length || 0} sections</span>
+      </div>
+    </div>`;
+
   gate2Draft.sections.forEach((sec, i) => {
-    html += `<div class="ii-draft-section">
+    const isEmpty  = !sec.sources || sec.sources.length === 0;
+    const srcCount = (sec.sources || []).length;
+    const srcHTML  = srcCount ? `
+      <details style="margin-top:20px;border-top:1px solid var(--bd);padding-top:16px">
+        <summary style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);cursor:pointer;list-style:none">
+          ▸ ${srcCount} source${srcCount > 1 ? 's' : ''} used
+        </summary>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+          ${(sec.sources || []).map(s => `
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <span style="font-size:11px;color:var(--tx2);flex:1;line-height:1.45">${s.headline}</span>
+              <a href="${s.url}" target="_blank" rel="noopener" style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--red);white-space:nowrap;flex-shrink:0">${s.source} ↗</a>
+            </div>`).join('')}
+        </div>
+      </details>` : '';
+
+    html += `
+    <div class="ii-draft-section" id="draft-sec-${i}" style="${isEmpty ? 'opacity:.6' : ''}">
       <div class="ii-draft-section-head" onclick="toggleSection(${i})">
-        <h3>${sec.title}</h3>
+        <div style="display:flex;align-items:center;gap:10px">
+          <h3>${sec.title}</h3>
+          ${isEmpty ? `<span style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);border:1px solid var(--bd);padding:2px 6px">No stories</span>` : ''}
+        </div>
         <span class="ii-meta" id="sec-status-${i}">Review</span>
       </div>
-      <div class="ii-draft-section-body" id="sec-body-${i}">
+      <div class="ii-draft-section-body open" id="sec-body-${i}">
         <div class="ii-draft-text" id="sec-text-${i}"
           contenteditable="true"
           spellcheck="true"
-          style="outline:none">${sec.content}</div>
-        <div style="display:flex;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--bd)">
+          style="outline:none;padding:4px 0;line-height:1.85;font-size:15px;color:var(--tx2)">${sec.content}</div>
+        ${srcHTML}
+        <div style="display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd)">
           <button class="ii-btn approve" onclick="approveSection(${i})">✓ Approve Section</button>
           <button class="ii-btn"         onclick="regenerateSection(${i})">↺ Re-draft</button>
         </div>
       </div>
     </div>`;
   });
+
   wrap.innerHTML = html;
-  // Open first section by default
-  if (gate2Draft.sections.length > 0) {
-    document.getElementById('sec-body-0').classList.add('open');
-  }
 }
 
 function toggleSection(i) {
