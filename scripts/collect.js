@@ -174,9 +174,12 @@ async function sendEmail(stories, issueNum) {
     auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASSWORD },
   });
 
+  const recipients = (process.env.NOTIFY_EMAIL || process.env.GMAIL_USER)
+    .split(',').map(e => e.trim()).join(', ');
+
   await transporter.sendMail({
     from:    `"Industry Insights" <${process.env.GMAIL_USER}>`,
-    to:      process.env.NOTIFY_EMAIL || process.env.GMAIL_USER,
+    to:      recipients,
     subject: `Industry Insights — Issue ${String(issueNum).padStart(3,'0')} ready for review`,
     html,
   });
