@@ -520,7 +520,14 @@ function renderGate2Draft() {
   const gapItems    = gate2Draft.gapScan?.items || [];
   const activeSecs  = (gate2Draft.sections || []).filter(s => s.sources?.length > 0).length;
 
-  // ── Issue header ──────────────────────────────────────────────────────────
+  // Distribute gap items only across sections that have stories
+  let gapIdx = 0;
+  const sectionGapMap = (gate2Draft.sections || []).map(sec => {
+    if (sec.sources?.length > 0 && gapIdx < gapItems.length) return gapItems[gapIdx++];
+    return null;
+  });
+
+  // ── Issue header + top-level Approve All ─────────────────────────────────
   let html = `
     <div style="padding:32px 0 40px;border-bottom:1px solid var(--bd);margin-bottom:40px">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
@@ -529,10 +536,13 @@ function renderGate2Draft() {
       </div>
       <h1 class="ii-h2" style="margin-bottom:10px">${gate2Draft.headline || 'Draft'}</h1>
       <p class="ii-lead" style="max-width:680px">${gate2Draft.lead || ''}</p>
-      <div style="display:flex;gap:16px;margin-top:20px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)">
-        <span>${gate2Draft.stats?.storiesApproved || 0} stories approved</span>
-        <span>·</span>
-        <span>${activeSecs} active sections</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px">
+        <div style="display:flex;gap:16px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)">
+          <span>${gate2Draft.stats?.storiesApproved || 0} stories approved</span>
+          <span>·</span>
+          <span>${activeSecs} active sections</span>
+        </div>
+        <button class="ii-btn approve" onclick="approveAll()" style="font-size:9px">✓ Approve All Sections</button>
       </div>
     </div>`;
 
@@ -556,10 +566,20 @@ function renderGate2Draft() {
   }
 
   // ── Sections with gap scan items interspersed ─────────────────────────────
+  const actionBtns = (i) => `
+    <div style="display:flex;gap:8px">
+      <button class="ii-btn approve" onclick="approveSection(${i})">✓ Approve</button>
+      <button class="ii-btn"         onclick="regenerateSection(${i})">↺ Re-draft</button>
+    </div>`;
+
   gate2Draft.sections.forEach((sec, i) => {
     const isEmpty  = !sec.sources || sec.sources.length === 0;
     const srcCount = (sec.sources || []).length;
-    const gapItem  = gapItems[i] || null;
+    const gapItem  = sectionGapMap[i];
+
+    const content  = isEmpty
+      ? `<p style="color:var(--tx3);font-style:italic">No updates this period.</p>`
+      : sec.content;
 
     const srcHTML = srcCount ? `
       <details style="margin-top:16px;border-top:1px solid var(--bd);padding-top:14px">
@@ -590,14 +610,16 @@ function renderGate2Draft() {
         <span class="ii-meta" id="sec-status-${i}">Review</span>
       </div>
       <div class="ii-draft-section-body open" id="sec-body-${i}">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--bd)">
+          ${actionBtns(i)}
+        </div>
         <div style="display:flex;gap:24px;align-items:flex-start">
-          <div class="ii-draft-text" id="sec-text-${i}" contenteditable="true" spellcheck="true" style="flex:1;min-width:0">${sec.content}</div>
+          <div class="ii-draft-text" id="sec-text-${i}" contenteditable="${!isEmpty}" spellcheck="true" style="flex:1;min-width:0">${content}</div>
           ${gapHTML}
         </div>
         ${srcHTML}
-        <div style="display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd)">
-          <button class="ii-btn approve" onclick="approveSection(${i})">✓ Approve Section</button>
-          <button class="ii-btn"         onclick="regenerateSection(${i})">↺ Re-draft</button>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--bd)">
+          ${actionBtns(i)}
         </div>
       </div>
     </div>`;

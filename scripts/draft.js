@@ -139,7 +139,7 @@ async function main() {
   const draftedTitles = new Set(sections.map(s => s.title));
   ALL_SECTIONS.forEach(title => {
     if (!draftedTitles.has(title)) {
-      sections.push({ title, content: '<p><em>No stories approved for this section. Write manually or leave blank.</em></p>', sources: [] });
+      sections.push({ title, content: '<p>No updates this period.</p>', sources: [] });
     }
   });
   // Re-sort to canonical order
