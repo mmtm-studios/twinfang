@@ -792,6 +792,38 @@ function initBars() {
 
 
 /* ============================================================
+   ARCHIVE
+   ============================================================ */
+async function loadArchive() {
+  const list = document.getElementById('ii-archive-list');
+  if (!list) return;
+
+  try {
+    const res = await fetch('data/archive.json');
+    if (!res.ok) throw new Error();
+    const issues = await res.json();
+    if (!issues || issues.length === 0) return; // keep empty state
+
+    list.innerHTML = issues.map(iss => {
+      const date   = new Date(iss.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      const teaser = iss.lead ? (iss.lead.length > 150 ? iss.lead.slice(0, 147) + '…' : iss.lead) : '';
+      return `
+      <a class="ii-issue-card" href="${iss.file}">
+        <div class="ii-issue-card-meta">
+          <div class="ii-issue-badge">Issue ${String(iss.issue).padStart(3, '0')} · ${date}</div>
+          <div class="ii-issue-headline">${iss.headline}</div>
+          <div class="ii-issue-teaser">${teaser}</div>
+        </div>
+        <span class="ii-issue-arrow">→</span>
+      </a>`;
+    }).join('');
+  } catch (e) {
+    // keep empty state on fetch error
+  }
+}
+
+
+/* ============================================================
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -804,6 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('ii-calendar'))    loadCalendar();
   if (document.getElementById('ii-story-list'))  loadGate1();
   if (document.getElementById('ii-draft-wrap'))  loadGate2();
+  if (document.getElementById('ii-archive-list')) loadArchive();
 });
 
 

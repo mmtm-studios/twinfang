@@ -106,6 +106,27 @@ html = html.replace(
 
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);
 
+// Save standalone issue file (root-level so asset paths work unchanged)
+const issueFilename = `issue-${String(draft.issue).padStart(3, '0')}.html`;
+fs.writeFileSync(path.join(ROOT, issueFilename), html);
+
+// Update archive.json
+const archivePath = path.join(ROOT, 'data', 'archive.json');
+let archive = [];
+if (fs.existsSync(archivePath)) {
+  try { archive = JSON.parse(fs.readFileSync(archivePath, 'utf8')); } catch (e) {}
+}
+archive = archive.filter(a => a.issue !== draft.issue); // remove if re-publishing
+archive.unshift({
+  issue:    draft.issue,
+  date:     draft.date,
+  headline: draft.headline,
+  lead:     draft.lead || '',
+  stats:    draft.stats || {},
+  file:     issueFilename,
+});
+fs.writeFileSync(archivePath, JSON.stringify(archive, null, 2));
+
 // Bump issue counter in meta.json
 meta.nextIssue      = draft.issue + 1;
 meta.lastPublished  = new Date().toISOString();
