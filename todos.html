@@ -304,11 +304,10 @@
 
   <script src="assets/js/core.js"></script>
   <script>
-    const STORAGE_KEY   = 'ii-todos-2026-04-28';
-    const COMMENTS_KEY  = 'ii-todos-comments-2026-04-28';
+    const STORAGE_KEY = 'ii-todos-2026-04-28';
 
-    const OWNER_CLASS  = { Julian: 'owner-julian', Robby: 'owner-robby', Stephen: 'owner-stephen' };
-    const OWNER_COLOR  = { Julian: '#E8272A', Robby: '#3B82F6', Stephen: '#10B981' };
+    const OWNER_CLASS    = { Julian: 'owner-julian', Robby: 'owner-robby', Stephen: 'owner-stephen' };
+    const OWNER_COLOR    = { Julian: '#E8272A', Robby: '#3B82F6', Stephen: '#10B981' };
     const OWNER_INITIALS = { Julian: 'JU', Robby: 'RO', Stephen: 'ST' };
 
     const TODOS = [
@@ -325,11 +324,37 @@
 
     const ALL = [...TODOS, ...UPCOMING];
 
-    /* ── State helpers ──────────────────────────────────────── */
-    function loadState()    { try { return JSON.parse(localStorage.getItem(STORAGE_KEY))  || {}; } catch { return {}; } }
-    function saveState(s)   { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
-    function loadComments() { try { return JSON.parse(localStorage.getItem(COMMENTS_KEY)) || {}; } catch { return {}; } }
-    function saveComments(c){ localStorage.setItem(COMMENTS_KEY, JSON.stringify(c)); }
+    /* ── Todo state (localStorage — per-user checkboxes) ────── */
+    function loadState()  { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+    function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+
+    /* ── Comments (GitHub-backed — shared across all users) ─── */
+    let _comments = {};
+
+    async function fetchComments() {
+      try {
+        const r = await fetch('data/comments.json?t=' + Date.now());
+        if (r.ok) _comments = await r.json();
+      } catch { _comments = {}; }
+    }
+
+    async function persistComments(submitBtn) {
+      try {
+        await ghCommitFile(
+          'data/comments.json',
+          JSON.stringify(_comments, null, 2),
+          'chore: update todo comments'
+        );
+        if (submitBtn) { submitBtn.textContent = 'Post'; submitBtn.disabled = false; }
+      } catch (e) {
+        if (submitBtn) { submitBtn.textContent = 'Post'; submitBtn.disabled = false; }
+        const noPat = !localStorage.getItem('gh_pat');
+        const msg = noPat
+          ? 'No GitHub token set — visit Admin to add one, then try again.'
+          : 'Failed to save comment to GitHub: ' + (e.message || e);
+        alert(msg);
+      }
+    }
 
     const SVG_TICK = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>`;
 
@@ -349,9 +374,9 @@
     }
 
     /* ── Item rendering ─────────────────────────────────────── */
-    function itemHTML(item, state, comments) {
+    function itemHTML(item, state) {
       const done     = !!state[item.id];
-      const itemComs = comments[item.id] || [];
+      const itemComs = _comments[item.id] || [];
       const tags     = item.owners.map(o => `<span class="ii-tag ${OWNER_CLASS[o] || ''}">${o}</span>`).join('');
       const comList  = itemComs.map(commentHTML).join('');
       const badge    = itemComs.length ? `<span class="ii-comment-count">${itemComs.length}</span>` : '';
@@ -384,16 +409,15 @@
     }
 
     /* ── Render ─────────────────────────────────────────────── */
-    function renderAll() {
+    async function renderAll() {
+      await fetchComments();
       const s = loadState();
-      const c = loadComments();
-      document.getElementById('ii-todo-list').innerHTML     = TODOS.map(t => itemHTML(t, s, c)).join('');
-      document.getElementById('ii-upcoming-list').innerHTML = UPCOMING.map(t => itemHTML(t, s, c)).join('');
-      syncProgress(s, c);
+      document.getElementById('ii-todo-list').innerHTML     = TODOS.map(t => itemHTML(t, s)).join('');
+      document.getElementById('ii-upcoming-list').innerHTML = UPCOMING.map(t => itemHTML(t, s)).join('');
+      syncProgress(s);
     }
 
-    function syncProgress(s, c) {
-      c = c || loadComments();
+    function syncProgress(s) {
       const done  = ALL.filter(t => s[t.id]).length;
       const total = ALL.length;
       const pill  = document.getElementById('ii-todo-pill');
@@ -420,26 +444,27 @@
       }
     }
 
-    function addComment(id) {
-      const input  = document.getElementById(`input-${id}`);
-      const author = document.getElementById(`author-${id}`)?.value || 'Julian';
-      const text   = (input?.value || '').trim();
+    async function addComment(id) {
+      const input     = document.getElementById(`input-${id}`);
+      const author    = document.getElementById(`author-${id}`)?.value || 'Julian';
+      const text      = (input?.value || '').trim();
+      const submitBtn = document.querySelector(`#comments-${id} .ii-comment-submit`);
       if (!text) return;
 
-      const c = loadComments();
-      if (!c[id]) c[id] = [];
-      c[id].push({ author, text, ts: Date.now() });
-      saveComments(c);
+      if (!_comments[id]) _comments[id] = [];
+      _comments[id].push({ author, text, ts: Date.now() });
 
-      // Update just the comment list and badge without full re-render
-      document.getElementById(`comment-list-${id}`).innerHTML = c[id].map(commentHTML).join('');
-      const toggle = document.querySelector(`#item-${id} .ii-todo-comment-toggle`);
-      if (toggle) {
-        const badge = `<span class="ii-comment-count">${c[id].length}</span>`;
-        toggle.innerHTML = `💬 Updates ${badge}`;
+      // Update DOM immediately — don't wait for GitHub
+      document.getElementById(`comment-list-${id}`).innerHTML = _comments[id].map(commentHTML).join('');
+      const toggleBtn = document.querySelector(`#item-${id} .ii-todo-comment-toggle`);
+      if (toggleBtn) {
+        const badge = `<span class="ii-comment-count">${_comments[id].length}</span>`;
+        toggleBtn.innerHTML = `💬 Updates ${badge}`;
       }
       input.value = '';
-      input.focus();
+      if (submitBtn) { submitBtn.textContent = 'Saving…'; submitBtn.disabled = true; }
+
+      await persistComments(submitBtn);
     }
 
     function resetTodos() {
