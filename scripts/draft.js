@@ -37,7 +37,8 @@ Instructions:
 - 2–4 paragraphs total. Lead with the most strategically important story.
 - Weave stories together thematically where possible rather than listing them one by one.
 - Include source URLs inline as plain text where they add credibility.
-- Return clean HTML using only <p> tags. No headings, no bullet points.
+- Return clean HTML. Use <h2> tags for 2–4 main themes within the section (short, 4–7 words each). Use <h3> for notable sub-points where they add clarity. Use <p> for body text. No bullet points or lists.
+- Each h2 should introduce a distinct theme, not just label a source. Write them as editorial assertions.
 - Be specific about numbers, names, and implications for a game art studio.`,
     }],
   });

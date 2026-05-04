@@ -16,51 +16,10 @@ const Anthropic  = require('@anthropic-ai/sdk');
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const parser = new RSSParser({ timeout: 10000 });
 
-// ── RSS sources (only feeds tagged RSS in sources.txt) ─────────────────────
-const SOURCES = [
-  // Studio Moves / business
-  { section: 'Studio Moves',      name: 'GamesIndustry.biz',  feed: 'https://www.gamesindustry.biz/rss/gamesindustry_news.xml' },
-  { section: 'Studio Moves',      name: 'Game Developer',     feed: 'https://www.gamedeveloper.com/rss.xml' },
-  { section: 'Studio Moves',      name: 'Kotaku',             feed: 'https://kotaku.com/rss' },
-  { section: 'Studio Moves',      name: 'Polygon',            feed: 'https://www.polygon.com/rss/index.xml' },
-  { section: 'Studio Moves',      name: 'VentureBeat Games',  feed: 'https://venturebeat.com/games/feed/' },
-  { section: 'Studio Moves',      name: 'MCV/Develop',        feed: 'https://mcvuk.com/feed/' },
-
-  // People on the Move (reuses GI.biz + GDC)
-  { section: 'People on the Move', name: 'Game Developer',    feed: 'https://www.gamedeveloper.com/rss.xml' },
-
-  // The Art Pipeline
-  { section: 'The Art Pipeline',  name: '80.lv',              feed: 'https://80.lv/articles/feed/' },
-  { section: 'The Art Pipeline',  name: 'Unreal Engine',      feed: 'https://www.unrealengine.com/en-US/rss' },
-  { section: 'The Art Pipeline',  name: 'Unity Blog',         feed: 'https://blog.unity.com/rss.xml' },
-  { section: 'The Art Pipeline',  name: 'Foundry',            feed: 'https://www.foundry.com/insights/feed' },
-  { section: 'The Art Pipeline',  name: 'Reallusion',         feed: 'https://www.reallusion.com/blog/feed/' },
-  { section: 'The Art Pipeline',  name: 'Substance / Adobe',  feed: 'https://blog.adobe.com/en/topics/3d-ar/feed.xml' },
-
-  // AI & The Craft
-  { section: 'AI & The Craft',    name: 'The Decoder',        feed: 'https://the-decoder.com/feed/' },
-  { section: 'AI & The Craft',    name: 'VentureBeat AI',     feed: 'https://venturebeat.com/ai/feed/' },
-  { section: 'AI & The Craft',    name: 'Hugging Face',       feed: 'https://huggingface.co/blog/feed.xml' },
-  { section: 'AI & The Craft',    name: 'Stability AI',       feed: 'https://stability.ai/news/rss.xml' },
-  { section: 'AI & The Craft',    name: 'Runway ML',          feed: 'https://runwayml.com/blog/feed' },
-  { section: 'AI & The Craft',    name: 'Game Dev (AI tag)',   feed: 'https://www.gamedeveloper.com/rss.xml' },
-
-  // Who's Buying What
-  { section: "Who's Buying What", name: 'GamesIndustry.biz',  feed: 'https://www.gamesindustry.biz/rss/gamesindustry_news.xml' },
-  { section: "Who's Buying What", name: 'Games Business',     feed: 'https://www.gamesbusiness.com/feed' },
-
-  // On the Shelf
-  { section: 'On the Shelf',      name: 'IGN',                feed: 'https://feeds.ign.com/ign/all' },
-  { section: 'On the Shelf',      name: 'GameSpot',           feed: 'https://www.gamespot.com/feeds/mashup/' },
-
-  // TTRPG Industry
-  { section: 'TTRPG Industry',    name: 'EN World',           feed: 'https://www.enworld.org/forums/rss/news.xml' },
-  { section: 'TTRPG Industry',    name: 'Dicebreaker',        feed: 'https://www.dicebreaker.com/rss.xml' },
-  { section: 'TTRPG Industry',    name: 'Bell of Lost Souls', feed: 'https://www.belloflostsouls.net/feed' },
-  { section: 'TTRPG Industry',    name: 'Kobold Press',       feed: 'https://koboldpress.com/feed/' },
-  { section: 'TTRPG Industry',    name: 'Paizo Blog',         feed: 'https://paizo.com/community/blog/rss' },
-  { section: 'TTRPG Industry',    name: 'D&D Beyond',         feed: 'https://www.dndbeyond.com/posts/feed' },
-];
+// ── RSS sources (loaded from data/sources.json) ───────────────────────────
+const SOURCES = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'data', 'sources.json'), 'utf8')
+).filter(s => s.active !== false);
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 

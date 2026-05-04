@@ -862,19 +862,43 @@ function initBars() {
 /* ============================================================
    PUBLISHED ISSUE — TAB NAVIGATION
    ============================================================ */
+function buildQuicknav(panelEl) {
+  panelEl.querySelector('.ii-quicknav')?.remove();
+  if (panelEl.id === 'panel-strategic-insights') return;
+  const body = panelEl.querySelector('.ii-article-body');
+  if (!body) return;
+  const headings = body.querySelectorAll('h2, h3');
+  if (headings.length < 2) return;
+  headings.forEach((h, i) => { if (!h.id) h.id = 'hn-' + i + '-' + Math.random().toString(36).slice(2, 6); });
+  const items = Array.from(headings).map(h =>
+    `<a class="ii-qnav-item${h.tagName === 'H3' ? ' ii-qnav-sub' : ''}" href="#${h.id}">${h.textContent.trim()}</a>`
+  ).join('');
+  const nav = document.createElement('nav');
+  nav.className = 'ii-quicknav';
+  nav.setAttribute('aria-label', 'Section navigation');
+  nav.innerHTML = `<div class="ii-qnav-label">In This Section</div>${items}`;
+  panelEl.insertBefore(nav, body);
+}
+
 function switchTab(tabId) {
   document.querySelectorAll('.ii-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.ii-tab-panel').forEach(p => p.classList.remove('active'));
   const tab   = document.querySelector(`.ii-tab[data-tab="${tabId}"]`);
   const panel = document.getElementById('panel-' + tabId);
   if (tab)   tab.classList.add('active');
-  if (panel) panel.classList.add('active');
+  if (panel) {
+    panel.classList.add('active');
+    buildQuicknav(panel);
+  }
   if (history.replaceState) history.replaceState(null, '', '#' + tabId);
 }
 
 function initTabs() {
   const nav = document.querySelector('.ii-tabs-nav');
   if (!nav) return;
+  // Build quicknav for the initially active panel
+  const activePanel = document.querySelector('.ii-tab-panel.active');
+  if (activePanel) buildQuicknav(activePanel);
   // Restore tab from URL hash
   const hash = location.hash.replace('#', '');
   if (hash && document.getElementById('panel-' + hash)) switchTab(hash);

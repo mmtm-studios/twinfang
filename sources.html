@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Registry — Industry Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+  <style>
+    .ii-src-section { margin-bottom: 40px; }
+    .ii-src-section-title {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--tx3);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--bd);
+      margin-bottom: 0;
+    }
+    .ii-src-row {
+      display: grid;
+      grid-template-columns: 8px 1fr 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--bd);
+    }
+    .ii-src-row.ii-src-inactive { opacity: .45; }
+    .ii-src-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .ii-src-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tx);
+    }
+    .ii-src-domain {
+      font-size: 11px;
+      color: var(--tx3);
+      font-family: 'Courier New', monospace;
+    }
+    .ii-src-count {
+      font-size: 11px;
+      color: var(--tx2);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .ii-src-count strong { color: var(--tx); font-weight: 700; }
+    .ii-src-section-wrap {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0 48px;
+      margin-bottom: 48px;
+    }
+    .ii-src-section-meta {
+      padding-top: 12px;
+    }
+    .ii-src-section-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tx);
+      margin-bottom: 4px;
+    }
+    .ii-src-section-count {
+      font-size: 11px;
+      color: var(--tx3);
+    }
+    @media (max-width: 700px) {
+      .ii-src-section-wrap { grid-template-columns: 1fr; }
+      .ii-src-row { grid-template-columns: 8px 1fr auto; }
+      .ii-src-domain { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="ii-nav" role="navigation" aria-label="Main navigation">
+    <a class="ii-brand" href="index.html">
+      <span class="ii-mark">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" fill="#E8272A"/>
+          <polygon points="11,8 22,15 11,22" fill="#EDEBE4"/>
+        </svg>
+      </span>
+      <span class="ii-pub-wrap">
+        <span class="ii-pub">Industry Insights</span>
+        <span class="ii-sub">Twinfang · Internal</span>
+      </span>
+    </a>
+    <div class="ii-nav-links">
+      <a class="ii-navlink" href="index.html"       data-page="index.html">Latest Issue</a>
+      <a class="ii-navlink" href="archive.html"     data-page="archive.html">Archive</a>
+      <a class="ii-navlink" href="conferences.html" data-page="conferences.html">Conferences</a>
+      <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
+    </div>
+    <div class="ii-nav-right">
+      <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ─────────────────────────────────────────────── -->
+  <main>
+    <div class="ii-page">
+
+      <div class="ii-issue-header" style="padding-top:32px;margin-bottom:40px">
+        <span class="ii-eyebrow">Archive</span>
+        <h1 class="ii-h2">Source Registry</h1>
+        <p style="font-size:15px;color:var(--tx2);margin-top:16px;line-height:1.65">
+          All RSS feeds and publications monitored across every collection cycle.
+          Active sources are fetched automatically every two weeks.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div id="src-stats" style="margin-bottom:48px">
+        <div style="font-size:13px;color:var(--tx3)">Loading…</div>
+      </div>
+
+      <!-- Source list -->
+      <div id="src-list"></div>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ───────────────────────────────────────────── -->
+  <div class="ii-footer-wrap">
+    <footer class="ii-footer">
+      <span class="ii-footer-l">Twinfang — Confidential</span>
+      <span class="ii-footer-r">Industry Insights · 2026</span>
+    </footer>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+  <script>
+    async function loadSources() {
+      const [srcRes, storiesRes] = await Promise.allSettled([
+        fetch('data/sources.json').then(r => r.json()),
+        fetch('data/stories.json').then(r => r.json()),
+      ]);
+
+      const sources = srcRes.value   || [];
+      const stories = storiesRes.value || [];
+
+      // Article count per source name
+      const countByName = {};
+      stories.forEach(s => { countByName[s.source] = (countByName[s.source] || 0) + 1; });
+
+      const active    = sources.filter(s => s.active !== false).length;
+      const withHits  = new Set(stories.map(s => s.source)).size;
+
+      document.getElementById('src-stats').innerHTML = `
+        <div class="ii-stats">
+          <div class="ii-stat">
+            <div class="ii-stat-num">${sources.length}</div>
+            <div class="ii-stat-label">Sources Tracked</div>
+          </div>
+          <div class="ii-stat">
+            <div class="ii-stat-num">${active}</div>
+            <div class="ii-stat-label">Currently Active</div>
+          </div>
+          <div class="ii-stat">
+            <div class="ii-stat-num">${stories.length}</div>
+            <div class="ii-stat-label">Articles Scored (Last Cycle)</div>
+          </div>
+          <div class="ii-stat">
+            <div class="ii-stat-num">${withHits}</div>
+            <div class="ii-stat-label">Publications with Hits</div>
+          </div>
+        </div>`;
+
+      // Group by section, preserving order
+      const sectionOrder = [];
+      const bySection = {};
+      sources.forEach(s => {
+        if (!bySection[s.section]) { bySection[s.section] = []; sectionOrder.push(s.section); }
+        bySection[s.section].push(s);
+      });
+
+      const html = sectionOrder.map(sec => {
+        const srcs = bySection[sec];
+        const activeSrcs = srcs.filter(s => s.active !== false).length;
+        const rows = srcs.map(s => {
+          const count  = countByName[s.name] || 0;
+          const status = s.active !== false;
+          const domain = (() => { try { return new URL(s.feed).hostname.replace(/^www\./, ''); } catch { return s.feed; } })();
+          return `
+            <div class="ii-src-row${status ? '' : ' ii-src-inactive'}">
+              <div class="ii-src-status" style="background:${status ? '#10B981' : 'var(--bd)'}"></div>
+              <div class="ii-src-name">${s.name}</div>
+              <div class="ii-src-domain">${domain}</div>
+              <div class="ii-src-count">${count > 0 ? `<strong>${count}</strong> hit${count !== 1 ? 's' : ''}` : '<span style="color:var(--tx3)">—</span>'}</div>
+            </div>`;
+        }).join('');
+
+        return `
+          <div class="ii-src-section-wrap">
+            <div class="ii-src-section-meta">
+              <div class="ii-src-section-name">${sec}</div>
+              <div class="ii-src-section-count">${activeSrcs} of ${srcs.length} active</div>
+            </div>
+            <div class="ii-src-rows">${rows}</div>
+          </div>`;
+      }).join('');
+
+      document.getElementById('src-list').innerHTML = html || '<p style="color:var(--tx3);font-size:13px">No sources found.</p>';
+    }
+
+    loadSources();
+  </script>
+</body>
+</html>

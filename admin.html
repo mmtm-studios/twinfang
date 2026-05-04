@@ -154,6 +154,60 @@
           </div>
         </div>
 
+        <!-- ── Sources Management ─────────────────────────── -->
+        <div style="margin-top:56px;margin-bottom:64px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+            <div class="ii-eyebrow" style="letter-spacing:3px;margin-bottom:0">RSS Sources</div>
+            <a class="ii-btn" href="sources.html" style="font-size:11px">View Source Registry →</a>
+          </div>
+          <div class="ii-admin-settings-box">
+
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+              <div>
+                <h3 class="ii-wf-title">Manage RSS Feeds</h3>
+                <p class="ii-wf-body" style="margin-top:6px">Toggle, add, or remove sources. Changes are saved to <code>data/sources.json</code> in GitHub — they take effect on the next collection run.</p>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
+                <span id="src-save-status" class="ii-settings-status"></span>
+                <button class="ii-btn primary" id="src-save-btn" onclick="saveSources()">Save to GitHub</button>
+              </div>
+            </div>
+
+            <div id="admin-sources-list" style="margin-bottom:24px">
+              <div style="font-size:13px;color:var(--tx3)">Loading sources…</div>
+            </div>
+
+            <!-- Add new source -->
+            <div style="border-top:1px solid var(--bd);padding-top:24px;margin-top:8px">
+              <h3 class="ii-wf-title" style="margin-bottom:14px">Add Source</h3>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end">
+                <div>
+                  <label class="ii-settings-label" for="src-new-section">Section</label>
+                  <select id="src-new-section" class="ii-comment-author-select" style="width:100%;padding:8px 10px;font-size:13px">
+                    <option>Studio Moves</option>
+                    <option>People on the Move</option>
+                    <option>The Art Pipeline</option>
+                    <option>AI &amp; The Craft</option>
+                    <option>Who's Buying What</option>
+                    <option>On the Shelf</option>
+                    <option>TTRPG Industry</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="ii-settings-label" for="src-new-name">Publication Name</label>
+                  <input id="src-new-name" type="text" class="ii-settings-input" placeholder="e.g. Kotaku" />
+                </div>
+                <div>
+                  <label class="ii-settings-label" for="src-new-feed">RSS Feed URL</label>
+                  <input id="src-new-feed" type="url" class="ii-settings-input" placeholder="https://…/feed" />
+                </div>
+                <button class="ii-btn primary" onclick="addSource()" style="align-self:flex-end;white-space:nowrap">Add</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </main>
 
@@ -224,6 +278,7 @@
       document.getElementById('admin-login').style.display    = 'none';
       document.getElementById('admin-dashboard').style.display = '';
       loadPipeline();
+      loadSourcesList();
       const pat = localStorage.getItem('gh_pat');
       if (pat) {
         document.getElementById('admin-pat-input').value = pat;
@@ -337,6 +392,102 @@
       status.textContent = '✓ Password updated';
       document.getElementById('admin-new-pw').value    = '';
       document.getElementById('admin-confirm-pw').value = '';
+    }
+
+    /* ── Sources management ─────────────────────────────── */
+    let _sources = [];
+
+    async function loadSourcesList() {
+      try {
+        _sources = await fetch('data/sources.json').then(r => r.json());
+      } catch { _sources = []; }
+      renderSourcesList();
+    }
+
+    function renderSourcesList() {
+      const container = document.getElementById('admin-sources-list');
+      if (!_sources.length) {
+        container.innerHTML = '<p style="font-size:13px;color:var(--tx3)">No sources found.</p>';
+        return;
+      }
+
+      const sectionOrder = [];
+      const bySection = {};
+      _sources.forEach((s, i) => {
+        s._idx = i;
+        if (!bySection[s.section]) { bySection[s.section] = []; sectionOrder.push(s.section); }
+        bySection[s.section].push(s);
+      });
+
+      const html = sectionOrder.map(sec => {
+        const rows = bySection[sec].map(s => {
+          const active = s.active !== false;
+          const domain = (() => { try { return new URL(s.feed).hostname.replace(/^www\./, ''); } catch { return s.feed; } })();
+          return `
+            <div class="ii-src-row${active ? '' : ' ii-src-inactive'}" id="src-row-${s._idx}">
+              <div class="ii-src-status" style="background:${active ? '#10B981' : 'var(--bd)'}"></div>
+              <div class="ii-src-name">${s.name}</div>
+              <div class="ii-src-domain">${domain}</div>
+              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                <button class="ii-btn" style="font-size:10px;padding:4px 10px"
+                  onclick="toggleSource(${s._idx})">${active ? 'Disable' : 'Enable'}</button>
+                <button class="ii-btn" style="font-size:10px;padding:4px 10px;color:var(--red)"
+                  onclick="removeSource(${s._idx})">Remove</button>
+              </div>
+            </div>`;
+        }).join('');
+
+        return `
+          <div style="margin-bottom:28px">
+            <div class="ii-src-section-title" style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--tx3);padding-bottom:8px;border-bottom:1px solid var(--bd);margin-bottom:0">${sec}</div>
+            ${rows}
+          </div>`;
+      }).join('');
+
+      container.innerHTML = html;
+    }
+
+    function toggleSource(idx) {
+      _sources[idx].active = !(_sources[idx].active !== false);
+      renderSourcesList();
+    }
+
+    function removeSource(idx) {
+      if (!confirm(`Remove "${_sources[idx].name}"?`)) return;
+      _sources.splice(idx, 1);
+      renderSourcesList();
+    }
+
+    function addSource() {
+      const section = document.getElementById('src-new-section').value.trim();
+      const name    = document.getElementById('src-new-name').value.trim();
+      const feed    = document.getElementById('src-new-feed').value.trim();
+      if (!name || !feed) { alert('Name and Feed URL are required.'); return; }
+      _sources.push({ section, name, feed, active: true });
+      document.getElementById('src-new-name').value = '';
+      document.getElementById('src-new-feed').value = '';
+      renderSourcesList();
+    }
+
+    async function saveSources() {
+      const btn    = document.getElementById('src-save-btn');
+      const status = document.getElementById('src-save-status');
+      btn.disabled = true;
+      status.textContent = 'Saving…';
+
+      const clean = _sources.map(({ _idx, ...s }) => s);
+      try {
+        await ghCommitFile(
+          'data/sources.json',
+          JSON.stringify(clean, null, 2),
+          'chore: update RSS sources list'
+        );
+        status.textContent = '✓ Saved to GitHub';
+      } catch (e) {
+        status.textContent = '✗ ' + (e.message || 'Save failed');
+      } finally {
+        btn.disabled = false;
+      }
     }
 
     /* ── Init ────────────────────────────────────────────── */

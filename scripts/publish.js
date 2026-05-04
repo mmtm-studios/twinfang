@@ -105,12 +105,17 @@ const sectionPanelsHTML = activeSections.map((sec, i) => {
           <blockquote class="ii-tab-pullquote"><p>${pullQuote}</p></blockquote>` : '';
 
   const srcHTML = sec.sources.length ? `
-          <div class="ii-article-sources">
-            <div class="ii-sources-label">${sec.sources.length} source${sec.sources.length > 1 ? 's' : ''} referenced</div>
+          <details class="ii-article-sources">
+            <summary>
+              <div class="ii-sources-summary-left">
+                <span class="ii-sources-label">${sec.sources.length} source${sec.sources.length > 1 ? 's' : ''} referenced</span>
+              </div>
+              <span class="ii-sources-toggle-icon">▾</span>
+            </summary>
             <div class="ii-sources-grid">
               ${sec.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="ii-source-chip"><span class="ii-source-name">${s.source}</span><span class="ii-source-headline">${String(s.headline).replace(/<[^>]+>/g, '')}</span></a>`).join('')}
             </div>
-          </div>` : '';
+          </details>` : '';
 
   return `
         <div class="ii-tab-panel${i === 0 ? ' active' : ''}" id="panel-${slug}">

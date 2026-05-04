@@ -1,0 +1,37 @@
+[
+  { "section": "Studio Moves",      "name": "GamesIndustry.biz", "feed": "https://www.gamesindustry.biz/rss/gamesindustry_news.xml", "active": true },
+  { "section": "Studio Moves",      "name": "Game Developer",    "feed": "https://www.gamedeveloper.com/rss.xml",                   "active": true },
+  { "section": "Studio Moves",      "name": "Kotaku",            "feed": "https://kotaku.com/rss",                                   "active": true },
+  { "section": "Studio Moves",      "name": "Polygon",           "feed": "https://www.polygon.com/rss/index.xml",                    "active": true },
+  { "section": "Studio Moves",      "name": "VentureBeat Games", "feed": "https://venturebeat.com/games/feed/",                      "active": true },
+  { "section": "Studio Moves",      "name": "MCV/Develop",       "feed": "https://mcvuk.com/feed/",                                  "active": true },
+
+  { "section": "People on the Move", "name": "Game Developer",   "feed": "https://www.gamedeveloper.com/rss.xml",                   "active": true },
+
+  { "section": "The Art Pipeline",  "name": "80.lv",             "feed": "https://80.lv/articles/feed/",                             "active": true },
+  { "section": "The Art Pipeline",  "name": "Unreal Engine",     "feed": "https://www.unrealengine.com/en-US/rss",                   "active": true },
+  { "section": "The Art Pipeline",  "name": "Unity Blog",        "feed": "https://blog.unity.com/rss.xml",                           "active": true },
+  { "section": "The Art Pipeline",  "name": "Foundry",           "feed": "https://www.foundry.com/insights/feed",                    "active": true },
+  { "section": "The Art Pipeline",  "name": "Reallusion",        "feed": "https://www.reallusion.com/blog/feed/",                    "active": true },
+  { "section": "The Art Pipeline",  "name": "Substance / Adobe", "feed": "https://blog.adobe.com/en/topics/3d-ar/feed.xml",          "active": true },
+
+  { "section": "AI & The Craft",    "name": "The Decoder",       "feed": "https://the-decoder.com/feed/",                            "active": true },
+  { "section": "AI & The Craft",    "name": "VentureBeat AI",    "feed": "https://venturebeat.com/ai/feed/",                         "active": true },
+  { "section": "AI & The Craft",    "name": "Hugging Face",      "feed": "https://huggingface.co/blog/feed.xml",                     "active": true },
+  { "section": "AI & The Craft",    "name": "Stability AI",      "feed": "https://stability.ai/news/rss.xml",                        "active": true },
+  { "section": "AI & The Craft",    "name": "Runway ML",         "feed": "https://runwayml.com/blog/feed",                           "active": true },
+  { "section": "AI & The Craft",    "name": "Game Dev (AI tag)", "feed": "https://www.gamedeveloper.com/rss.xml",                   "active": true },
+
+  { "section": "Who's Buying What", "name": "GamesIndustry.biz", "feed": "https://www.gamesindustry.biz/rss/gamesindustry_news.xml", "active": true },
+  { "section": "Who's Buying What", "name": "Games Business",    "feed": "https://www.gamesbusiness.com/feed",                       "active": true },
+
+  { "section": "On the Shelf",      "name": "IGN",               "feed": "https://feeds.ign.com/ign/all",                            "active": true },
+  { "section": "On the Shelf",      "name": "GameSpot",          "feed": "https://www.gamespot.com/feeds/mashup/",                   "active": true },
+
+  { "section": "TTRPG Industry",    "name": "EN World",          "feed": "https://www.enworld.org/forums/rss/news.xml",              "active": true },
+  { "section": "TTRPG Industry",    "name": "Dicebreaker",       "feed": "https://www.dicebreaker.com/rss.xml",                      "active": true },
+  { "section": "TTRPG Industry",    "name": "Bell of Lost Souls", "feed": "https://www.belloflostsouls.net/feed",                   "active": true },
+  { "section": "TTRPG Industry",    "name": "Kobold Press",      "feed": "https://koboldpress.com/feed/",                            "active": true },
+  { "section": "TTRPG Industry",    "name": "Paizo Blog",        "feed": "https://paizo.com/community/blog/rss",                     "active": true },
+  { "section": "TTRPG Industry",    "name": "D&D Beyond",        "feed": "https://www.dndbeyond.com/posts/feed",                     "active": true }
+]
