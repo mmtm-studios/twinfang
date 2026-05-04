@@ -1305,3 +1305,120 @@ img, svg { display: block; }
   text-align: right;
   flex-shrink: 0;
 }
+
+/* ── Quarter at-a-glance table (conferences.html) ──────────── */
+.ii-quarter-wrap {
+  margin-bottom: 36px;
+}
+.ii-quarter-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+.ii-quarter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  border: 1px solid var(--bd);
+}
+@media (max-width: 700px) {
+  .ii-quarter-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 420px) {
+  .ii-quarter-grid { grid-template-columns: 1fr; }
+}
+.ii-qcol {
+  background: var(--bg);
+  padding: 0;
+}
+.ii-qcol + .ii-qcol {
+  border-left: 1px solid var(--bd);
+}
+.ii-qcol-head {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 14px 16px 12px;
+  border-bottom: 2px solid var(--bd);
+  background: var(--bg2);
+}
+.ii-qcol-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--tx);
+  letter-spacing: -0.3px;
+}
+.ii-qcol-range {
+  font-size: 10px;
+  color: var(--tx3);
+  flex: 1;
+}
+.ii-qcol-count {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tx3);
+  background: var(--bd);
+  border-radius: 10px;
+  padding: 1px 7px;
+}
+.ii-qcol-events {
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ii-qev {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.12s;
+}
+.ii-qev:hover { background: var(--bg2); }
+.ii-qev-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.ii-qev-body { min-width: 0; }
+.ii-qev-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tx);
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.ii-qev-key {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: 2px;
+  padding: 1px 4px;
+  flex-shrink: 0;
+}
+.ii-qev-meta {
+  font-size: 10px;
+  color: var(--tx3);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.ii-qev-empty {
+  font-size: 11px;
+  color: var(--tx3);
+  font-style: italic;
+  padding: 10px 8px;
+}

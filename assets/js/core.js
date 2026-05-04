@@ -101,8 +101,76 @@ async function loadCalendar() {
     // If fetch fails (e.g. file:// protocol), try inline fallback
     calEvents = window.CONF_FALLBACK || [];
   }
+  renderQuarterTable();
   renderCalendar();
   initFilters();
+}
+
+function renderQuarterTable() {
+  const wrap = document.getElementById('ii-quarter-table');
+  if (!wrap || !calEvents.length) return;
+
+  const KEY_IDS = new Set(['gdc-2026','siggraph-2026','thwau-2026','xds-2026','annecy-2026']);
+
+  function fmtRange(start, end) {
+    const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const s  = new Date(start + 'T12:00:00');
+    const e  = new Date(end   + 'T12:00:00');
+    if (start === end) return `${MO[s.getMonth()]} ${s.getDate()}`;
+    if (s.getMonth() === e.getMonth()) return `${MO[s.getMonth()]} ${s.getDate()}–${e.getDate()}`;
+    return `${MO[s.getMonth()]} ${s.getDate()} – ${MO[e.getMonth()]} ${e.getDate()}`;
+  }
+
+  const quarters = [
+    { label: 'Q1', range: 'Jan – Mar', months: [0,1,2] },
+    { label: 'Q2', range: 'Apr – Jun', months: [3,4,5] },
+    { label: 'Q3', range: 'Jul – Sep', months: [6,7,8] },
+    { label: 'Q4', range: 'Oct – Dec', months: [9,10,11] },
+  ];
+
+  const byQuarter = quarters.map(q => ({
+    ...q,
+    events: calEvents
+      .filter(ev => {
+        const m = new Date(ev.start + 'T12:00:00').getMonth();
+        return q.months.includes(m);
+      })
+      .sort((a, b) => a.start.localeCompare(b.start)),
+  }));
+
+  const colsHTML = byQuarter.map(q => {
+    const rows = q.events.map(ev => {
+      const color = CAT_COLORS[ev.category] || '#9CA3AF';
+      const isKey = KEY_IDS.has(ev.id);
+      return `
+        <a class="ii-qev" href="${ev.url}" target="_blank" rel="noopener">
+          <span class="ii-qev-dot" style="background:${color}"></span>
+          <div class="ii-qev-body">
+            <div class="ii-qev-name">
+              ${ev.name}
+              ${isKey ? '<span class="ii-qev-key">KEY</span>' : ''}
+            </div>
+            <div class="ii-qev-meta">${fmtRange(ev.start, ev.end)} · ${ev.location}</div>
+          </div>
+        </a>`;
+    }).join('');
+
+    return `
+      <div class="ii-qcol">
+        <div class="ii-qcol-head">
+          <span class="ii-qcol-label">${q.label}</span>
+          <span class="ii-qcol-range">${q.range}</span>
+          <span class="ii-qcol-count">${q.events.length}</span>
+        </div>
+        <div class="ii-qcol-events">${rows || '<div class="ii-qev-empty">No events</div>'}</div>
+      </div>`;
+  }).join('');
+
+  wrap.innerHTML = `
+    <div class="ii-quarter-wrap">
+      <div class="ii-quarter-eyebrow">2026 at a Glance</div>
+      <div class="ii-quarter-grid">${colsHTML}</div>
+    </div>`;
 }
 
 function initFilters() {
