@@ -110,7 +110,7 @@ function renderQuarterTable() {
   const wrap = document.getElementById('ii-quarter-table');
   if (!wrap || !calEvents.length) return;
 
-  const KEY_IDS = new Set(['gdc-2026','siggraph-2026','thwau-2026','xds-2026','annecy-2026']);
+  const KEY_IDS = new Set(['gdc-2026','siggraph-2026','thwau-2026','xds-2026','annecy-2026','gamescom-asia-2026','igdx-2026','gamestart-asia-2026']);
 
   function fmtRange(start, end) {
     const MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

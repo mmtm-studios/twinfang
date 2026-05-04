@@ -95,6 +95,107 @@
     .ii-note-text + .ii-note-text { margin-top: 8px; }
     .ii-note-text strong { color: var(--tx); font-weight: 600; }
 
+    /* Comments */
+    .ii-todo-comment-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--tx3);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      padding: 4px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color .12s;
+    }
+    .ii-todo-comment-toggle:hover { color: var(--tx2); }
+    .ii-todo-comment-toggle .ii-comment-count {
+      background: var(--bd);
+      border-radius: 8px;
+      padding: 1px 6px;
+      font-size: 10px;
+      color: var(--tx2);
+    }
+    .ii-todo-comments {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--bd);
+      display: none;
+    }
+    .ii-todo-comments.open { display: block; }
+    .ii-comment-list { margin-bottom: 10px; }
+    .ii-comment-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+    .ii-comment-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      margin-top: 1px;
+    }
+    .ii-comment-bubble {
+      background: var(--bg);
+      border: 1px solid var(--bd);
+      padding: 7px 10px;
+      flex: 1;
+      min-width: 0;
+    }
+    .ii-comment-meta {
+      font-size: 10px;
+      color: var(--tx3);
+      margin-bottom: 3px;
+      font-weight: 600;
+    }
+    .ii-comment-text {
+      font-size: 13px;
+      color: var(--tx2);
+      line-height: 1.5;
+    }
+    .ii-comment-form {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .ii-comment-author-select {
+      font-size: 11px;
+      font-family: inherit;
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      color: var(--tx);
+      padding: 5px 8px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .ii-comment-input {
+      flex: 1;
+      font-size: 13px;
+      font-family: inherit;
+      background: var(--bg2);
+      border: 1px solid var(--bd);
+      color: var(--tx);
+      padding: 6px 10px;
+      resize: none;
+      line-height: 1.4;
+    }
+    .ii-comment-input::placeholder { color: var(--tx3); }
+    .ii-comment-submit {
+      font-size: 11px;
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+
     .ii-next-mtg {
       border: 1px solid var(--bd);
       padding: 20px 24px;
@@ -203,9 +304,12 @@
 
   <script src="assets/js/core.js"></script>
   <script>
-    const STORAGE_KEY = 'ii-todos-2026-04-28';
+    const STORAGE_KEY   = 'ii-todos-2026-04-28';
+    const COMMENTS_KEY  = 'ii-todos-comments-2026-04-28';
 
-    const OWNER_CLASS = { Julian: 'owner-julian', Robby: 'owner-robby', Stephen: 'owner-stephen' };
+    const OWNER_CLASS  = { Julian: 'owner-julian', Robby: 'owner-robby', Stephen: 'owner-stephen' };
+    const OWNER_COLOR  = { Julian: '#E8272A', Robby: '#3B82F6', Stephen: '#10B981' };
+    const OWNER_INITIALS = { Julian: 'JU', Robby: 'RO', Stephen: 'ST' };
 
     const TODOS = [
       { id: 'crm-client',     owners: ['Stephen', 'Robby'],          text: 'Build CRM — Client List — Reachout' },
@@ -215,41 +319,81 @@
     ];
 
     const UPCOMING = [
-      { id: 'first-hire',    owners: ['Robby', 'Julian'], text: 'Find potential first hire / roster incumbents' },
-      { id: 'jakarta-trip',  owners: [],                  text: 'Potential Jakarta Trip — 2nd Week of June' },
+      { id: 'first-hire',   owners: ['Robby', 'Julian'], text: 'Find potential first hire / roster incumbents' },
+      { id: 'jakarta-trip', owners: [],                  text: 'Potential Jakarta Trip — 2nd Week of June' },
     ];
 
     const ALL = [...TODOS, ...UPCOMING];
 
-    function loadState() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-    }
-
-    function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+    /* ── State helpers ──────────────────────────────────────── */
+    function loadState()    { try { return JSON.parse(localStorage.getItem(STORAGE_KEY))  || {}; } catch { return {}; } }
+    function saveState(s)   { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+    function loadComments() { try { return JSON.parse(localStorage.getItem(COMMENTS_KEY)) || {}; } catch { return {}; } }
+    function saveComments(c){ localStorage.setItem(COMMENTS_KEY, JSON.stringify(c)); }
 
     const SVG_TICK = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>`;
 
-    function itemHTML(item, state) {
-      const done = !!state[item.id];
-      const tags = item.owners.map(o => `<span class="ii-tag ${OWNER_CLASS[o] || ''}">${o}</span>`).join('');
+    /* ── Comment rendering ──────────────────────────────────── */
+    function commentHTML(c) {
+      const color    = OWNER_COLOR[c.author]    || '#9CA3AF';
+      const initials = OWNER_INITIALS[c.author] || c.author.slice(0,2).toUpperCase();
+      const time     = new Date(c.ts).toLocaleDateString('en-US', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+      return `
+        <div class="ii-comment-item">
+          <div class="ii-comment-avatar" style="background:${color}">${initials}</div>
+          <div class="ii-comment-bubble">
+            <div class="ii-comment-meta">${c.author} · ${time}</div>
+            <div class="ii-comment-text">${c.text}</div>
+          </div>
+        </div>`;
+    }
+
+    /* ── Item rendering ─────────────────────────────────────── */
+    function itemHTML(item, state, comments) {
+      const done     = !!state[item.id];
+      const itemComs = comments[item.id] || [];
+      const tags     = item.owners.map(o => `<span class="ii-tag ${OWNER_CLASS[o] || ''}">${o}</span>`).join('');
+      const comList  = itemComs.map(commentHTML).join('');
+      const badge    = itemComs.length ? `<span class="ii-comment-count">${itemComs.length}</span>` : '';
+
       return `
         <div class="ii-todo-item${done ? ' done' : ''}" id="item-${item.id}">
           <button class="ii-todo-check" onclick="toggle('${item.id}')" aria-label="Mark done">${SVG_TICK}</button>
           <div class="ii-todo-body">
             ${tags ? `<div class="ii-todo-owners">${tags}</div>` : ''}
             <div class="ii-todo-text">${item.text}</div>
+            <button class="ii-todo-comment-toggle" onclick="toggleComments('${item.id}')">
+              💬 Updates ${badge}
+            </button>
+            <div class="ii-todo-comments" id="comments-${item.id}">
+              <div class="ii-comment-list" id="comment-list-${item.id}">${comList}</div>
+              <div class="ii-comment-form">
+                <select class="ii-comment-author-select" id="author-${item.id}">
+                  <option>Julian</option>
+                  <option>Robby</option>
+                  <option>Stephen</option>
+                </select>
+                <textarea class="ii-comment-input" id="input-${item.id}" rows="2"
+                  placeholder="Add an update…"
+                  onkeydown="if(event.key==='Enter'&&(event.metaKey||event.ctrlKey))addComment('${item.id}')"></textarea>
+                <button class="ii-btn ii-comment-submit" onclick="addComment('${item.id}')">Post</button>
+              </div>
+            </div>
           </div>
         </div>`;
     }
 
+    /* ── Render ─────────────────────────────────────────────── */
     function renderAll() {
       const s = loadState();
-      document.getElementById('ii-todo-list').innerHTML     = TODOS.map(t => itemHTML(t, s)).join('');
-      document.getElementById('ii-upcoming-list').innerHTML = UPCOMING.map(t => itemHTML(t, s)).join('');
-      syncProgress(s);
+      const c = loadComments();
+      document.getElementById('ii-todo-list').innerHTML     = TODOS.map(t => itemHTML(t, s, c)).join('');
+      document.getElementById('ii-upcoming-list').innerHTML = UPCOMING.map(t => itemHTML(t, s, c)).join('');
+      syncProgress(s, c);
     }
 
-    function syncProgress(s) {
+    function syncProgress(s, c) {
+      c = c || loadComments();
       const done  = ALL.filter(t => s[t.id]).length;
       const total = ALL.length;
       const pill  = document.getElementById('ii-todo-pill');
@@ -259,12 +403,43 @@
         `<strong>${done}</strong> of <strong>${total}</strong> tasks complete`;
     }
 
+    /* ── Actions ────────────────────────────────────────────── */
     function toggle(id) {
       const s = loadState();
       s[id] = !s[id];
       saveState(s);
       document.getElementById(`item-${id}`).classList.toggle('done', !!s[id]);
       syncProgress(s);
+    }
+
+    function toggleComments(id) {
+      const el = document.getElementById(`comments-${id}`);
+      el.classList.toggle('open');
+      if (el.classList.contains('open')) {
+        document.getElementById(`input-${id}`)?.focus();
+      }
+    }
+
+    function addComment(id) {
+      const input  = document.getElementById(`input-${id}`);
+      const author = document.getElementById(`author-${id}`)?.value || 'Julian';
+      const text   = (input?.value || '').trim();
+      if (!text) return;
+
+      const c = loadComments();
+      if (!c[id]) c[id] = [];
+      c[id].push({ author, text, ts: Date.now() });
+      saveComments(c);
+
+      // Update just the comment list and badge without full re-render
+      document.getElementById(`comment-list-${id}`).innerHTML = c[id].map(commentHTML).join('');
+      const toggle = document.querySelector(`#item-${id} .ii-todo-comment-toggle`);
+      if (toggle) {
+        const badge = `<span class="ii-comment-count">${c[id].length}</span>`;
+        toggle.innerHTML = `💬 Updates ${badge}`;
+      }
+      input.value = '';
+      input.focus();
     }
 
     function resetTodos() {

@@ -1149,17 +1149,17 @@ img, svg { display: block; }
 
 /* ── Article body ──────────────────────────────────────────── */
 .ii-article-body {
-  max-width: 720px;
   font-size: 16px;
   line-height: 1.9;
   color: var(--tx2);
 }
 .ii-article-body p + p { margin-top: 1.25em; }
 .ii-article-body a {
-  color: var(--tx);
+  color: var(--red);
   text-decoration: underline;
-  text-decoration-color: var(--bd);
+  text-decoration-color: rgba(232,39,42,.3);
   text-underline-offset: 3px;
+  font-weight: 500;
   transition: text-decoration-color .15s;
 }
 .ii-article-body a:hover { text-decoration-color: var(--red); }
@@ -1170,7 +1170,7 @@ img, svg { display: block; }
   padding: 20px 24px 20px 52px;
   border-left: 3px solid var(--red);
   margin-bottom: 32px;
-  max-width: 720px;
+  grid-column: 1 / -1;
 }
 .ii-tab-pullquote::before {
   content: '\201C';
@@ -1191,12 +1191,27 @@ img, svg { display: block; }
   color: var(--tx);
 }
 
-/* ── Source list ───────────────────────────────────────────── */
+/* ── Two-column panel layout ───────────────────────────────── */
+/* The panel itself is the grid; pullquote spans both cols,
+   article-body takes the left, sources stick in the right sidebar */
+.ii-tab-panel.active:not(#panel-strategic-insights) {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  column-gap: 56px;
+  row-gap: 0;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .ii-tab-panel.active:not(#panel-strategic-insights) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Source list (sidebar) ─────────────────────────────────── */
 .ii-article-sources {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--bd);
-  max-width: 720px;
+  position: sticky;
+  top: 72px;
+  padding-top: 4px;
 }
 .ii-sources-label {
   font-size: 9px;
