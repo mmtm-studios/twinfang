@@ -905,13 +905,15 @@ img, svg { display: block; }
 }
 .ii-draft-section-body.open { display: block; }
 .ii-draft-text {
-  font-size: var(--f-md);
-  line-height: 1.75;
-  color: var(--tx2);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--tx);
   outline: none;
   width: 100%;
   min-height: 80px;
 }
+.ii-draft-text p + p { margin-top: 1em; }
+.ii-draft-text p a   { color: var(--tx3); text-decoration: underline; text-decoration-color: var(--bd); }
 /* Buttons */
 .ii-btn {
   font-size: 8px;

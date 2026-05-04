@@ -462,19 +462,40 @@ window.sectionKillAll    = sectionKillAll;
 /* ============================================================
    GATE 2 — DRAFT REVIEW
    ============================================================ */
-let gate2Draft = {};
+let gate2Draft   = {};
+let gate2Stories = [];
+
+const SECTION_COLORS = {
+  'Studio Moves':       '#E8272A',
+  'People on the Move': '#3B82F6',
+  'The Art Pipeline':   '#10B981',
+  'AI & The Craft':     '#8B5CF6',
+  "Who's Buying What":  '#F59E0B',
+  'On the Shelf':       '#EC4899',
+  'The Field':          '#6366F1',
+  'TTRPG Industry':     '#14B8A6',
+};
 
 async function loadGate2() {
   const wrap = document.getElementById('ii-draft-wrap');
   if (!wrap) return;
 
+  const [draftRes, storiesRes] = await Promise.allSettled([
+    fetch('data/draft.json'),
+    fetch('data/stories.json'),
+  ]);
+
   try {
-    const res = await fetch('data/draft.json');
-    if (!res.ok) throw new Error();
-    gate2Draft = await res.json();
-  } catch (e) {
-    gate2Draft = {};
-  }
+    if (draftRes.status === 'fulfilled' && draftRes.value.ok)
+      gate2Draft = await draftRes.value.json();
+  } catch (e) { gate2Draft = {}; }
+
+  try {
+    if (storiesRes.status === 'fulfilled' && storiesRes.value.ok) {
+      const all = await storiesRes.value.json();
+      gate2Stories = all.sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 5);
+    }
+  } catch (e) { gate2Stories = []; }
 
   if (!gate2Draft.sections || gate2Draft.sections.length === 0) {
     wrap.innerHTML = `<div class="ii-empty">
@@ -496,9 +517,12 @@ function renderGate2Draft() {
   const date = gate2Draft.date
     ? new Date(gate2Draft.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     : '';
+  const gapItems    = gate2Draft.gapScan?.items || [];
+  const activeSecs  = (gate2Draft.sections || []).filter(s => s.sources?.length > 0).length;
 
+  // ── Issue header ──────────────────────────────────────────────────────────
   let html = `
-    <div style="padding:32px 0 40px;border-bottom:1px solid var(--bd);margin-bottom:32px">
+    <div style="padding:32px 0 40px;border-bottom:1px solid var(--bd);margin-bottom:40px">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
         <span class="ii-issue-num-badge">Issue ${String(gate2Draft.issue || 1).padStart(3,'0')}</span>
         <span class="ii-issue-date-badge">${date}</span>
@@ -508,19 +532,39 @@ function renderGate2Draft() {
       <div style="display:flex;gap:16px;margin-top:20px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tx3)">
         <span>${gate2Draft.stats?.storiesApproved || 0} stories approved</span>
         <span>·</span>
-        <span>${gate2Draft.sections?.length || 0} sections</span>
+        <span>${activeSecs} active sections</span>
       </div>
     </div>`;
 
+  // ── Story highlights ──────────────────────────────────────────────────────
+  if (gate2Stories.length > 0) {
+    html += `
+    <div style="margin-bottom:48px">
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);margin-bottom:16px">Top Stories This Period</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px">
+        ${gate2Stories.map(s => {
+          const color = SECTION_COLORS[s.section] || '#6366F1';
+          const lead  = s.summary ? (s.summary.length > 110 ? s.summary.slice(0, 107) + '…' : s.summary) : '';
+          return `<a href="${s.url}" target="_blank" rel="noopener" style="display:block;padding:16px 18px;border:1px solid var(--bd);border-top:3px solid ${color};text-decoration:none;transition:box-shadow .15s" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
+            <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${color};margin-bottom:8px">${s.section}</div>
+            <div style="font-size:13px;font-weight:600;color:var(--tx);line-height:1.4;margin-bottom:8px">${s.headline}</div>
+            <div style="font-size:12px;color:var(--tx3);line-height:1.55">${lead}</div>
+          </a>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }
+
+  // ── Sections with gap scan items interspersed ─────────────────────────────
   gate2Draft.sections.forEach((sec, i) => {
     const isEmpty  = !sec.sources || sec.sources.length === 0;
     const srcCount = (sec.sources || []).length;
-    const srcHTML  = srcCount ? `
-      <details style="margin-top:20px;border-top:1px solid var(--bd);padding-top:16px">
-        <summary style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);cursor:pointer;list-style:none">
-          ▸ ${srcCount} source${srcCount > 1 ? 's' : ''} used
-        </summary>
-        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+    const gapItem  = gapItems[i] || null;
+
+    const srcHTML = srcCount ? `
+      <details style="margin-top:16px;border-top:1px solid var(--bd);padding-top:14px">
+        <summary style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);cursor:pointer;list-style:none">▸ ${srcCount} source${srcCount > 1 ? 's' : ''} used</summary>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px">
           ${(sec.sources || []).map(s => `
             <div style="display:flex;align-items:baseline;gap:10px">
               <span style="font-size:11px;color:var(--tx2);flex:1;line-height:1.45">${s.headline}</span>
@@ -529,8 +573,15 @@ function renderGate2Draft() {
         </div>
       </details>` : '';
 
+    const gapHTML = gapItem ? `
+      <div style="flex-shrink:0;width:252px;align-self:flex-start;padding:16px 18px;background:var(--bg2);border-left:3px solid var(--red)">
+        <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px">Strategic Insight</div>
+        <div style="font-size:12px;font-weight:600;color:var(--tx);line-height:1.4;margin-bottom:6px">${gapItem.title}</div>
+        <div style="font-size:12px;color:var(--tx2);line-height:1.65">${gapItem.body}</div>
+      </div>` : '';
+
     html += `
-    <div class="ii-draft-section" id="draft-sec-${i}" style="${isEmpty ? 'opacity:.6' : ''}">
+    <div class="ii-draft-section" id="draft-sec-${i}" style="${isEmpty ? 'opacity:.5' : ''}">
       <div class="ii-draft-section-head" onclick="toggleSection(${i})">
         <div style="display:flex;align-items:center;gap:10px">
           <h3>${sec.title}</h3>
@@ -539,10 +590,10 @@ function renderGate2Draft() {
         <span class="ii-meta" id="sec-status-${i}">Review</span>
       </div>
       <div class="ii-draft-section-body open" id="sec-body-${i}">
-        <div class="ii-draft-text" id="sec-text-${i}"
-          contenteditable="true"
-          spellcheck="true"
-          style="outline:none;padding:4px 0;line-height:1.85;font-size:15px;color:var(--tx2)">${sec.content}</div>
+        <div style="display:flex;gap:24px;align-items:flex-start">
+          <div class="ii-draft-text" id="sec-text-${i}" contenteditable="true" spellcheck="true" style="flex:1;min-width:0">${sec.content}</div>
+          ${gapHTML}
+        </div>
         ${srcHTML}
         <div style="display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd)">
           <button class="ii-btn approve" onclick="approveSection(${i})">✓ Approve Section</button>
@@ -553,6 +604,7 @@ function renderGate2Draft() {
   });
 
   wrap.innerHTML = html;
+  checkAllApproved();
 }
 
 function toggleSection(i) {
@@ -569,19 +621,26 @@ function approveSection(i) {
   checkAllApproved();
 }
 
+function approveAll() {
+  if (!gate2Draft.sections) return;
+  gate2Draft.sections.forEach((_, i) => approveSection(i));
+}
+
 function regenerateSection(i) {
-  // In production: triggers GPT-4o re-draft for this section
   const status = document.getElementById('sec-status-' + i);
   if (status) { status.textContent = 'Re-draft requested'; status.style.color = '#F59E0B'; }
-  alert('In production this sends the section back to GPT-4o with your edits as context.');
+  alert('Re-draft sends this section back to Claude with your edits as context. Coming soon.');
 }
 
 function checkAllApproved() {
   if (!gate2Draft.sections) return;
-  const total    = gate2Draft.sections.length;
-  const approved = document.querySelectorAll('[id^="sec-status-"]');
+  const total = gate2Draft.sections.length;
   let count = 0;
-  approved.forEach(s => { if (s.textContent.includes('✓')) count++; });
+  document.querySelectorAll('[id^="sec-status-"]').forEach(s => {
+    if (s.textContent.includes('✓')) count++;
+  });
+  const tally = document.getElementById('ii-gate2-tally');
+  if (tally) tally.textContent = `${count} of ${total} sections approved`;
   const btn = document.getElementById('ii-gate2-publish');
   if (btn) btn.disabled = count < total;
 }
@@ -595,7 +654,6 @@ async function gate2Publish() {
   btn.textContent = 'Saving edits…';
 
   try {
-    // Collect any inline edits back into the draft object
     if (gate2Draft.sections) {
       gate2Draft.sections.forEach((sec, i) => {
         const el = document.getElementById('sec-text-' + i);
@@ -630,6 +688,7 @@ async function gate2Publish() {
 
 window.toggleSection     = toggleSection;
 window.approveSection    = approveSection;
+window.approveAll        = approveAll;
 window.regenerateSection = regenerateSection;
 window.gate2Publish      = gate2Publish;
 window.gate1ProceedAll   = gate1ProceedAll;
