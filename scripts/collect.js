@@ -212,6 +212,8 @@ async function main() {
     return true;
   });
   console.log(`      ${recent.length} items after dedup + date filter`);
+  meta.storiesReviewed  = recent.length;
+  meta.sourcesMonitored = SOURCES.length;
 
   // 3. Score in batches of 15 with Claude Haiku
   console.log('\n[2/4] Scoring articles with Claude Haiku…');

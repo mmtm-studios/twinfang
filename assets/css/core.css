@@ -325,7 +325,7 @@ img, svg { display: block; }
 /* --- Stat strip ------------------------------------------- */
 .ii-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   border: 1px solid var(--bd);
   margin: 40px 0;
 }
@@ -1097,4 +1097,211 @@ img, svg { display: block; }
   position: absolute; width: 1px; height: 1px;
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+
+/* ============================================================
+   PUBLISHED ISSUE — TAB NAVIGATION
+   ============================================================ */
+.ii-tabs-nav {
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: 40px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.ii-tabs-nav::-webkit-scrollbar { display: none; }
+.ii-tabs-scroll { display: flex; min-width: max-content; }
+.ii-tab {
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--tx3);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: -1px;
+  transition: color .15s;
+}
+.ii-tab:hover { color: var(--tx); }
+.ii-tab.active { color: var(--tx); border-bottom-color: var(--red); }
+.ii-tab-badge {
+  background: var(--bg2);
+  color: var(--tx2);
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.ii-tab.active .ii-tab-badge { background: var(--red); color: #fff; }
+
+/* ── Tab panels ────────────────────────────────────────────── */
+.ii-tab-panel { display: none; }
+.ii-tab-panel.active { display: block; }
+
+/* ── Article body ──────────────────────────────────────────── */
+.ii-article-body {
+  max-width: 720px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--tx2);
+}
+.ii-article-body p + p { margin-top: 1.25em; }
+.ii-article-body a {
+  color: var(--tx);
+  text-decoration: underline;
+  text-decoration-color: var(--bd);
+  text-underline-offset: 3px;
+  transition: text-decoration-color .15s;
+}
+.ii-article-body a:hover { text-decoration-color: var(--red); }
+
+/* ── Inline pull-quote ─────────────────────────────────────── */
+.ii-tab-pullquote {
+  position: relative;
+  padding: 20px 24px 20px 52px;
+  border-left: 3px solid var(--red);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+.ii-tab-pullquote::before {
+  content: '\201C';
+  position: absolute;
+  left: 8px;
+  top: 0px;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--red);
+  opacity: .3;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.ii-tab-pullquote p {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--tx);
+}
+
+/* ── Source list ───────────────────────────────────────────── */
+.ii-article-sources {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bd);
+  max-width: 720px;
+}
+.ii-sources-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tx3);
+  margin-bottom: 14px;
+}
+.ii-sources-grid { display: flex; flex-direction: column; gap: 6px; }
+.ii-source-chip {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 14px;
+  border: 1px solid var(--bd);
+  text-decoration: none;
+  transition: border-color .15s;
+}
+.ii-source-chip:hover { border-color: var(--red); }
+.ii-source-name {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--red);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 110px;
+}
+.ii-source-headline {
+  font-size: 12px;
+  color: var(--tx2);
+  line-height: 1.4;
+}
+
+/* ── Strategic Insights tab (gap scan cards) ───────────────── */
+.ii-gap-intro { margin-bottom: 36px; max-width: 680px; }
+.ii-gap-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.ii-gap-card {
+  display: flex;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--bd);
+  border-top: 3px solid var(--red);
+}
+.ii-gap-card-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--red);
+  opacity: .2;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 36px;
+}
+.ii-gap-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.ii-gap-card-text {
+  font-size: 13px;
+  color: var(--tx2);
+  line-height: 1.7;
+}
+
+/* ── Distribution infographic ──────────────────────────────── */
+.ii-dist-chart {
+  border: 1px solid var(--bd);
+  padding: 24px 28px;
+  max-width: 520px;
+  margin-top: 8px;
+}
+.ii-dist-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tx3);
+  margin-bottom: 20px;
+}
+.ii-dist-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ii-dist-row:last-child { margin-bottom: 0; }
+.ii-dist-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--tx2);
+  width: 130px;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+.ii-dist-track { flex: 1; height: 5px; background: var(--bg2); border-radius: 3px; }
+.ii-dist-fill  { height: 100%; background: var(--red); border-radius: 3px; }
+.ii-dist-count {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tx3);
+  width: 16px;
+  text-align: right;
+  flex-shrink: 0;
 }

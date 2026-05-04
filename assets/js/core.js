@@ -792,6 +792,37 @@ function initBars() {
 
 
 /* ============================================================
+   PUBLISHED ISSUE — TAB NAVIGATION
+   ============================================================ */
+function switchTab(tabId) {
+  document.querySelectorAll('.ii-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ii-tab-panel').forEach(p => p.classList.remove('active'));
+  const tab   = document.querySelector(`.ii-tab[data-tab="${tabId}"]`);
+  const panel = document.getElementById('panel-' + tabId);
+  if (tab)   tab.classList.add('active');
+  if (panel) panel.classList.add('active');
+  if (history.replaceState) history.replaceState(null, '', '#' + tabId);
+}
+
+function initTabs() {
+  const nav = document.querySelector('.ii-tabs-nav');
+  if (!nav) return;
+  // Restore tab from URL hash
+  const hash = location.hash.replace('#', '');
+  if (hash && document.getElementById('panel-' + hash)) switchTab(hash);
+  // Keyboard arrow navigation
+  nav.addEventListener('keydown', e => {
+    const tabs = [...document.querySelectorAll('.ii-tab')];
+    const idx  = tabs.findIndex(t => t.classList.contains('active'));
+    if (e.key === 'ArrowRight' && idx < tabs.length - 1) { tabs[idx + 1].focus(); switchTab(tabs[idx + 1].dataset.tab); }
+    if (e.key === 'ArrowLeft'  && idx > 0)               { tabs[idx - 1].focus(); switchTab(tabs[idx - 1].dataset.tab); }
+  });
+}
+
+window.switchTab = switchTab;
+
+
+/* ============================================================
    ARCHIVE
    ============================================================ */
 async function loadArchive() {
@@ -837,6 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('ii-story-list'))  loadGate1();
   if (document.getElementById('ii-draft-wrap'))  loadGate2();
   if (document.getElementById('ii-archive-list')) loadArchive();
+  initTabs();
 });
 
 
