@@ -180,16 +180,6 @@
     "description": "Asia-Pacific gaming convention. Useful for tracking Australian and Southeast Asian studio activity."
   },
   {
-    "id": "gamestart-asia-2026",
-    "name": "GameStart Asia",
-    "start": "2026-10-16",
-    "end": "2026-10-18",
-    "location": "Singapore",
-    "url": "https://gamestart.asia",
-    "category": "games",
-    "description": "Southeast Asia's leading consumer and trade games expo. Key regional event for tracking SEA market trends, local publisher activity, and regional studio visibility."
-  },
-  {
     "id": "gamescom-asia-2026",
     "name": "Gamescom Asia",
     "start": "2026-10-22",
@@ -208,16 +198,6 @@
     "url": "https://thaigameshow.com",
     "category": "games",
     "description": "Thailand's largest gaming expo, held at BITEC. Key for visibility into the Thai and broader SEA consumer gaming market and local developer ecosystem."
-  },
-  {
-    "id": "level-up-kl-2026",
-    "name": "Level Up KL",
-    "start": "2026-11-13",
-    "end": "2026-11-16",
-    "location": "Kuala Lumpur, Malaysia",
-    "url": "https://levelupkl.com",
-    "category": "games",
-    "description": "Malaysia's premier game developer conference covering business, design, and art. Strong SEA developer presence — useful for regional talent and partnership conversations."
   },
   {
     "id": "igdx-2026",
