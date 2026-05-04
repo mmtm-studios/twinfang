@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Industry Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+</head>
+<body>
+
+  <!-- ── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="ii-nav" role="navigation" aria-label="Main navigation">
+    <a class="ii-brand" href="index.html">
+      <span class="ii-mark">
+        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" fill="#E8272A"/>
+          <polygon points="11,8 22,15 11,22" fill="#EDEBE4"/>
+        </svg>
+      </span>
+      <span class="ii-pub-wrap">
+        <span class="ii-pub">Industry Insights</span>
+        <span class="ii-sub">Twinfang · Internal</span>
+      </span>
+    </a>
+    <div class="ii-nav-links">
+      <a class="ii-navlink" href="index.html"       data-page="index.html">Latest Issue</a>
+      <a class="ii-navlink" href="archive.html"     data-page="archive.html">Archive</a>
+      <a class="ii-navlink" href="conferences.html" data-page="conferences.html">Conferences</a>
+      <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
+    </div>
+    <div class="ii-nav-right">
+      <span class="ii-nav-gate" style="color:var(--red);border-color:rgba(232,39,42,.35);cursor:default">Admin</span>
+      <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
+    </div>
+  </nav>
+
+  <!-- ── LOGIN SCREEN ─────────────────────────────────────── -->
+  <div id="admin-login" style="display:none">
+    <div class="ii-admin-login-wrap">
+      <div class="ii-admin-login-box">
+        <div class="ii-eyebrow" style="color:var(--red);letter-spacing:3px;margin-bottom:12px">Industry Insights</div>
+        <h1 class="ii-h2" id="admin-login-title">Admin Access</h1>
+        <p style="font-size:14px;color:var(--tx2);margin:8px 0 28px;line-height:1.6" id="admin-login-desc">
+          Enter your admin password to continue.
+        </p>
+        <input id="admin-pw-input" type="password" class="ii-settings-input"
+               placeholder="Password" autocomplete="current-password"
+               style="margin-bottom:8px" />
+        <div id="admin-pw-error" style="font-size:12px;color:var(--red);min-height:20px;margin-bottom:10px"></div>
+        <button class="ii-btn primary" onclick="adminLogin()" style="width:100%">Enter →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ─────────────────────────────────────────── -->
+  <div id="admin-dashboard" style="display:none">
+    <main>
+      <div class="ii-page">
+
+        <!-- Header -->
+        <div class="ii-issue-header" style="padding-top:32px;margin-bottom:40px">
+          <span class="ii-eyebrow">Twinfang · Internal</span>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:4px">
+            <h1 class="ii-h2">Admin Hub</h1>
+            <button class="ii-btn" onclick="adminLogout()" style="font-size:11px;letter-spacing:.5px">Sign Out</button>
+          </div>
+          <p style="font-size:15px;color:var(--tx2);margin-top:16px;line-height:1.65">
+            Pipeline status, workflow guide, and settings for Industry Insights.
+          </p>
+        </div>
+
+        <!-- ── Pipeline ──────────────────────────────────── -->
+        <div class="ii-eyebrow" style="letter-spacing:3px;margin-bottom:18px">Pipeline</div>
+        <div id="admin-pipeline">
+          <div class="ii-pipeline-loading">Loading pipeline…</div>
+        </div>
+
+        <!-- ── Workflow Guide ─────────────────────────────── -->
+        <div style="margin-top:56px">
+          <div class="ii-eyebrow" style="letter-spacing:3px;margin-bottom:20px">How It Works</div>
+          <div class="ii-admin-workflow">
+
+            <div class="ii-wf-step">
+              <div class="ii-wf-num">01</div>
+              <div class="ii-wf-content">
+                <h3 class="ii-wf-title">Automated Collection</h3>
+                <p class="ii-wf-body">Every two weeks, a GitHub Actions workflow fetches articles from 29 RSS feeds across games, art, AI, TTRPG, and film sources. Each article is scored 1–10 for relevance by Claude Haiku. Articles scoring 5 or higher are saved to <code>data/stories.json</code> and a notification email is sent to the team.</p>
+              </div>
+            </div>
+
+            <div class="ii-wf-step">
+              <div class="ii-wf-num">02</div>
+              <div class="ii-wf-content">
+                <h3 class="ii-wf-title">Gate 1 — Story Review</h3>
+                <p class="ii-wf-body">Review the scored articles one by one. Approve the ones worth including in the issue and reject the rest. Approved stories are saved to <code>data/gate1-decisions.json</code> and grouped by section. Aim for 3–8 approved stories across all sections before moving to Gate 2.</p>
+              </div>
+            </div>
+
+            <div class="ii-wf-step">
+              <div class="ii-wf-num">03</div>
+              <div class="ii-wf-content">
+                <h3 class="ii-wf-title">Gate 2 — Draft &amp; Publish</h3>
+                <p class="ii-wf-body">Trigger the draft workflow to generate full editorial copy for each section using Claude Sonnet, with a strategic gap scan appended. Review section by section, approve each, then hit Publish. The issue is written into <code>index.html</code> and saved as a standalone <code>issue-NNN.html</code>, and <code>data/archive.json</code> is updated automatically.</p>
+              </div>
+            </div>
+
+            <div class="ii-wf-step">
+              <div class="ii-wf-num">04</div>
+              <div class="ii-wf-content">
+                <h3 class="ii-wf-title">Published &amp; Live</h3>
+                <p class="ii-wf-body">The live site updates automatically via GitHub Pages within ~60 seconds of publishing. Past issues are permanently accessible from the Archive. The next collection cycle begins automatically in two weeks, or you can trigger it manually from the pipeline above.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Settings ───────────────────────────────────── -->
+        <div style="margin-top:56px;margin-bottom:64px">
+          <div class="ii-eyebrow" style="letter-spacing:3px;margin-bottom:20px">Settings</div>
+          <div class="ii-admin-settings-box">
+
+            <div class="ii-admin-settings-section">
+              <h3 class="ii-wf-title">GitHub Personal Access Token</h3>
+              <p class="ii-wf-body" style="margin-top:6px;margin-bottom:16px">Required to trigger workflows and commit files. Needs <code>repo</code> and <code>workflow</code> scopes. Stored only in this browser's localStorage — never sent to any server other than GitHub.</p>
+              <label class="ii-settings-label" for="admin-pat-input">Personal Access Token</label>
+              <input id="admin-pat-input" type="password" class="ii-settings-input"
+                     placeholder="ghp_…" autocomplete="off" spellcheck="false" />
+              <div id="admin-pat-status" class="ii-settings-status" style="margin-top:8px"></div>
+              <div style="margin-top:14px">
+                <button class="ii-btn primary" onclick="adminSavePat()">Save Token</button>
+                <button class="ii-btn" onclick="adminClearPat()" style="margin-left:8px">Clear</button>
+              </div>
+            </div>
+
+            <div class="ii-admin-settings-section" style="border-top:1px solid var(--bd);padding-top:28px;margin-top:28px">
+              <h3 class="ii-wf-title">Change Admin Password</h3>
+              <p class="ii-wf-body" style="margin-top:6px;margin-bottom:16px">Update the password used to access this admin area. Passwords are stored as SHA-256 hashes — never in plaintext.</p>
+              <label class="ii-settings-label" for="admin-new-pw">New Password</label>
+              <input id="admin-new-pw" type="password" class="ii-settings-input"
+                     placeholder="New password" autocomplete="new-password"
+                     style="margin-bottom:10px" />
+              <label class="ii-settings-label" for="admin-confirm-pw">Confirm Password</label>
+              <input id="admin-confirm-pw" type="password" class="ii-settings-input"
+                     placeholder="Confirm password" autocomplete="new-password" />
+              <div id="admin-pw-change-status" class="ii-settings-status" style="margin-top:8px"></div>
+              <div style="margin-top:14px">
+                <button class="ii-btn primary" onclick="adminChangePassword()">Update Password</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <div class="ii-footer-wrap">
+      <footer class="ii-footer">
+        <span class="ii-footer-l">Twinfang — Confidential</span>
+        <span class="ii-footer-r">Industry Insights · 2026</span>
+      </footer>
+    </div>
+  </div>
+
+  <script src="assets/js/core.js"></script>
+  <script>
+    'use strict';
+
+    const ADMIN_SESSION_KEY = 'ii-admin-auth';
+    const ADMIN_HASH_KEY    = 'ii-admin-hash';
+
+    /* ── Crypto ──────────────────────────────────────────── */
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    /* ── Auth ────────────────────────────────────────────── */
+    async function adminLogin() {
+      const input = document.getElementById('admin-pw-input');
+      const error = document.getElementById('admin-pw-error');
+      const pw    = (input?.value || '').trim();
+      if (!pw) { error.textContent = 'Enter a password.'; return; }
+
+      const stored = localStorage.getItem(ADMIN_HASH_KEY);
+      const hash   = await sha256(pw);
+
+      if (!stored) {
+        // First run — set the password
+        localStorage.setItem(ADMIN_HASH_KEY, hash);
+        sessionStorage.setItem(ADMIN_SESSION_KEY, '1');
+        showDashboard();
+      } else if (hash === stored) {
+        sessionStorage.setItem(ADMIN_SESSION_KEY, '1');
+        showDashboard();
+      } else {
+        error.textContent = 'Incorrect password.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+      showLogin();
+    }
+
+    /* ── Screen switching ────────────────────────────────── */
+    function showLogin() {
+      const hasHash = !!localStorage.getItem(ADMIN_HASH_KEY);
+      document.getElementById('admin-login-title').textContent = hasHash ? 'Admin Access' : 'Create Admin Password';
+      document.getElementById('admin-login-desc').textContent  = hasHash
+        ? 'Enter your admin password to continue.'
+        : 'First time here — set an admin password to protect Gate 1, Gate 2, and settings.';
+      document.getElementById('admin-login').style.display    = '';
+      document.getElementById('admin-dashboard').style.display = 'none';
+      setTimeout(() => document.getElementById('admin-pw-input')?.focus(), 50);
+    }
+
+    function showDashboard() {
+      document.getElementById('admin-login').style.display    = 'none';
+      document.getElementById('admin-dashboard').style.display = '';
+      loadPipeline();
+      const pat = localStorage.getItem('gh_pat');
+      if (pat) {
+        document.getElementById('admin-pat-input').value = pat;
+        document.getElementById('admin-pat-status').textContent = '✓ Token saved';
+      }
+    }
+
+    /* ── Pipeline status ─────────────────────────────────── */
+    async function loadPipeline() {
+      const [meta, stories, decisions, draft] = await Promise.allSettled([
+        fetch('data/meta.json').then(r => r.json()),
+        fetch('data/stories.json').then(r => r.json()),
+        fetch('data/gate1-decisions.json').then(r => r.json()),
+        fetch('data/draft.json').then(r => r.json()),
+      ]);
+
+      const m  = meta.value      || {};
+      const s  = stories.value   || [];
+      const d  = decisions.value || {};
+      const dr = draft.value     || {};
+
+      const approved    = Object.values(d).filter(v => v === 'approved').length;
+      const totalSec    = (dr.sections || []).length;
+      const filledSec   = (dr.sections || []).filter(sec => sec.sources?.length > 0).length;
+      const issueNum    = m.nextIssue ? m.nextIssue - 1 : null;
+
+      const fmtDate = iso => iso
+        ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        : '—';
+
+      document.getElementById('admin-pipeline').innerHTML = `
+        <div class="ii-pipeline-grid">
+
+          <div class="ii-pipeline-card">
+            <div class="ii-pipeline-num">01</div>
+            <div class="ii-pipeline-name">Collect</div>
+            <div class="ii-pipeline-stats">
+              <div class="ii-pipeline-stat"><strong>${m.sourcesMonitored || 29}</strong> sources monitored</div>
+              <div class="ii-pipeline-stat"><strong>${m.storiesReviewed || s.length || '—'}</strong> articles scored</div>
+            </div>
+            <div class="ii-pipeline-date">Last run: ${fmtDate(m.lastCollected)}</div>
+            <a class="ii-btn" href="gate-1.html">Open Gate 1 →</a>
+          </div>
+
+          <div class="ii-pipeline-arrow">›</div>
+
+          <div class="ii-pipeline-card">
+            <div class="ii-pipeline-num">02</div>
+            <div class="ii-pipeline-name">Gate 1</div>
+            <div class="ii-pipeline-stats">
+              <div class="ii-pipeline-stat"><strong>${s.length}</strong> stories available</div>
+              <div class="ii-pipeline-stat"><strong>${approved}</strong> approved</div>
+            </div>
+            <div class="ii-pipeline-date">&nbsp;</div>
+            <a class="ii-btn" href="gate-1.html">Review Stories →</a>
+          </div>
+
+          <div class="ii-pipeline-arrow">›</div>
+
+          <div class="ii-pipeline-card">
+            <div class="ii-pipeline-num">03</div>
+            <div class="ii-pipeline-name">Gate 2</div>
+            <div class="ii-pipeline-stats">
+              <div class="ii-pipeline-stat"><strong>${filledSec}/${totalSec}</strong> sections drafted</div>
+              <div class="ii-pipeline-stat"><strong>${dr.issue ? 'Issue ' + String(dr.issue).padStart(3,'0') : '—'}</strong> in progress</div>
+            </div>
+            <div class="ii-pipeline-date">&nbsp;</div>
+            <a class="ii-btn" href="gate-2.html">Review Draft →</a>
+          </div>
+
+          <div class="ii-pipeline-arrow">›</div>
+
+          <div class="ii-pipeline-card">
+            <div class="ii-pipeline-num">04</div>
+            <div class="ii-pipeline-name">Published</div>
+            <div class="ii-pipeline-stats">
+              <div class="ii-pipeline-stat"><strong>${issueNum !== null ? 'Issue ' + String(issueNum).padStart(3,'0') : '—'}</strong> live</div>
+              <div class="ii-pipeline-stat">&nbsp;</div>
+            </div>
+            <div class="ii-pipeline-date">Published: ${fmtDate(m.lastPublished)}</div>
+            <a class="ii-btn" href="archive.html">View Archive →</a>
+          </div>
+
+        </div>`;
+    }
+
+    /* ── PAT settings ────────────────────────────────────── */
+    function adminSavePat() {
+      const input  = document.getElementById('admin-pat-input');
+      const status = document.getElementById('admin-pat-status');
+      const val    = (input?.value || '').trim();
+      if (!val) { status.textContent = 'Enter a token first.'; return; }
+      localStorage.setItem('gh_pat', val);
+      status.textContent = '✓ Saved';
+    }
+
+    function adminClearPat() {
+      localStorage.removeItem('gh_pat');
+      document.getElementById('admin-pat-input').value = '';
+      document.getElementById('admin-pat-status').textContent = 'Token cleared.';
+    }
+
+    /* ── Password change ─────────────────────────────────── */
+    async function adminChangePassword() {
+      const newPw  = document.getElementById('admin-new-pw').value.trim();
+      const confPw = document.getElementById('admin-confirm-pw').value.trim();
+      const status = document.getElementById('admin-pw-change-status');
+      if (!newPw)           { status.textContent = 'Enter a new password.'; return; }
+      if (newPw !== confPw) { status.textContent = 'Passwords do not match.'; return; }
+      localStorage.setItem(ADMIN_HASH_KEY, await sha256(newPw));
+      status.textContent = '✓ Password updated';
+      document.getElementById('admin-new-pw').value    = '';
+      document.getElementById('admin-confirm-pw').value = '';
+    }
+
+    /* ── Init ────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('admin-pw-input')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter') adminLogin();
+      });
+      if (sessionStorage.getItem(ADMIN_SESSION_KEY)) {
+        showDashboard();
+      } else {
+        showLogin();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1009,70 +1009,22 @@ const SVG_GEAR = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 </svg>`;
 
 function initSettings() {
-  // Inject settings gear into nav-right (before the dark mode toggle)
+  // Inject gear icon as a link to admin.html (before the dark mode toggle)
+  // Skip on admin.html itself — it has its own nav label
+  if (window.location.pathname.endsWith('admin.html')) return;
   const navRight = document.querySelector('.ii-nav-right');
-  if (navRight) {
-    const gearBtn = document.createElement('button');
-    gearBtn.className   = 'ii-mode';
-    gearBtn.id          = 'ii-settings-btn';
-    gearBtn.setAttribute('aria-label', 'Dashboard settings');
-    gearBtn.innerHTML   = SVG_GEAR;
-    gearBtn.addEventListener('click', openSettings);
-    navRight.insertBefore(gearBtn, navRight.firstChild);
-  }
-
-  // Inject modal into body
-  const overlay = document.createElement('div');
-  overlay.id        = 'ii-settings-overlay';
-  overlay.className = 'ii-settings-overlay';
-  overlay.innerHTML = `
-    <div class="ii-settings-modal" role="dialog" aria-modal="true" aria-label="Dashboard settings">
-      <div class="ii-settings-eyebrow">Dashboard Settings</div>
-      <h2 class="ii-settings-title">GitHub Access</h2>
-      <p class="ii-settings-desc">Your Personal Access Token is stored only in this browser. It needs <code>repo</code> and <code>workflow</code> scopes.</p>
-      <label class="ii-settings-label" for="ii-pat-input">Personal Access Token</label>
-      <input id="ii-pat-input" type="password" class="ii-settings-input" placeholder="ghp_…" autocomplete="off" spellcheck="false" />
-      <div id="ii-pat-status" class="ii-settings-status"></div>
-      <div class="ii-settings-actions">
-        <button class="ii-btn" onclick="closeSettings()">Cancel</button>
-        <button class="ii-btn primary" onclick="saveSettings()">Save Token</button>
-      </div>
-    </div>`;
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeSettings(); });
-  document.body.appendChild(overlay);
-
-  // Pre-fill if already stored
-  const stored = localStorage.getItem('gh_pat');
-  if (stored) document.getElementById('ii-pat-input').value = stored;
+  if (!navRight) return;
+  const gearLink = document.createElement('a');
+  gearLink.href      = 'admin.html';
+  gearLink.className = 'ii-mode';
+  gearLink.id        = 'ii-settings-btn';
+  gearLink.setAttribute('aria-label', 'Admin');
+  gearLink.innerHTML = SVG_GEAR;
+  navRight.insertBefore(gearLink, navRight.firstChild);
 }
 
-function openSettings() {
-  const overlay = document.getElementById('ii-settings-overlay');
-  if (overlay) {
-    overlay.style.display = 'flex';
-    const stored = localStorage.getItem('gh_pat');
-    const input  = document.getElementById('ii-pat-input');
-    if (input && stored) input.value = stored;
-    const status = document.getElementById('ii-pat-status');
-    if (status) status.textContent = stored ? '✓ Token saved' : '';
-  }
+function ghCheckPAT() {
+  if (localStorage.getItem('gh_pat')) return true;
+  alert('No GitHub token found. Visit the Admin page to set your Personal Access Token.');
+  return false;
 }
-
-function closeSettings() {
-  const overlay = document.getElementById('ii-settings-overlay');
-  if (overlay) overlay.style.display = 'none';
-}
-
-function saveSettings() {
-  const input  = document.getElementById('ii-pat-input');
-  const status = document.getElementById('ii-pat-status');
-  const val    = (input?.value || '').trim();
-  if (!val) { if (status) status.textContent = 'Enter a token first.'; return; }
-  localStorage.setItem('gh_pat', val);
-  if (status) status.textContent = '✓ Saved';
-  setTimeout(closeSettings, 800);
-}
-
-window.openSettings  = openSettings;
-window.closeSettings = closeSettings;
-window.saveSettings  = saveSettings;

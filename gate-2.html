@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/core.css">
+  <script>if (!sessionStorage.getItem('ii-admin-auth')) location.replace('admin.html');</script>
 </head>
 <body class="ii-gate-page">
 
@@ -31,8 +32,7 @@
       <a class="ii-navlink" href="todos.html"       data-page="todos.html">To-Dos</a>
     </div>
     <div class="ii-nav-right">
-      <a class="ii-nav-gate" href="gate-1.html">Gate 1</a>
-      <a class="ii-nav-gate act" href="gate-2.html" style="color:#E8272A;border-color:rgba(232,39,42,.5)">Gate 2</a>
+      <a class="ii-nav-gate" href="admin.html">Admin</a>
       <button class="ii-mode" id="ii-mode" aria-label="Toggle dark mode"></button>
     </div>
   </nav>
