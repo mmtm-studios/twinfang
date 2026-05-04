@@ -77,6 +77,15 @@
     <div style="display:flex;gap:10px;align-items:center">
       <a class="ii-btn" href="gate-1.html">← Back to Gate 1</a>
       <button class="ii-btn" id="ii-gate2-approve-all" onclick="approveAll()">✓ Approve All</button>
+      <div id="ii-publish-progress" style="display:none;width:220px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+          <span style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3)" id="ii-publish-progress-label">Publishing issue…</span>
+          <span style="font-size:9px;font-weight:700;color:var(--red)" id="ii-publish-progress-pct">0%</span>
+        </div>
+        <div class="ii-bar-track">
+          <div class="ii-bar-fill" id="ii-publish-progress-bar" style="width:0%;transition:width 1s linear"></div>
+        </div>
+      </div>
       <button class="ii-btn primary" id="ii-gate2-publish" disabled onclick="gate2Publish()">
         Publish Issue →
       </button>

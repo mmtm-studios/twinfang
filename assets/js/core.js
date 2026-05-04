@@ -670,8 +670,7 @@ function checkAllApproved() {
 async function gate2Publish() {
   if (!ghCheckPAT()) return;
 
-  const btn  = document.getElementById('ii-gate2-publish');
-  const orig = btn.textContent;
+  const btn = document.getElementById('ii-gate2-publish');
   btn.disabled    = true;
   btn.textContent = 'Saving edits…';
 
@@ -689,23 +688,81 @@ async function gate2Publish() {
       'chore: final draft edits'
     );
 
-    btn.textContent = 'Publishing…';
+    btn.textContent = 'Triggering publish…';
     await ghTriggerWorkflow('publish.yml');
 
-    btn.textContent = '✓ Publishing…';
-    document.getElementById('ii-gate2-status').textContent = 'Publishing';
-    document.getElementById('ii-gate2-status').className   = 'ii-gate-status-pill ready';
+    // Swap button + approve-all for progress bar
+    btn.style.display = 'none';
+    const approveAllBtn  = document.getElementById('ii-gate2-approve-all');
+    if (approveAllBtn) approveAllBtn.style.display = 'none';
 
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.disabled    = false;
-    }, 5000);
+    const progressWrap = document.getElementById('ii-publish-progress');
+    const progressBar  = document.getElementById('ii-publish-progress-bar');
+    const progressPct  = document.getElementById('ii-publish-progress-pct');
+    const progressLbl  = document.getElementById('ii-publish-progress-label');
+    progressWrap.style.display = 'block';
+
+    document.getElementById('ii-gate2-status').textContent = 'Publishing…';
+    document.getElementById('ii-gate2-status').className   = 'ii-gate-status-pill pending';
+
+    // publish.yml takes ~60s — animate to 95% then snap to 100%
+    const DURATION = 60;
+    let elapsed = 0;
+    const tick = setInterval(() => {
+      elapsed++;
+      const pct = Math.min(95, Math.round((elapsed / DURATION) * 95));
+      progressBar.style.width = pct + '%';
+      progressPct.textContent = pct + '%';
+      if (elapsed >= DURATION) {
+        clearInterval(tick);
+        progressBar.style.width = '100%';
+        progressPct.textContent = '100%';
+        progressLbl.textContent = 'Published!';
+        setTimeout(() => {
+          progressWrap.style.display = 'none';
+          showPublishSuccess();
+        }, 600);
+      }
+    }, 1000);
+
   } catch (err) {
-    btn.textContent = 'Error — retry';
-    btn.disabled    = false;
+    btn.textContent  = 'Error — retry';
+    btn.disabled     = false;
+    btn.style.display = '';
     console.error(err);
     alert('GitHub API error: ' + err.message + '\n\nCheck your PAT in Settings.');
   }
+}
+
+function showPublishSuccess() {
+  const issueNum = String(gate2Draft.issue || 1).padStart(3, '0');
+  const siteUrl  = `https://${GH_OWNER}.github.io/${GH_REPO}/`;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'ii-publish-success-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center';
+  overlay.innerHTML = `
+    <div style="background:var(--bg);border:1px solid var(--bd);padding:44px 52px;max-width:460px;width:90%;text-align:center">
+      <div style="width:52px;height:52px;background:#10B981;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:#fff">✓</div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);margin-bottom:10px">Issue ${issueNum} Published</div>
+      <h2 style="font-size:21px;font-weight:800;color:var(--tx);margin-bottom:10px;line-height:1.25">${gate2Draft.headline || 'Report Created'}</h2>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.65;margin-bottom:28px">Your issue is live on GitHub Pages. Allow a minute for CDN propagation if the page hasn't updated yet.</p>
+      <a href="${siteUrl}" target="_blank" rel="noopener"
+        style="display:inline-block;padding:13px 32px;background:var(--red);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;margin-bottom:16px">
+        View Report →
+      </a>
+      <br>
+      <button onclick="document.getElementById('ii-publish-success-overlay').remove()"
+        style="background:none;border:none;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);cursor:pointer;padding:4px 0">
+        Dismiss
+      </button>
+    </div>`;
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+
+  document.getElementById('ii-gate2-status').textContent = 'Published';
+  document.getElementById('ii-gate2-status').className   = 'ii-gate-status-pill ready';
 }
 
 window.toggleSection     = toggleSection;
