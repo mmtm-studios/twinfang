@@ -1,1 +1,9 @@
-{}
+{
+  "crm-client": [
+    {
+      "author": "Stephen",
+      "text": "Airtable - Base tables are there, Some dashboards are ready\nFor Lead generation - we need to build an operational flow and system",
+      "ts": 1777901259057
+    }
+  ]
+}
