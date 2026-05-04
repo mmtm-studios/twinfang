@@ -50,16 +50,6 @@
     "description": "The world's leading animation festival. Critical for tracking animated IP, art direction trends, and co-production deals relevant to Twinfang's character art pipeline."
   },
   {
-    "id": "e3-2026",
-    "name": "E3",
-    "start": "2026-06-09",
-    "end": "2026-06-12",
-    "location": "Los Angeles, CA",
-    "url": "https://e3expo.com",
-    "category": "games",
-    "description": "Electronic Entertainment Expo — major game announcement platform. Key for tracking upcoming titles requiring art production work."
-  },
-  {
     "id": "chinaJoy-2026",
     "name": "ChinaJoy",
     "start": "2026-07-30",
@@ -178,16 +168,6 @@
     "url": "https://sundance.org",
     "category": "film",
     "description": "Premier independent film festival. Key for animated short trends, IP that may migrate to games, and broader entertainment industry sentiment."
-  },
-  {
-    "id": "d-and-d-direct-2026",
-    "name": "D&D Direct",
-    "start": "2026-04-22",
-    "end": "2026-04-22",
-    "location": "Online",
-    "url": "https://dnd.wizards.com",
-    "category": "ttrpg",
-    "description": "Wizards of the Coast's annual D&D announcement event. Key for tracking the world's largest TTRPG brand direction and potential art outsourcing opportunities."
   },
   {
     "id": "pax-aus-2026",

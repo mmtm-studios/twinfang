@@ -428,7 +428,7 @@
               <div class="ii-src-status" style="background:${active ? '#10B981' : 'var(--bd)'}"></div>
               <div class="ii-src-name">${s.name}</div>
               <div class="ii-src-domain">${domain}</div>
-              <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+              <div class="ii-src-actions">
                 <button class="ii-btn" style="font-size:10px;padding:4px 10px"
                   onclick="toggleSource(${s._idx})">${active ? 'Disable' : 'Enable'}</button>
                 <button class="ii-btn" style="font-size:10px;padding:4px 10px;color:var(--red)"
@@ -439,7 +439,7 @@
 
         return `
           <div style="margin-bottom:28px">
-            <div class="ii-src-section-title" style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--tx3);padding-bottom:8px;border-bottom:1px solid var(--bd);margin-bottom:0">${sec}</div>
+            <div class="ii-src-section-title" style="margin-bottom:0">${sec}</div>
             ${rows}
           </div>`;
       }).join('');

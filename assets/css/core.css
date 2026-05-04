@@ -1209,15 +1209,15 @@ img, svg { display: block; }
   letter-spacing: 1.5px;
 }
 
-/* ── Two-column panel layout ───────────────────────────────── */
-.ii-tab-panel.active:not(#panel-strategic-insights) {
+/* ── Two-column panel layout (only when quicknav is present) ── */
+.ii-tab-panel.active.has-quicknav {
   display: grid;
   grid-template-columns: 1fr 220px;
   column-gap: 48px;
   align-items: start;
 }
 @media (max-width: 820px) {
-  .ii-tab-panel.active:not(#panel-strategic-insights) { grid-template-columns: 1fr; }
+  .ii-tab-panel.active.has-quicknav { grid-template-columns: 1fr; }
   .ii-quicknav { display: none !important; }
 }
 .ii-article-body  { grid-column: 1; }
@@ -1331,6 +1331,40 @@ div.ii-article-sources .ii-sources-label {
   font-size: 12px;
   color: var(--tx2);
   line-height: 1.4;
+}
+
+/* ── Source registry rows (sources.html + admin.html) ─────── */
+.ii-src-row {
+  display: grid;
+  grid-template-columns: 8px 1fr 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bd);
+}
+.ii-src-row.ii-src-inactive { opacity: .45; }
+.ii-src-status {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ii-src-name { font-size: 13px; font-weight: 600; color: var(--tx); }
+.ii-src-domain { font-size: 11px; color: var(--tx3); font-family: 'Courier New', monospace; }
+.ii-src-count { font-size: 11px; color: var(--tx2); text-align: right; white-space: nowrap; }
+.ii-src-count strong { color: var(--tx); font-weight: 700; }
+.ii-src-actions { display: flex; gap: 6px; align-items: center; }
+.ii-src-section-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--tx3);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--bd);
+}
+@media (max-width: 700px) {
+  .ii-src-row { grid-template-columns: 8px 1fr auto; }
+  .ii-src-domain { display: none; }
 }
 
 /* ── Strategic Insights tab (gap scan cards) ───────────────── */

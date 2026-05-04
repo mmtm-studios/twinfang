@@ -864,6 +864,7 @@ function initBars() {
    ============================================================ */
 function buildQuicknav(panelEl) {
   panelEl.querySelector('.ii-quicknav')?.remove();
+  panelEl.classList.remove('has-quicknav');
   if (panelEl.id === 'panel-strategic-insights') return;
   const body = panelEl.querySelector('.ii-article-body');
   if (!body) return;
@@ -877,6 +878,7 @@ function buildQuicknav(panelEl) {
   nav.className = 'ii-quicknav';
   nav.setAttribute('aria-label', 'Section navigation');
   nav.innerHTML = `<div class="ii-qnav-label">In This Section</div>${items}`;
+  panelEl.classList.add('has-quicknav');
   panelEl.insertBefore(nav, body);
 }
 
