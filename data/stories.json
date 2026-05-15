@@ -1,140 +1,71 @@
 [
   {
-    "id": "gamemaker-incorporates-claude-code-to-en-mopqg5zl",
+    "id": "playstation-sees-ai-as-a-powerful-tool-t-mp6efra6",
+    "headline": "PlayStation sees AI as a 'powerful tool,' teams including Naughty Dog, San Diego Studio already using it",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/playstation-sees-ai-as-a-powerful-tool-teams-including-naughty-dog-san-diego-studio-already-using-it",
+    "date": "2026-05-08",
+    "section": "Studio Moves",
+    "summary": "PlayStation studios including Naughty Dog are actively deploying AI tools for 3D modeling, animation, and quality assurance workflows—directly applicable to Southeast Asian game art pipelines.",
+    "score": 8,
+    "tags": [
+      "games",
+      "ai",
+      "tools"
+    ]
+  },
+  {
+    "id": "gamemaker-incorporates-claude-code-to-en-mp6efwyw",
     "headline": "GameMaker incorporates Claude Code to enable AI-assisted workflows",
     "source": "Game Developer",
     "url": "https://www.gamedeveloper.com/production/gamemaker-incorporates-claude-code-to-enable-ai-assisted-workflows",
     "date": "2026-04-30",
     "section": "Studio Moves",
-    "summary": "GameMaker integrates Claude AI for code assistance—directly relevant to pipeline tools and AI adoption decisions.",
+    "summary": "GameMaker integrates Claude AI coding assistant, directly enabling AI-assisted development workflows for game creators.",
     "score": 8,
     "tags": [
       "ai",
-      "tools"
-    ]
-  },
-  {
-    "id": "sony-to-increase-playstation-hardware-pr-mopqg5zm",
-    "headline": "Sony to increase PlayStation hardware prices in Southeast Asia",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/playstation-increases-hardware-prices-in-southeast-asia",
-    "date": "2026-04-28",
-    "section": "Studio Moves",
-    "summary": "PlayStation price increase in Southeast Asia directly impacts regional market dynamics and studio revenue planning.",
-    "score": 8,
-    "tags": [
-      "business",
+      "tools",
       "games"
     ]
   },
   {
-    "id": "people-can-fly-acquires-cooldown-games-t-mopqgbop",
-    "headline": "People Can Fly acquires Cooldown Games to establish dedicated publishing vertical",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/people-can-fly-acquires-cooldown-games-to-establish-dedicated-publishing-vertical",
-    "date": "2026-04-27",
-    "section": "Studio Moves",
-    "summary": "Polish studio People Can Fly acquires publisher to diversify revenue, exemplifying studio consolidation and publishing strategy relevant to Southeast Asian studios.",
-    "score": 8,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "update-panic-won-t-release-playdate-titl-mopqgoly",
-    "headline": "Update: Panic won't release Playdate titles that use certain forms of generative AI",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/production/panic-won-t-release-playdate-titles-that-use-some-forms-of-generative-ai",
-    "date": "2026-04-17",
-    "section": "Studio Moves",
-    "summary": "Playdate platform establishes AI policy for game submissions, creating precedent for game distribution platforms on generative AI usage.",
-    "score": 8,
-    "tags": [
-      "games",
-      "ai",
-      "business",
-      "tools"
-    ]
-  },
-  {
-    "id": "seeker-entertainment-halts-game-producti-mopqh0n3",
-    "headline": "Seeker Entertainment halts game production and lays off staff",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/seeker-entertainment-halts-game-production-and-lays-off-staff/",
-    "date": "2026-05-02",
-    "section": "Studio Moves",
-    "summary": "Game studio shutdown and layoffs directly signal market dynamics and business risks relevant to studio leadership.",
-    "score": 8,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "gamemaker-says-ai-coding-is-inevitable-s-mopqg5zl",
-    "headline": "GameMaker says AI coding is inevitable, Sony clarifies DRM confusion, and how video games are helping Rikers inmates - Patch Notes #50",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/gamemaker-says-ai-coding-is-inevitable-sony-clarifies-drm-confusion-and-how-video-games-are-helping-rikers-inmates-patch-notes-50",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "GameMaker's AI coding integration and job security discussions directly impact tool selection and studio staffing strategy.",
-    "score": 7,
-    "tags": [
-      "ai",
-      "tools",
-      "business"
-    ]
-  },
-  {
-    "id": "the-company-as-a-whole-no-longer-exists--mopqg5zl",
+    "id": "the-company-as-a-whole-no-longer-exists--mp6eg2di",
     "headline": "'The company as a whole no longer exists:' GreedFall developer Spiders confirms closure",
     "source": "Game Developer",
     "url": "https://www.gamedeveloper.com/business/-the-company-as-a-whole-no-longer-exists-greedfall-developer-spiders-confirms-closure",
     "date": "2026-04-30",
     "section": "Studio Moves",
-    "summary": "European studio closure amid parent company insolvency highlights financial risks and industry consolidation patterns.",
-    "score": 7,
+    "summary": "French studio Spiders closure following parent company Nacon's insolvency filing signals financial instability risks in game development.",
+    "score": 8,
     "tags": [
-      "business",
-      "games"
-    ]
-  },
-  {
-    "id": "a-scope-document-is-not-your-plan-laying-mopqgiuw",
-    "headline": "'A scope document is not your plan:' Laying the groundwork for indie success",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/production/-a-scope-document-is-not-your-plan-laying-the-groundwork-for-indie-success",
-    "date": "2026-04-22",
-    "section": "Studio Moves",
-    "summary": "Indie studio founder shares production planning strategies directly applicable to Southeast Asian studio operational efficiency.",
-    "score": 7,
-    "tags": [
-      "business",
-      "games"
-    ]
-  },
-  {
-    "id": "iron-galaxy-studios-lays-off-a-number-of-mopqgiuw",
-    "headline": "Iron Galaxy Studios lays off 'a number' of workers as it reduces company size",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/iron-galaxy-studios-lays-off-a-number-of-workers-as-it-reduces-company-size",
-    "date": "2026-04-17",
-    "section": "Studio Moves",
-    "summary": "Mid-size studio restructures in response to permanent market shift, providing strategic case study for studio adaptation.",
-    "score": 7,
-    "tags": [
+      "games",
       "business"
     ]
   },
   {
-    "id": "the-oscars-are-barring-ai-generated-film-mopqgoly",
-    "headline": "The Oscars Are Barring AI Generated Films, Gaming Awards Should Do The Same",
+    "id": "amazon-reportedly-forced-devs-to-make-a--mp6eg2dj",
+    "headline": "Amazon Reportedly Forced Devs To Make A GenAI Game And Then Laid Them Off When It Wasn’t Working",
     "source": "Kotaku",
-    "url": "https://kotaku.com/the-oscars-are-barring-ai-generated-films-gaming-awards-should-do-the-same-2000692691",
-    "date": "2026-05-02",
+    "url": "https://kotaku.com/amazon-reportedly-forced-devs-to-make-a-genai-game-and-then-laid-them-off-when-it-wasnt-working-2000696078",
+    "date": "2026-05-14",
     "section": "Studio Moves",
-    "summary": "Gaming awards bodies debate AI-generated content policies as industry grapples with acceptance standards, directly impacts studio submissions and award eligibility.",
+    "summary": "Amazon's failed GenAI game project and subsequent layoffs demonstrate risks and ineffectiveness of forced AI mandates in game development.",
+    "score": 8,
+    "tags": [
+      "games",
+      "ai",
+      "business"
+    ]
+  },
+  {
+    "id": "mobile-dev-mindtail-raises-2-million-to--mp6efra6",
+    "headline": "Mobile dev Mindtail raises $2 million to build 'AI-powered' games",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/mobile-dev-mindtail-raises-2m-fund-for-ai-powered-games",
+    "date": "2026-05-07",
+    "section": "Studio Moves",
+    "summary": "Istanbul studio Mindtail secures $2M to build games via AI-powered production model—relevant competitor case study in AI-driven game development.",
     "score": 7,
     "tags": [
       "games",
@@ -143,43 +74,170 @@
     ]
   },
   {
-    "id": "magic-the-gathering-one-ring-art-controv-mopqgum9",
-    "headline": "Magic: The Gathering One Ring art controversy ends with artist admission",
-    "source": "Polygon",
-    "url": "https://www.polygon.com/mtg-hobbit-the-one-ring-art-controversy/",
-    "date": "2026-05-02",
+    "id": "eve-online-studio-ccp-games-turns-indepe-mp6efra6",
+    "headline": "EVE Online studio CCP Games turns independent and rebrands as Fenris Creations",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/eve-online-studio-ccp-games-turns-independent-and-rebrands-as-fenris-creations",
+    "date": "2026-05-06",
     "section": "Studio Moves",
-    "summary": "Magic: The Gathering art reuse controversy highlights IP and asset management risks for card game publishers and studios.",
-    "score": 7,
-    "tags": [
-      "games",
-      "art",
-      "business"
-    ]
-  },
-  {
-    "id": "how-artificial-agency-s-ai-companion-put-mopqh0n3",
-    "headline": "How Artificial Agency’s AI companion puts personality in the hands of the player",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/how-artificial-agencys-ai-companion-puts-personality-in-the-hands-of-the-player/",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "AI companion technology in games demonstrates emerging AI tools that could impact game development pipelines.",
+    "summary": "CCP Games spins independent with Google DeepMind backing and offline EVE project; relevant for AI partnership and independence model insights.",
     "score": 7,
     "tags": [
       "games",
       "ai",
+      "business"
+    ]
+  },
+  {
+    "id": "metacore-restructuring-to-the-tune-of-up-mp6efwyw",
+    "headline": "Metacore restructuring to the tune of 'up to 160' redundancies",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/metacore-planning-restructuring-that-could-affect-up-to-160-roles",
+    "date": "2026-05-05",
+    "section": "Studio Moves",
+    "summary": "Supercell acquires Metacore with significant restructuring, illustrating major studio consolidation trends in mobile gaming.",
+    "score": 7,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "meet-the-indie-studios-funding-other-ind-mp6efwyw",
+    "headline": "Meet the indie studios funding other indie studios",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/meet-the-indie-studios-funding-other-indie-studios",
+    "date": "2026-05-04",
+    "section": "Studio Moves",
+    "summary": "Indie studios establishing funding mechanisms for peers demonstrate emerging business models for smaller developers.",
+    "score": 7,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "devs-behind-beloved-party-game-rush-to-a-mp6eg2dj",
+    "headline": "Devs Behind Beloved Party Game Rush To Apologize After Getting Review-Bombed Over AI Video Contest: ‘Ah Hell Nah’",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/devs-behind-beloved-party-game-rush-to-apologize-after-getting-review-bombed-over-ai-video-contest-ah-hell-nah-2000696146",
+    "date": "2026-05-14",
+    "section": "Studio Moves",
+    "summary": "AI-generated content contest controversy highlights emerging policy challenges for studios engaging with generative AI tools.",
+    "score": 7,
+    "tags": [
+      "games",
+      "ai"
+    ]
+  },
+  {
+    "id": "tekken-veteran-katsuhiro-harada-to-lead--mp6eflq5",
+    "headline": "Tekken veteran Katsuhiro Harada to lead new SNK subsidiary",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/tekken-veteran-katsuhiro-harada-to-lead-new-snk-subsidiary",
+    "date": "2026-05-14",
+    "section": "Studio Moves",
+    "summary": "Veteran game director Katsuhiro Harada leads new SNK subsidiary under Saudi ownership, signaling leadership changes in established game studios.",
+    "score": 6,
+    "tags": [
+      "games",
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "video-codecs-are-a-nightmare-for-game-de-mp6eflq5",
+    "headline": "Video codecs are a nightmare for game developers, but there's no solution in sight",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/programming/video-codecs-are-a-nightmare-for-game-developers-but-there-s-no-solution-in-sight",
+    "date": "2026-05-12",
+    "section": "Studio Moves",
+    "summary": "Video codec challenges in game development lack industry solutions, representing ongoing technical pipeline friction for game studios.",
+    "score": 6,
+    "tags": [
+      "games",
       "tools"
     ]
   },
   {
-    "id": "report-vr-specialist-survios-has-laid-of-mopqg5zl",
+    "id": "indika-developer-raises-5m-in-funding-fo-mp6eflq5",
+    "headline": "Indika developer raises $5M in funding for next project",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/indika-developer-raises-5m-in-funding-for-next-project",
+    "date": "2026-05-12",
+    "section": "Studio Moves",
+    "summary": "Indie developer secures $5M funding and evaluates publishing strategy, relevant to studio growth and business model decisions.",
+    "score": 6,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "griffin-gaming-partners-launches-100m-fu-mp6efra6",
+    "headline": "Griffin Gaming Partners launches $100M fund to support indie developers",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/griffin-gaming-partners-launches-100m-fund-to-support-indie-developers",
+    "date": "2026-05-07",
+    "section": "Studio Moves",
+    "summary": "Griffin Gaming Partners launches $100M indie developer fund; tangentially relevant for understanding studio funding landscape.",
+    "score": 6,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "gearbox-studio-quebec-founders-start-new-mp6efra6",
+    "headline": "Gearbox Studio Quebec founders start new studio",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/gearbox-studio-quebec-founders-start-new-studio",
+    "date": "2026-05-07",
+    "section": "Studio Moves",
+    "summary": "Gearbox Quebec founders launch new studio; relevant as competitor studio formation case study.",
+    "score": 6,
+    "tags": [
+      "games",
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "new-remedy-ceo-wants-to-preserve-small-b-mp6efwyw",
+    "headline": "New Remedy CEO wants to preserve small budgets and break into Asia",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/production/new-remedy-ceo-wants-to-protect-modest-budgets-and-break-into-asia",
+    "date": "2026-05-05",
+    "section": "Studio Moves",
+    "summary": "New Remedy CEO emphasizes small-budget AAA development and Asian expansion, relevant to indie studio scaling strategies.",
+    "score": 6,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "kinforge-dev-seeker-entertainment-is-fur-mp6efwyw",
+    "headline": "Kinforge dev Seeker Entertainment is furloughing staff",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/kinforge-dev-seeker-entertainment-is-furloughing-staff",
+    "date": "2026-05-05",
+    "section": "Studio Moves",
+    "summary": "Seeker Entertainment staff furloughs amid fundraising challenges highlight funding pressures facing indie studios.",
+    "score": 6,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "report-vr-specialist-survios-has-laid-of-mp6efwyw",
     "headline": "Report: VR specialist Survios has laid off the majority of its development team",
     "source": "Game Developer",
     "url": "https://www.gamedeveloper.com/business/report-vr-specialist-survios-has-laid-off-the-majority-of-its-development-team",
     "date": "2026-05-01",
     "section": "Studio Moves",
-    "summary": "Major VR studio layoffs signal industry consolidation and workforce trends relevant to Southeast Asian studio planning.",
+    "summary": "Survios VR studio layoffs reflect consolidation pressures in specialized game development sectors.",
     "score": 6,
     "tags": [
       "business",
@@ -187,199 +245,172 @@
     ]
   },
   {
-    "id": "digital-bros-buys-the-rights-to-wuchang--mopqg5zm",
-    "headline": "Digital Bros buys the rights to Wuchang: Fallen Feathers for €4 million",
+    "id": "gamemaker-says-ai-coding-is-inevitable-s-mp6efwyw",
+    "headline": "GameMaker says AI coding is inevitable, Sony clarifies DRM confusion, and how video games are helping Rikers inmates - Patch Notes #50",
     "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/digital-bros-buys-the-rights-to-wuchang-fallen-feathers-for-4-million",
-    "date": "2026-04-29",
+    "url": "https://www.gamedeveloper.com/business/gamemaker-says-ai-coding-is-inevitable-sony-clarifies-drm-confusion-and-how-video-games-are-helping-rikers-inmates-patch-notes-50",
+    "date": "2026-05-01",
     "section": "Studio Moves",
-    "summary": "IP acquisition by Italian publisher demonstrates M&A activity and publishing deal structures relevant to studio growth.",
+    "summary": "Industry roundup covering GameMaker's AI integration and job security concerns relevant to development workflows and studio economics.",
     "score": 6,
     "tags": [
+      "ai",
+      "tools",
       "business",
       "games"
     ]
   },
   {
-    "id": "we-ve-been-a-little-bit-too-romantic-ust-mopqg5zm",
-    "headline": "'We've been a little bit too romantic:' Ustwo CEO says lowering development costs is now paramount",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/-we-ve-been-a-little-bit-too-romantic-ustwo-ceo-says-lowering-development-costs-is-now-paramount",
-    "date": "2026-04-28",
+    "id": "bioware-veteran-talks-about-burnout-on-s-mp6eg2dj",
+    "headline": "BioWare Veteran Talks About Burnout On Sci-Fi RPG Exodus: ‘You Have To Be Cutting The Baby In Half All The Time’",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/bioware-veteran-talks-about-burnout-on-sci-fi-rpg-exodus-you-have-to-be-cutting-the-baby-in-half-all-the-time-2000696194",
+    "date": "2026-05-14",
     "section": "Studio Moves",
-    "summary": "Monument Valley studio pivoting to lower development costs reflects industry pressure directly applicable to Southeast Asian margins.",
+    "summary": "Studio leadership burnout on AAA projects highlights organizational scaling challenges relevant to growing game dev teams.",
     "score": 6,
     "tags": [
+      "games",
       "business",
-      "games"
+      "people"
     ]
   },
   {
-    "id": "magic-the-gathering-arena-devs-are-union-mopqgbop",
-    "headline": "Magic: The Gathering Arena devs are unionizing to deliver genAI and layoff protections",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/magic-the-gathering-arena-devs-seek-to-unionise-to-deliver-genai-and-layoff-protections",
-    "date": "2026-04-27",
+    "id": "s-box-s-new-update-punishes-ai-slop-cont-mp6eg42l",
+    "headline": "s&box’s New Update Punishes AI Slop Content By Ranking It Lower To Discourage Users From ‘Making Everything Look Like The Same Sh*t’",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/sboxs-new-update-punishes-ai-slop-content-by-ranking-it-lower-to-discourage-users-from-making-everything-look-like-the-same-shit-2000696033",
+    "date": "2026-05-14",
     "section": "Studio Moves",
-    "summary": "MTG Arena developers unionize over genAI and job protections, signaling industry labor trends affecting art/animation teams.",
+    "summary": "s&box implements AI detection tools to suppress low-quality AI-generated content in user discovery, signaling industry pushback against AI slop in game creation.",
     "score": 6,
     "tags": [
       "games",
       "ai",
-      "people",
-      "business"
-    ]
-  },
-  {
-    "id": "inside-housemarque-s-improved-narrative--mopqgbop",
-    "headline": "Inside Housemarque's improved narrative process for Saros",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/design/inside-housemarque-s-improved-narrative-process-for-saros",
-    "date": "2026-04-24",
-    "section": "Studio Moves",
-    "summary": "Housemarque's narrative production improvements offer pipeline process insights applicable to animation-focused studios.",
-    "score": 6,
-    "tags": [
-      "games",
-      "art",
       "tools"
     ]
   },
   {
-    "id": "dead-by-daylight-studio-behaviour-intera-mopqgiuw",
-    "headline": "Dead by Daylight studio Behaviour Interactive confirms layoffs",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/dead-by-daylight-studio-behaviour-interactive-confirms-layoffs",
-    "date": "2026-04-22",
-    "section": "Studio Moves",
-    "summary": "Major multiplayer studio layoffs signal market contraction affecting external development teams across the industry.",
-    "score": 6,
-    "tags": [
-      "business"
-    ]
-  },
-  {
-    "id": "union-workers-take-legal-action-against--mopqgiuw",
-    "headline": "Union workers take legal action against Build A Rocket Boy over alleged privacy violations",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/union-workers-take-legal-action-against-build-a-rocket-boy-over-alleged-privacy-violations",
-    "date": "2026-04-21",
-    "section": "Studio Moves",
-    "summary": "Studio labor disputes and workplace culture issues highlight operational risks for growing development teams.",
-    "score": 6,
-    "tags": [
-      "business",
-      "people"
-    ]
-  },
-  {
-    "id": "supporting-juniors-and-sharpening-your-c-mopqgiuw",
-    "headline": "Supporting juniors and sharpening your creativity",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/design/supporting-juniors-and-sharpening-your-creativity",
-    "date": "2026-04-17",
-    "section": "Studio Moves",
-    "summary": "Discussion of junior talent development and creative craft relevant to building and mentoring art teams.",
-    "score": 6,
-    "tags": [
-      "art",
-      "people"
-    ]
-  },
-  {
-    "id": "marvel-snap-dev-says-painful-layoffs-nee-mopqgoly",
-    "headline": "Marvel Snap Dev Says ‘Painful’ Layoffs Needed To ‘Make Sure We Can Keep Going’",
-    "source": "Kotaku",
-    "url": "https://kotaku.com/marvel-snap-dev-says-painful-layoffs-needed-to-make-sure-we-can-keep-going-2000692674",
-    "date": "2026-05-02",
-    "section": "Studio Moves",
-    "summary": "Major game studio implements layoffs while maintaining roadmap, relevant for understanding studio cost structure pressures.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "an-indie-horror-game-has-been-stuck-in-t-mopqgum9",
-    "headline": "An Indie Horror Game Has Been Stuck In The Steam Approval Process For Three Years…Seemingly For Using Valve’s Own Engine",
-    "source": "Kotaku",
-    "url": "https://kotaku.com/indie-horror-game-steam-approval-three-years-amygdala-prelude-2000692478",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "Indie horror game delayed by Steam's approval process raises concerns about platform friction and release pipeline risks.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business",
-      "tools"
-    ]
-  },
-  {
-    "id": "reaper-actual-developers-distinct-possib-mopqh0n3",
-    "headline": "Reaper Actual developers Distinct Possibility Studios closes additional funding round",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/reaper-actual-developers-closes-additional-funding/",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "Game studio funding round shows investment trends in the industry relevant to competitive landscape.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "clash-franchise-expands-with-new-tableto-mopqh0n3",
-    "headline": "Clash franchise expands with new tabletop game and retail availability",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/clash-franchise-expands-new-tabletop-game-retail/",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "TTRPG expansion of existing game franchise demonstrates growing tabletop market opportunity.",
-    "score": 6,
-    "tags": [
-      "games",
-      "ttrpg",
-      "business"
-    ]
-  },
-  {
-    "id": "how-atari-has-grown-with-retro-focus-acq-mopqh0n3",
-    "headline": "How Atari has grown with retro focus, acquisitions and refocus on gaming | Wade Rosen interview",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/how-atari-has-grown-with-retro-focus-acquisitions-and-refocus-on-gaming-wade-rosen-interview/",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "Major studio acquisition and strategic refocus provides competitive intelligence on large player consolidation.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "develop-brighton-conference-programme-is-mopqh0n3",
-    "headline": "Develop:Brighton conference programme is now live",
+    "id": "industry-news-bit-bot-expands-leadership-mp6egfnd",
+    "headline": "[Industry news] Bit Bot Expands Leadership with AAA Veterans, Appoints Halo’s Frank O’Connor as Creative Director",
     "source": "MCV/Develop",
-    "url": "https://mcvuk.com/business-news/developbrighton-conference-programme-is-now-live/",
-    "date": "2026-05-01",
+    "url": "https://mcvuk.com/business-news/industry-news-bit-bot-expands-leadership-with-aaa-veterans-appoints-halos-frank-oconnor-as-creative-director/",
+    "date": "2026-05-13",
     "section": "Studio Moves",
-    "summary": "Major developer conference program reveals industry trends and networking opportunities for Southeast Asian studios.",
+    "summary": "Indie multimedia studio hires AAA talent (Halo's Frank O'Connor) as creative director; relevant for talent trends and cross-media studio expansion.",
     "score": 6,
+    "tags": [
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "report-wwe-2k26-dev-visual-concepts-is-l-mp6eflq5",
+    "headline": "Report: WWE 2K26 dev Visual Concepts is laying off staff",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/report-wwe-2k26-dev-visual-concepts-is-laying-off-staff",
+    "date": "2026-05-14",
+    "section": "Studio Moves",
+    "summary": "Visual Concepts studio conducting layoffs across 2023-2024, reflecting industry consolidation pressures affecting major game development teams.",
+    "score": 5,
     "tags": [
       "games",
       "business"
     ]
   },
   {
-    "id": "sony-clarifies-confusion-around-drm-game-mopqg5zl",
-    "headline": "Sony clarifies confusion around DRM game licenses on PlayStation",
+    "id": "last-flag-dev-night-street-games-is-layi-mp6eflq5",
+    "headline": "Last Flag dev Night Street Games is laying off staff",
     "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/sony-clarifies-confusion-around-drm-game-licenses-on-playstation",
-    "date": "2026-04-30",
+    "url": "https://www.gamedeveloper.com/business/last-flag-dev-night-street-games-is-laying-off-staff",
+    "date": "2026-05-13",
     "section": "Studio Moves",
-    "summary": "PlayStation DRM policy clarification affects publishing strategy but is moderately relevant to studios.",
+    "summary": "Funded indie studio Night Street Games lays off staff after financial underperformance, highlighting indie project risk factors.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "metroid-dread-developer-mercurysteam-con-mp6eflq5",
+    "headline": "Metroid Dread developer MercurySteam conducts layoffs",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/metroid-dread-developer-mercurysteam-conducts-layoffs",
+    "date": "2026-05-12",
+    "section": "Studio Moves",
+    "summary": "MercurySteam conducts production-cycle layoffs after Metroid Dread success, illustrating post-project staffing challenges in major studios.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "update-sega-is-lowering-the-priority-of--mp6eflq5",
+    "headline": "Update: Sega is lowering the priority of games-as-a-service titles",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/sega-is-lowering-the-priority-of-games-as-a-service-titles",
+    "date": "2026-05-12",
+    "section": "Studio Moves",
+    "summary": "Sega deprioritizes games-as-a-service after $200M impairment loss, signaling industry pivot away from live-service models.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "double-fine-petitions-to-unionize-mp6eflq5",
+    "headline": "Double Fine petitions to unionize",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/double-fine-petitions-to-unionize",
+    "date": "2026-05-11",
+    "section": "Studio Moves",
+    "summary": "Double Fine unionization effort signals growing labor organization in game development studios.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "not-for-profit-biz-models-can-make-for-b-mp6efra6",
+    "headline": "'Not-for-profit' biz models can make for better showcases, say Triple-i Initiative organizers",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/marketing/-not-for-profit-biz-models-can-make-for-better-showcases-say-triple-i-initiative-organizers",
+    "date": "2026-05-07",
+    "section": "Studio Moves",
+    "summary": "Triple-i Initiative explores non-profit business models for indie games; tangentially relevant to studio business strategy.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "former-lucasarts-ubisoft-veteran-clint-h-mp6efra6",
+    "headline": "Former LucasArts, Ubisoft veteran Clint Hocking founds new studio",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/former-lucasarts-ubisoft-veteran-clint-hocking-founds-new-studio",
+    "date": "2026-05-06",
+    "section": "Studio Moves",
+    "summary": "Veteran industry figure founds new studio focused on socially relevant games; relevant as competitor and talent movement signal.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "cwa-canada-president-says-saudi-buyout-o-mp6efwyw",
+    "headline": "CWA Canada president says Saudi buyout of EA should trigger 'virtually every alarm bell'",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/union-president-says-saudi-buyout-of-ea-should-trigger-virtually-every-alarm-bell-",
+    "date": "2026-05-06",
+    "section": "Studio Moves",
+    "summary": "Canadian union leader calls for government scrutiny of Saudi PIF's proposed takeover of EA, raising geopolitical concerns relevant to major studio acquisitions.",
     "score": 5,
     "tags": [
       "business",
@@ -387,196 +418,54 @@
     ]
   },
   {
-    "id": "starbreeze-to-develop-a-second-payday-ex-mopqg5zm",
-    "headline": "Starbreeze to develop a second Payday experience in Roblox",
+    "id": "wizards-of-the-coast-declines-to-volunta-mp6efwyw",
+    "headline": "Wizards of the Coast declines to voluntarily recognize game worker union",
     "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/starbreeze-to-develop-a-second-payday-experience-in-roblox",
-    "date": "2026-04-29",
+    "url": "https://www.gamedeveloper.com/business/wizards-of-the-coast-declines-to-voluntarily-recognize-game-worker-union",
+    "date": "2026-05-05",
     "section": "Studio Moves",
-    "summary": "Roblox platform expansion by established studio signals emerging market opportunity for Southeast Asian developers.",
+    "summary": "Wizards of the Coast rejects union recognition, reflecting labor dynamics affecting game studios.",
     "score": 5,
     "tags": [
-      "games",
-      "business"
+      "business",
+      "games"
     ]
   },
   {
-    "id": "github-copilot-is-pivoting-to-usage-base-mopqgbop",
-    "headline": "GitHub Copilot is pivoting to usage-based billing after becoming unsustainable",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/production/github-copilot-is-pivoting-to-usage-based-billing-because-it-s-currently-unsustainable",
-    "date": "2026-04-28",
+    "id": "streamelements-prepares-to-shut-down-web-mp6eg8tb",
+    "headline": "StreamElements prepares to shut down website and creator platform",
+    "source": "VentureBeat Games",
+    "url": "https://gamesbeat.com/streamelements-prepares-to-shut-down-website-and-creator-platform/",
+    "date": "2026-05-15",
     "section": "Studio Moves",
-    "summary": "GitHub Copilot shifts to usage-based billing, relevant to studios evaluating AI coding tools for pipeline development.",
+    "summary": "Livestreaming platform StreamElements shuts down, affecting creator tools studios may use for community engagement.",
     "score": 5,
     "tags": [
-      "ai",
       "tools",
       "business"
     ]
   },
   {
-    "id": "build-a-rocket-boy-facing-legal-action-b-mopqgbop",
-    "headline": "Build A Rocket Boy facing legal action, Behaviour Interactive cuts jobs, and Xbox has a new 'north star' - Patch Notes #49",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/build-a-rocket-boy-facing-legal-action-behaviour-interactive-cuts-jobs-and-xbox-has-a-new-north-star-patch-notes-49",
-    "date": "2026-04-24",
-    "section": "Studio Moves",
-    "summary": "Industry round-up including studio closures and legal disputes provides competitive landscape awareness for Southeast Asian studios.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "report-ubisoft-cancels-social-sim-game-a-mopqgiuw",
-    "headline": "Report: Ubisoft cancels social-sim game Alterra",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/report-ubisoft-cancels-social-sim-game-alterra",
-    "date": "2026-04-22",
-    "section": "Studio Moves",
-    "summary": "Ubisoft cancels three-year project, illustrating production and scope challenges relevant to studio planning.",
-    "score": 5,
-    "tags": [
-      "business",
-      "games"
-    ]
-  },
-  {
-    "id": "how-double-fine-balances-fun-with-potter-mopqgiuw",
-    "headline": "How Double Fine balances fun with pottery sculpting in Kiln",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/design/how-double-fine-balances-fun-with-pottery-sculpting-in-kiln",
-    "date": "2026-04-21",
-    "section": "Studio Moves",
-    "summary": "Double Fine discusses art direction in game development, showing creative pipeline iteration from prototype to release.",
-    "score": 5,
-    "tags": [
-      "games",
-      "art"
-    ]
-  },
-  {
-    "id": "sanrio-launches-self-publishing-label-sa-mopqgiuw",
-    "headline": "Sanrio launches self-publishing label Sanrio Games",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/sanrio-launches-self-publishing-label-sanrio-games",
-    "date": "2026-04-21",
-    "section": "Studio Moves",
-    "summary": "Major IP holder launching publishing label signals market shift toward self-publishing relevant to studio growth strategies.",
-    "score": 5,
-    "tags": [
-      "business",
-      "games"
-    ]
-  },
-  {
-    "id": "what-egosoft-s-three-decades-of-making-s-mopqgoly",
-    "headline": "What Egosoft's three decades of making space sims tells us about serving 'niche' audiences",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/pc/what-egosoft-s-three-decades-of-making-space-sims-tells-us-about-serving-niche-audiences",
-    "date": "2026-04-17",
-    "section": "Studio Moves",
-    "summary": "Long-running niche space sim studio shares insights on sustained audience engagement over decades, relevant for understanding indie game studio longevity.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "gabe-newell-lobbied-elon-musk-to-meet-wi-mopqgoly",
-    "headline": "Gabe Newell Lobbied Elon Musk To Meet With ‘Visionary’ Designer Hideo Kojima Over Their Mutual Interest In AI And Space",
-    "source": "Kotaku",
-    "url": "https://kotaku.com/gabe-newell-lobbied-elon-musk-to-meet-with-visionary-designer-hideo-kojima-over-their-mutual-interest-in-ai-and-space-2000692556",
-    "date": "2026-05-02",
-    "section": "Studio Moves",
-    "summary": "High-profile industry figures discuss AI and emerging tech interests; tangentially relevant for AI trend monitoring.",
-    "score": 5,
-    "tags": [
-      "ai",
-      "people"
-    ]
-  },
-  {
-    "id": "celeste-co-creator-is-making-a-gorgeous--mopqgum9",
-    "headline": "Celeste Co-Creator Is Making A Gorgeous New Game Boy-Style Metroidvania I Wish I Could Play Right Now",
-    "source": "Kotaku",
-    "url": "https://kotaku.com/celestes-co-creator-gorgeous-game-boy-style-metroidvania-2000692509",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "Established indie developer announces new project with soundtrack preview, relevant to studio operations and creative output tracking.",
-    "score": 5,
-    "tags": [
-      "games",
-      "art"
-    ]
-  },
-  {
-    "id": "exclusives-are-still-the-top-reason-peop-mopqgum9",
-    "headline": "Exclusives Are Still The Top Reason People Play Games On Consoles, But They’re Becoming Less Important",
-    "source": "Kotaku",
-    "url": "https://kotaku.com/exclusives-are-still-the-top-reason-people-play-games-on-consoles-but-theyre-becoming-less-important-2000692476",
-    "date": "2026-05-01",
-    "section": "Studio Moves",
-    "summary": "Consumer behavior data on console exclusivity trends informs broader platform strategy considerations for multi-platform releases.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "vr-gaming-s-spring-hot-streak-is-good-ne-mopqgum9",
-    "headline": "VR gaming's spring hot streak is good news for the Steam Deck.",
-    "source": "Polygon",
-    "url": "https://www.polygon.com/3-new-vr-games-spring-2026/",
-    "date": "2026-05-03",
-    "section": "Studio Moves",
-    "summary": "VR gaming momentum and Steam Deck compatibility trends relevant to emerging platform opportunities for developers.",
-    "score": 5,
-    "tags": [
-      "games",
-      "tools"
-    ]
-  },
-  {
-    "id": "scholastic-and-blushcrunch-studio-announ-mopqh0n3",
-    "headline": "Scholastic and BlushCrunch Studio announce Dandy’s World book partnership | exclusive",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/scholastic-and-blushcrunch-studio-announce-book-publishing-partnership-exclusive/",
-    "date": "2026-04-30",
-    "section": "Studio Moves",
-    "summary": "Roblox studio licensing deal shows emerging IP monetization strategy relevant to game studio business models.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "strange-scaffold-announces-anime-driving-mopqh0n3",
-    "headline": "Strange Scaffold announces anime driving game Truck-Kun is Supporting Me From Another World?!",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/anime-driving-game-truck-kun-is-supporting-me-from-another-world/",
-    "date": "2026-04-30",
-    "section": "Studio Moves",
-    "summary": "Anime-style game announcement demonstrates art direction trends but limited direct studio relevance.",
-    "score": 5,
-    "tags": [
-      "games",
-      "art"
-    ]
-  },
-  {
-    "id": "event-news-tiga-awards-open-for-nominati-mopqh0n3",
-    "headline": "[Event news] TIGA Awards open for nominations",
+    "id": "industry-news-after-10-years-of-developm-mp6egfnd",
+    "headline": "[Industry news] After 10 Years of Development, Space Haven Officially Launches into V1.0",
     "source": "MCV/Develop",
-    "url": "https://mcvuk.com/business-news/event-news-tiga-awards-open-for-nominations/",
-    "date": "2026-04-28",
+    "url": "https://mcvuk.com/development-news/industry-news-after-10-years-of-development-space-haven-officially-launches-into-v1-0/",
+    "date": "2026-05-14",
     "section": "Studio Moves",
-    "summary": "Industry awards program highlights recognition standards and best practices relevant to studio positioning.",
+    "summary": "Small Finnish indie studio ships space sim after 10 years; demonstrates long-term indie viability but limited direct relevance to studio operations.",
+    "score": 5,
+    "tags": [
+      "games"
+    ]
+  },
+  {
+    "id": "guest-post-how-to-scale-liveops-developm-mp6egfnd",
+    "headline": "[Guest post] How to scale LiveOps development without losing control",
+    "source": "MCV/Develop",
+    "url": "https://mcvuk.com/development-news/guest-post-how-to-scale-liveops-development-without-losing-control/",
+    "date": "2026-05-12",
+    "section": "Studio Moves",
+    "summary": "Guest article on scaling LiveOps development; relevant operational guidance for studios managing live games at scale.",
     "score": 5,
     "tags": [
       "games",
@@ -584,56 +473,73 @@
     ]
   },
   {
-    "id": "p-crafting-the-urban-open-world-of-em-nt-mopqh6oh",
-    "headline": "<p>Crafting the urban open world of <em>NTE: Neverness to Everness</em> with UE5 across PC, PlayStation 5, and mobile</p>",
+    "id": "metahuman-5-8-preview-released-mp6egfnd",
+    "headline": "MetaHuman 5.8 Preview Released!",
     "source": "Unreal Engine",
-    "url": "https://www.unrealengine.com/developer-interviews/crafting-the-urban-open-world-of-nte-neverness-to-everness-with-ue5-across-pc-playstation-5-and-mobile",
-    "date": "2026-04-27",
+    "url": "https://forums.unrealengine.com/t/metahuman-5-8-preview-released/2721648",
+    "date": "2026-05-12",
     "section": "The Art Pipeline",
-    "summary": "Case study of Unreal Engine 5 workflow for open-world stylized urban environment; directly applicable to SE Asian studio art pipeline.",
+    "summary": "Unreal Engine 5.8 preview introduces new MetaHuman real-time workflows; critical update to core art pipeline tool for character creation.",
+    "score": 8,
+    "tags": [
+      "tools",
+      "art",
+      "games"
+    ]
+  },
+  {
+    "id": "p-crafting-stylized-digital-humans-on-em-mp6egfnd",
+    "headline": "<p>Crafting stylized digital humans on <em>Daughter of the Inner Stars</em> with MetaHuman and UE5</p>",
+    "source": "Unreal Engine",
+    "url": "https://www.unrealengine.com/spotlights/crafting-stylized-digital-humans-on-daughter-of-the-inner-stars-with-metahuman-and-ue5",
+    "date": "2026-05-05",
+    "section": "The Art Pipeline",
+    "summary": "Team integrated MetaHuman, UE5, and AI for stylized digital humans in 50-minute orchestral experience; showcases AI-enhanced character pipeline workflows.",
+    "score": 8,
+    "tags": [
+      "tools",
+      "art",
+      "ai",
+      "games"
+    ]
+  },
+  {
+    "id": "unreal-engine-5-8-preview-mp6egfnd",
+    "headline": "Unreal Engine 5.8 Preview",
+    "source": "Unreal Engine",
+    "url": "https://forums.unrealengine.com/t/unreal-engine-5-8-preview/2721597",
+    "date": "2026-05-12",
+    "section": "The Art Pipeline",
+    "summary": "UE5.8 preview release focused on performance improvements; directly relevant for studio pipeline optimization and engine selection.",
     "score": 7,
     "tags": [
       "tools",
-      "art",
       "games"
     ]
   },
   {
-    "id": "p-tailoring-for-metahumans-clo-and-marve-mopqh6oh",
-    "headline": "<p>Tailoring for MetaHumans: CLO and Marvelous Designer to Unreal Engine demo</p>",
+    "id": "p-em-oceanhorn-3-em-charts-a-course-for--mp6egfnd",
+    "headline": "<p><em>Oceanhorn 3</em> charts a course for RPG success with UE5</p>",
     "source": "Unreal Engine",
-    "url": "https://www.unrealengine.com/news/tailoring-for-metahumans-clo-and-marvelous-designer-to-unreal-engine-demo",
-    "date": "2026-04-24",
+    "url": "https://www.unrealengine.com/developer-interviews/oceanhorn-3-charts-a-course-for-rpg-success-with-ue5",
+    "date": "2026-05-06",
     "section": "The Art Pipeline",
-    "summary": "MetaHuman clothing workflow demo integrating CLO and Marvelous Designer into UE5; highly relevant to character art pipeline.",
+    "summary": "Case study: small team shipped cinematic RPG across multiple platforms using UE5; demonstrates feasible pipeline for indie game studios.",
     "score": 7,
     "tags": [
       "tools",
+      "games",
       "art"
     ]
   },
   {
-    "id": "p-april-s-epic-learning-content-pcg-meta-mopqh6oh",
+    "id": "p-april-s-epic-learning-content-pcg-meta-mp6egfnd",
     "headline": "<p>April’s Epic learning content: PCG, MetaHuman, mobile development, and more</p>",
     "source": "Unreal Engine",
     "url": "https://www.unrealengine.com/learning/aprils-epic-learning-content-pcg-metahuman-mobile-development-and-more",
     "date": "2026-04-30",
     "section": "The Art Pipeline",
-    "summary": "Epic releases free learning content on PCG, MetaHuman, mobile development; relevant to art pipeline and tool ecosystem.",
-    "score": 6,
-    "tags": [
-      "tools",
-      "art"
-    ]
-  },
-  {
-    "id": "p-em-invincible-vs-em-brings-its-brutal--mopqh6oh",
-    "headline": "<p><em>Invincible VS</em>™ brings its brutal brand of fighting to life using Unreal Engine 5</p>",
-    "source": "Unreal Engine",
-    "url": "https://www.unrealengine.com/developer-interviews/invincible-vs-brings-its-brutal-brand-of-fighting-to-life-using-unreal-engine-5",
-    "date": "2026-04-23",
-    "section": "The Art Pipeline",
-    "summary": "UE5 fighting game production case study showing optimization techniques; relevant to game art technical pipeline.",
+    "summary": "Epic releases free learning content on PCG, MetaHuman, mobile development; resource updates for skill development across art and technical tools.",
     "score": 6,
     "tags": [
       "tools",
@@ -642,142 +548,98 @@
     ]
   },
   {
-    "id": "xai-s-new-custom-voices-feature-turns-a--mopqhc60",
-    "headline": "xAI's new Custom Voices feature turns a minute of speech into a usable voice clone",
-    "source": "The Decoder",
-    "url": "https://the-decoder.com/xais-new-custom-voices-feature-turns-a-minute-of-speech-into-a-usable-voice-clone/",
-    "date": "2026-05-02",
-    "section": "AI & The Craft",
-    "summary": "xAI's voice cloning API could tangentially support game dialogue and character voice pipelines for studios exploring AI audio tools.",
-    "score": 5,
+    "id": "the-flashforge-ad5x-is-one-of-the-best-m-mp6egp8i",
+    "headline": "The FlashForge AD5X Is One of the Best Multi Material and Multi Color 3D Printers Priced Under $300",
+    "source": "IGN",
+    "url": "https://www.ign.com/articles/flashforge-ad5x-3d-printer-deal-may-2026",
+    "date": "2026-05-14",
+    "section": "On the Shelf",
+    "summary": "Affordable multi-material 3D printer under $300 could be relevant for physical asset prototyping and TTRPG miniature production workflows.",
+    "score": 6,
     "tags": [
+      "tools",
+      "art"
+    ]
+  },
+  {
+    "id": "the-ai-powered-tech-behind-pssr-2-is-com-mp6egvaz",
+    "headline": "The AI-Powered Tech Behind PSSR 2 Is Coming To Older AMD GPUs, Including The Steam Machine",
+    "source": "GameSpot",
+    "url": "https://www.gamespot.com/articles/the-ai-powered-tech-behind-pssr-2-is-coming-to-older-amd-gpus-including-the-steam-machine/1100-6539963/?ftag=CAD-01-10abi2f",
+    "date": "2026-05-14",
+    "section": "On the Shelf",
+    "summary": "AMD announces FSR 4.1 AI upscaling technology expansion to older GPUs, relevant to game development pipeline optimization tools.",
+    "score": 6,
+    "tags": [
+      "games",
       "ai",
       "tools"
     ]
   },
   {
-    "id": "we-don-t-want-to-kill-our-game-imagine-d-mopqhgpv",
-    "headline": "'We Don't Want to Kill Our Game' — Imagine Dragons Singer's Last Flag Is Ending Post-Launch Support Weeks After Launch",
+    "id": "subnautica-2-lures-in-nearly-half-a-mill-mp6egp8i",
+    "headline": "Subnautica 2 Lures In Nearly Half a Million Concurrent Players on Steam Within First Hour of Release",
     "source": "IGN",
-    "url": "https://www.ign.com/articles/we-dont-want-to-kill-our-game-imagine-dragons-singers-last-flag-is-ending-post-launch-support-weeks-after-launch",
-    "date": "2026-05-02",
+    "url": "https://www.ign.com/articles/subnautica-2-lures-in-nearly-half-a-million-concurrent-players-on-steam-within-first-hour-of-release",
+    "date": "2026-05-14",
     "section": "On the Shelf",
-    "summary": "Studio pivots away from live-service game post-launch; relevant to understanding game studio sustainability and post-launch strategy challenges.",
-    "score": 6,
+    "summary": "Subnautica 2's strong Steam launch performance provides competitive market data relevant to understanding game industry traction.",
+    "score": 5,
     "tags": [
       "games",
       "business"
     ]
   },
   {
-    "id": "with-the-hobbit-magic-the-gathering-hope-mopqhm3i",
-    "headline": "With The Hobbit, Magic: The Gathering Hopes Lightning Can Strike Middle-Earth Twice",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/with-the-hobbit-magic-the-gathering-hopes-lightning-can-strike-middle-earth-twice/1100-6539748/?ftag=CAD-01-10abi2f",
-    "date": "2026-05-01",
-    "section": "On the Shelf",
-    "summary": "Magic: The Gathering launches Hobbit expansion following successful LOTR crossover; relevant to TTRPG market strategy and licensing trends.",
+    "id": "the-dungeon-crawler-carl-rpg-s-11-millio-mp6eh1m5",
+    "headline": "The Dungeon Crawler Carl RPG’s $11+ Million Dollar BackerKit Campaign Enters Last 24 Hours",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/05/the-dungeon-crawler-carl-rpgs-11-million-dollar-backerkit-campaign-enters-last-24-hours.html",
+    "date": "2026-05-14",
+    "section": "TTRPG Industry",
+    "summary": "Dungeon Crawler Carl RPG BackerKit campaign reaches $11M+ in crowdfunding, demonstrating major commercial success in TTRPG market and audience demand for adapted IP.",
+    "score": 7,
+    "tags": [
+      "ttrpg",
+      "business"
+    ]
+  },
+  {
+    "id": "d-d-the-dungeon-masters-show-previews-up-mp6egvaz",
+    "headline": "D&D: The ‘Dungeon Masters’ Show Previews Upcoming Changes To Ravenloft Mechanics",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/05/dd-the-dungeon-masters-show-previews-upcoming-changes-to-ravenloft-mechanics.html",
+    "date": "2026-05-14",
+    "section": "TTRPG Industry",
+    "summary": "D&D announces Ravenloft Dark Gifts mechanic changes in official actual play series; directly relevant to TTRPG market trends and content creation.",
     "score": 6,
     "tags": [
       "ttrpg",
-      "business",
       "games"
     ]
   },
   {
-    "id": "how-007-first-light-s-quips-and-quick-wi-mopqhgpv",
-    "headline": "How 007 First Light's Quips and Quick Wits Make Bond Stand Apart from Agent 47",
-    "source": "IGN",
-    "url": "https://www.ign.com/articles/how-007-first-lights-quips-and-quick-wits-make-bond-stand-apart-from-agent-47",
-    "date": "2026-05-02",
-    "section": "On the Shelf",
-    "summary": "Narrative design approach in AAA spy game; tangentially relevant for understanding storytelling and gameplay integration in game development.",
-    "score": 5,
+    "id": "rpg-delve-into-saturday-morning-cartoon--mp6eh1m5",
+    "headline": "RPG: Delve Into Saturday Morning Cartoon Action With Free Preview Of ‘Umdaar’",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/05/rpg-delve-into-saturday-morning-cartoon-action-with-free-preview-of-umdaar.html",
+    "date": "2026-05-14",
+    "section": "TTRPG Industry",
+    "summary": "Evil Hat releases free preview of Umdaar FATE sourcebook blending magic and science with Saturday Morning Cartoon aesthetics, relevant to TTRPG market trends and IP adaptation opportunities.",
+    "score": 6,
     "tags": [
-      "games",
+      "ttrpg",
       "art"
     ]
   },
   {
-    "id": "we-finally-know-what-magic-the-gathering-mopqhm3i",
-    "headline": "We Finally Know What Magic The Gathering's Reality Fracture Set Is About (And It Rules)",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/we-finally-know-what-magic-the-gatherings-reality-fracture-set-is-about-and-it-rules/1100-6539750/?ftag=CAD-01-10abi2f",
-    "date": "2026-05-01",
-    "section": "On the Shelf",
-    "summary": "Magic: The Gathering announces Reality Fracture set featuring Jace storyline; relevant to TTRPG market and card game art.",
-    "score": 5,
-    "tags": [
-      "ttrpg",
-      "art",
-      "games"
-    ]
-  },
-  {
-    "id": "magic-the-gathering-s-marvel-super-heroe-mopqhm3i",
-    "headline": "Magic: The Gathering's Marvel Super Heroes Expansion Has A Big Battle Ahead",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/magic-the-gatherings-marvel-super-heroes-expansion-has-a-big-battle-ahead/1100-6539742/?ftag=CAD-01-10abi2f",
-    "date": "2026-05-01",
-    "section": "On the Shelf",
-    "summary": "Magic: The Gathering Marvel expansion underperforms; relevant to TTRPG market trends and set design strategy.",
-    "score": 5,
-    "tags": [
-      "ttrpg",
-      "games"
-    ]
-  },
-  {
-    "id": "roblox-stock-nosedives-after-company-say-mopqhsud",
-    "headline": "Roblox Stock Nosedives After Company Says It Expects To Make $1 Billion Less This Year",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/roblox-stock-nosedives-after-company-says-it-expects-to-make-1-billion-less-this-year/1100-6539746/?ftag=CAD-01-10abi2f",
-    "date": "2026-05-01",
-    "section": "On the Shelf",
-    "summary": "Roblox stock decline due to user growth slowdown and revenue projection cuts; relevant to games industry business trends affecting regional creators.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "archon-studios-to-launch-new-line-of-d-d-mopqhsud",
-    "headline": "Archon Studios To Launch New Line Of D&D Terrain – Starting With The Underdark",
-    "source": "Bell of Lost Souls",
-    "url": "https://www.belloflostsouls.net/2026/05/archon-studios-to-launch-new-line-of-dd-terrain-starting-with-the-underdark.html",
-    "date": "2026-05-02",
-    "section": "TTRPG Industry",
-    "summary": "Archon Studios announces D&D terrain product line launch; relevant TTRPG market expansion and product strategy from established competitor.",
-    "score": 6,
-    "tags": [
-      "ttrpg",
-      "business",
-      "art"
-    ]
-  },
-  {
-    "id": "a-sci-fi-daggerheart-adventure-cozy-boar-mopqhsud",
-    "headline": "A Sci-Fi ‘Daggerheart’ Adventure, Cozy Board Games, And Much More On Kickstarter Now",
-    "source": "Bell of Lost Souls",
-    "url": "https://www.belloflostsouls.net/2026/05/a-sci-fi-daggerheart-adventure-cozy-board-games-and-much-more-on-kickstarter-now.html",
-    "date": "2026-05-01",
-    "section": "TTRPG Industry",
-    "summary": "Kickstarter roundup featuring Daggerheart sci-fi corebook and cozy board games; relevant to TTRPG market trends and emerging product launches.",
-    "score": 6,
-    "tags": [
-      "ttrpg",
-      "business"
-    ]
-  },
-  {
-    "id": "ahoy-there-be-a-pirates-plunder-scouting-mopqhw4x",
-    "headline": "Ahoy! There be a Pirates & Plunder Scouting Party! – April 24, 2026",
+    "id": "pirates-plunder-scouting-party-2-may-8-2-mp6eh1m5",
+    "headline": "Pirates & Plunder Scouting Party #2 – May 8, 2026",
     "source": "Kobold Press",
-    "url": "https://koboldpress.com/ahoy-there-be-a-pirates-plunder-scouting-party-april-24-2026/",
-    "date": "2026-04-24",
+    "url": "https://koboldpress.com/pirates-plunder-scouting-party-2-may-8-2026/",
+    "date": "2026-05-08",
     "section": "TTRPG Industry",
-    "summary": "Kobold Press showcases Pirates & Plunder product design and publishing strategy through designer interview, relevant for understanding TTRPG market positioning.",
+    "summary": "Kobold Press reveals player options for Pirates & Plunder campaign product during Kickstarter, showing TTRPG content design and crowdfunding strategy.",
     "score": 6,
     "tags": [
       "ttrpg",
@@ -785,27 +647,26 @@
     ]
   },
   {
-    "id": "the-northlands-worldbook-stretch-goals-y-mopqhw4x",
-    "headline": "The Northlands Worldbook stretch goals you didn’t see! – April 22, 2026",
-    "source": "Kobold Press",
-    "url": "https://koboldpress.com/the-northlands-worldbook-stretch-goals-you-didnt-see-april-22-2026/",
-    "date": "2026-04-22",
-    "section": "TTRPG Industry",
-    "summary": "Northlands Worldbook Kickstarter stretch goals reveal TTRPG product development strategy and community engagement tactics.",
-    "score": 6,
-    "tags": [
-      "ttrpg",
-      "business"
-    ]
-  },
-  {
-    "id": "explore-the-northlands-get-weird-with-he-mopqhsud",
-    "headline": "Explore The ‘Northlands’, Get Weird With ‘Hellboy’, And More With These 5E Adventures",
+    "id": "how-to-play-chaos-daemons-in-warhammer-4-mp6egvaz",
+    "headline": "How to Play Chaos Daemons in Warhammer 40K",
     "source": "Bell of Lost Souls",
-    "url": "https://www.belloflostsouls.net/2026/05/explore-the-northlands-get-weird-with-hellboy-and-more-with-these-5e-adventures.html",
-    "date": "2026-05-01",
+    "url": "https://www.belloflostsouls.net/2026/05/how-to-play-chaos-daemons-in-warhammer-40k-9th-edition.html",
+    "date": "2026-05-15",
     "section": "TTRPG Industry",
-    "summary": "D&D 5E adventure and supplement releases roundup; TTRPG content ecosystem activity relevant to market landscape monitoring.",
+    "summary": "Warhammer 40K Chaos Daemons 10th Edition mechanics guide; TTRPG rules content with minimal business/art market insights.",
+    "score": 5,
+    "tags": [
+      "ttrpg"
+    ]
+  },
+  {
+    "id": "warhammer-40k-a-surprise-preview-of-read-mp6eh1m5",
+    "headline": "Warhammer 40k: A Surprise Preview Of Ready Painted Terrain And New Ork Bikes!",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/05/warhammer-40k-a-surprise-preview-of-ready-painted-terrain-and-new-ork-bikes.html",
+    "date": "2026-05-14",
+    "section": "TTRPG Industry",
+    "summary": "Games Workshop introduces pre-painted terrain for Warhammer 40K, showing industry shift toward production services that studios might offer or compete with.",
     "score": 5,
     "tags": [
       "ttrpg",
@@ -813,27 +674,41 @@
     ]
   },
   {
-    "id": "the-pirate-insult-generator-gives-you-so-mopqhw4x",
+    "id": "state-of-play-homebrewing-kicks-so-much--mp6eh1m5",
+    "headline": "State of Play: Homebrewing kicks so much butt and it does what professional publishing CAN’T do – April 8, 2026",
+    "source": "Kobold Press",
+    "url": "https://koboldpress.com/state-of-play-homebrewing-kicks-so-much-butt-and-it-does-what-professional-publishing-cant-do-april-8-2026/",
+    "date": "2026-05-13",
+    "section": "TTRPG Industry",
+    "summary": "Kobold Press editorial on homebrewing's advantages over professional publishing, offers perspective on TTRPG content creation and market positioning.",
+    "score": 5,
+    "tags": [
+      "ttrpg",
+      "business"
+    ]
+  },
+  {
+    "id": "how-to-run-an-actual-play-leave-some-bla-mp6eh1m5",
+    "headline": "How to run an actual play | Leave some blank space – May 11, 2026",
+    "source": "Kobold Press",
+    "url": "https://koboldpress.com/how-to-run-an-actual-play-leave-some-blank-space-may-11-2026/",
+    "date": "2026-05-11",
+    "section": "TTRPG Industry",
+    "summary": "Tips for running actual play content with audience appeal, relevant to understanding TTRPG content production and audience engagement strategies.",
+    "score": 5,
+    "tags": [
+      "ttrpg",
+      "art"
+    ]
+  },
+  {
+    "id": "the-pirate-insult-generator-gives-you-so-mp6eh1m5",
     "headline": "The Pirate Insult Generator gives you some salty words to spray – April 30, 2026",
     "source": "Kobold Press",
     "url": "https://koboldpress.com/the-pirate-insult-generator-gives-you-some-salty-words-to-spray-april-30-2026/",
     "date": "2026-05-01",
     "section": "TTRPG Industry",
-    "summary": "Kobold Press launches a pirate-themed content generator to promote their Pirates & Plunder Kickstarter campaign, showing TTRPG publisher marketing tactics.",
-    "score": 5,
-    "tags": [
-      "ttrpg",
-      "business"
-    ]
-  },
-  {
-    "id": "made-by-you-the-kobold-press-community-t-mopqhw4x",
-    "headline": "Made by YOU, the Kobold Press community, the Message in a Bottle table – April 17, 2026",
-    "source": "Kobold Press",
-    "url": "https://koboldpress.com/made-by-you-the-kobold-press-community-the-message-in-a-bottle-table-april-17-2026/",
-    "date": "2026-04-17",
-    "section": "TTRPG Industry",
-    "summary": "Kobold Press community-sourced content for Pirates & Plunder demonstrates crowdsourced TTRPG content creation and player engagement models.",
+    "summary": "Kobold Press promotional tool for Pirates & Plunder Kickstarter campaign demonstrates creative marketing tactics in TTRPG crowdfunding.",
     "score": 5,
     "tags": [
       "ttrpg",
