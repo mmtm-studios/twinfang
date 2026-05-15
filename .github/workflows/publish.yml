@@ -33,3 +33,6 @@ jobs:
           git add index.html data/meta.json data/archive.json issue-*.html
           git diff --staged --quiet || git commit -m "feat: publish issue $(node -e "const m=require('./data/meta.json');console.log(m.nextIssue-1)")"
           git push
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
