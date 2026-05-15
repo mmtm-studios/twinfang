@@ -105,8 +105,11 @@ const tabsNavHTML = `
 // Section panels
 const sectionPanelsHTML = activeSections.map((sec, i) => {
   const slug      = toSlug(sec.title);
-  const content   = linkifyContent(sec.content);
-  const pullQuote = extractPullQuote(sec.content);
+  let content     = sec.content;
+  // Strip markdown code block markers if present
+  content = content.replace(/^```[a-z]*\n?/, '').replace(/\n?```$/, '');
+  content = linkifyContent(content);
+  const pullQuote = extractPullQuote(content);
 
   const pullHTML = pullQuote ? `
           <blockquote class="ii-tab-pullquote"><p>${pullQuote}</p></blockquote>` : '';
