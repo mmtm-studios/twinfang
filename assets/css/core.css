@@ -1170,7 +1170,6 @@ img, svg { display: block; }
   padding: 20px 24px 20px 52px;
   border-left: 3px solid var(--red);
   margin-bottom: 32px;
-  grid-column: 1 / -1;
 }
 .ii-tab-pullquote::before {
   content: '\201C';
