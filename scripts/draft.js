@@ -43,7 +43,10 @@ Instructions:
     }],
   });
 
-  return response.content[0].text.trim();
+  let content = response.content[0].text.trim();
+  // Strip markdown code block markers if present
+  content = content.replace(/^```[a-z]*\n?/, '').replace(/\n?```$/, '');
+  return content;
 }
 
 async function draftGapScan(allStories) {
@@ -73,7 +76,9 @@ Return ONLY a JSON object, no other text:
     }],
   });
 
-  const text  = response.content[0].text;
+  let text  = response.content[0].text;
+  // Strip markdown code block markers if present
+  text = text.replace(/^```[a-z]*\n?/, '').replace(/\n?```$/, '');
   const match = text.match(/\{[\s\S]*\}/);
   return match ? JSON.parse(match[0]) : { title: 'Strategic Synthesis', lead: '', items: [] };
 }
