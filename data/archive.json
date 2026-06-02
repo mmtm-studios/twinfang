@@ -1,5 +1,17 @@
 [
   {
+    "issue": 3,
+    "date": "2026-06-02",
+    "headline": "Consolidation Pressure and the AI Art Pipeline Inflection",
+    "lead": "This period's signals converge on a single tension: the industry is consolidating around AI-powered production and scale, while boutique art studios like Twinfang must decide whether to ride that wave as a supplier, resist it as a differentiator, or get acquired before the window closes.",
+    "stats": {
+      "storiesApproved": 38,
+      "sourcesScanned": 38,
+      "sectionsActive": 8
+    },
+    "file": "issue-003.html"
+  },
+  {
     "issue": 2,
     "date": "2026-05-15",
     "headline": "AI Bifurcation, Consolidation Pressure, and the Artisan Edge",
