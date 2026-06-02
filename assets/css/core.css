@@ -1171,6 +1171,7 @@ img, svg { display: block; }
   border-left: 3px solid var(--red);
   margin-bottom: 32px;
   grid-column: 1 / -1;
+  grid-row: 1;
 }
 .ii-tab-pullquote::before {
   content: '\201C';
@@ -1220,9 +1221,9 @@ img, svg { display: block; }
   .ii-tab-panel.active.has-quicknav { grid-template-columns: 1fr; }
   .ii-quicknav { display: none !important; }
 }
-.ii-article-body  { grid-column: 1; }
-.ii-quicknav      { grid-column: 2; position: sticky; top: 72px; }
-.ii-article-sources { grid-column: 1 / -1; }
+.ii-article-body  { grid-column: 1; grid-row: 2; }
+.ii-quicknav      { grid-column: 2; grid-row: 2; position: sticky; top: 72px; }
+.ii-article-sources { grid-column: 1 / -1; grid-row: 3; }
 
 /* ── Quicknav sidebar ──────────────────────────────────────── */
 .ii-quicknav { }

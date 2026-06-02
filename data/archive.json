@@ -1,5 +1,17 @@
 [
   {
+    "issue": 2,
+    "date": "2026-05-15",
+    "headline": "AI Bifurcation, Consolidation Pressure, and the Artisan Edge",
+    "lead": "This period's signals converge on a single fault line: studios that wield AI as a craft multiplier are pulling ahead, while those that mandate it blindly or ignore quality signals are collapsing or getting reviewed into oblivion.",
+    "stats": {
+      "storiesApproved": 50,
+      "sourcesScanned": 50,
+      "sectionsActive": 8
+    },
+    "file": "issue-002.html"
+  },
+  {
     "issue": 1,
     "date": "2026-05-04",
     "headline": "Contraction Above, Opportunity Below",

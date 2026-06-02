@@ -31,7 +31,14 @@ function toSlug(title) {
 }
 
 function linkifyContent(html) {
-  // (https://url) → clickable domain link
+  // (https://url) or (domain.com/path) → clickable domain link
+  html = html.replace(/\(([a-z0-9.-]+\.[a-z]{2,}\/[^\s)>]*)\)/gi, (match, domain) => {
+    const url = 'https://' + domain;
+    try {
+      const hostonly = new URL(url).hostname.replace(/^www\./, '');
+      return `(<a href="${url}" target="_blank" rel="noopener noreferrer">${hostonly}</a>)`;
+    } catch { return match; }
+  });
   html = html.replace(/\(https?:\/\/([^\s)>]+)\)/g, (_, rest) => {
     const url = 'https://' + rest;
     try {
@@ -98,8 +105,11 @@ const tabsNavHTML = `
 // Section panels
 const sectionPanelsHTML = activeSections.map((sec, i) => {
   const slug      = toSlug(sec.title);
-  const content   = linkifyContent(sec.content);
-  const pullQuote = extractPullQuote(sec.content);
+  let content     = sec.content;
+  // Strip markdown code block markers if present
+  content = content.replace(/^```[a-z]*\n?/, '').replace(/\n?```$/, '');
+  content = linkifyContent(content);
+  const pullQuote = extractPullQuote(content);
 
   const pullHTML = pullQuote ? `
           <blockquote class="ii-tab-pullquote"><p>${pullQuote}</p></blockquote>` : '';
