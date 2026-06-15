@@ -1,12 +1,54 @@
 [
   {
-    "id": "atari-to-acquire-crossy-road-developer-h-mpw6i0w0",
+    "id": "report-multiple-xbox-game-studio-heads-n-mqfo9aiz",
+    "headline": "Report: Multiple Xbox game studio heads negotiating with Xbox to avoid closure",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/report-compulsion-games-leadership-in-negotiations-with-xbox-potential-studio-closure",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Xbox studio closures and negotiations signal industry consolidation pressures relevant to understanding major publisher strategies and studio survival dynamics.",
+    "score": 8,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "xbox-announces-business-reset-amid-repor-mqfo9aiz",
+    "headline": "Xbox announces business 'reset' amid reports of layoffs and studio closures",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/xbox-announces-business-reset-amid-reports-of-layoffs-and-studio-closures",
+    "date": "2026-06-11",
+    "section": "Studio Moves",
+    "summary": "Xbox business reset and layoffs represent major industry restructuring affecting outsourcing demand and studio partnerships.",
+    "score": 8,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "mina-the-hollower-sells-300-000-copies-i-mqfo9n0y",
+    "headline": "Mina the Hollower sells 300,000 copies in three days",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/mina-the-hollower-sold-300-000-copies-in-three-days",
+    "date": "2026-06-03",
+    "section": "Studio Moves",
+    "summary": "Yacht Club Games' Mina the Hollower reached 300k sales in 3 days, validating the studio's survival bet on the title.",
+    "score": 8,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "atari-to-acquire-crossy-road-developer-h-mqfo9n0y",
     "headline": "Atari to acquire Crossy Road developer Hipster Whale",
     "source": "Game Developer",
     "url": "https://www.gamedeveloper.com/business/atari-to-acquire-crossy-road-developer-hipster-whale",
     "date": "2026-06-01",
     "section": "Studio Moves",
-    "summary": "Major studio acquisition of Crossy Road developer by Atari signals consolidation trends relevant to M&A strategy in games industry.",
+    "summary": "Atari acquires Crossy Road developer Hipster Whale for ~$40M, a significant studio consolidation move.",
     "score": 8,
     "tags": [
       "games",
@@ -14,44 +56,98 @@
     ]
   },
   {
-    "id": "saga-sells-off-crypto-branch-and-focuses-mpw6igt4",
-    "headline": "Saga sells off crypto branch and focuses on AI-driven digital characters",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/saga-sells-off-crypto-branch-and-focuses-on-ai-driven-digital-characters/",
-    "date": "2026-06-02",
+    "id": "xbox-is-planning-to-shutter-peabody-awar-mqfo9n0y",
+    "headline": "Xbox Is Planning To Shutter Peabody-Award-Winning South Of Midnight Studio Compulsion Games",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/xbox-shuttering-south-of-midnight-peabody-award-compulsion-games-2000706065",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "Saga pivots to AI-driven digital characters, directly relevant to AI tool adoption and character development pipeline innovation in game studios.",
+    "summary": "Xbox shuts down award-winning Compulsion Games (South of Midnight), a major studio closure affecting significant dev talent.",
     "score": 8,
     "tags": [
-      "ai",
-      "tools",
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "xbox-in-tumult-as-key-executives-leave-s-mqfo9zgn",
+    "headline": "Xbox in tumult as key executives leave, South of Midnight studio potentially shutting down",
+    "source": "Polygon",
+    "url": "https://www.polygon.com/xboxs-layoffs-compulsion-games-south-of-midnight-shutdown/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Xbox executives depart and Compulsion Games faces shutdown; critical studio business intelligence showing major publisher restructuring and acquisition risks.",
+    "score": 8,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "microsoft-ceo-says-xbox-must-become-sust-mqfo9aiz",
+    "headline": "Microsoft CEO says Xbox must become 'sustainable' as it reportedly considers major spinoff",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/console/microsoft-ceo-says-xbox-must-become-sustainable-as-it-reportedly-considers-major-spinoff",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Microsoft's Xbox sustainability crisis and potential spinoff signals major industry restructuring that could affect outsourcing and partnership opportunities.",
+    "score": 7,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "ubisoft-closing-winnipeg-and-belgrade-st-mqfo9aiz",
+    "headline": "Ubisoft closing Winnipeg and Belgrade studios and making further layoffs",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/ubisoft-closing-winnipeg-and-belgrade-studios-and-making-further-layoffs",
+    "date": "2026-06-10",
+    "section": "Studio Moves",
+    "summary": "Ubisoft studio closures and layoffs signal major publisher contraction affecting outsourcing and regional competition.",
+    "score": 7,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "paramount-unveils-new-unified-paramount--mqfo9hg7",
+    "headline": "Paramount unveils new 'unified' Paramount Games Studio",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/paramount-games-studio-breaks-cover",
+    "date": "2026-06-05",
+    "section": "Studio Moves",
+    "summary": "Major media conglomerate consolidates game studios into unified operation; relevant for understanding corporate game studio restructuring models.",
+    "score": 7,
+    "tags": [
       "business",
       "games"
     ]
   },
   {
-    "id": "tripo-ai-raises-nearly-200m-in-financing-mpw6inh6",
-    "headline": "Tripo AI raises nearly $200M in financing for AI 3D and world model tech",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/tripo-ai-raises-nearly-200m-in-financing-for-ai-3d-and-world-model-tech/",
-    "date": "2026-06-01",
+    "id": "how-the-replaced-devs-fixed-display-bloa-mqfo9hg7",
+    "headline": "How the Replaced devs fixed display bloat with a stylish gadget",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/design/replaced-wingman",
+    "date": "2026-06-04",
     "section": "Studio Moves",
-    "summary": "Tripo AI raises $200M for AI 3D and world model generation—directly addresses AI content creation tools critical for game art pipelines.",
-    "score": 8,
+    "summary": "Developer shares hardware tool innovation for display optimization; relevant for understanding art pipeline tools and technical solutions.",
+    "score": 7,
     "tags": [
-      "ai",
       "tools",
-      "business"
+      "art",
+      "games"
     ]
   },
   {
-    "id": "balatro-publisher-playstack-is-being-sol-mpw6i0w0",
-    "headline": "Balatro publisher Playstack is being sold to GameSpot and Fandom parent company",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/balatro-publisher-playstack-sold-to-gamespot-and-fandom-parent-company",
-    "date": "2026-05-29",
+    "id": "xbox-in-talks-to-close-double-fine-and-n-mqfo9n0y",
+    "headline": "Xbox In Talks To Close Double Fine And Ninja Theory, Which Just Revealed Its New Game",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/psychonauts-hellblade-south-of-midnight-studios-negotiating-xbox-closure-2000706718",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "Publisher acquisition valued at $169M demonstrates consolidation and exit opportunities relevant to studio business strategy.",
+    "summary": "Xbox considers closing Double Fine and Ninja Theory studios, signaling major publisher restructuring and potential job losses.",
     "score": 7,
     "tags": [
       "games",
@@ -59,71 +155,115 @@
     ]
   },
   {
-    "id": "latam-indie-devs-lay-out-how-to-improve--mpw6i5zm",
-    "headline": "LATAM indie devs lay out how to improve your text animation",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/art/latam-indie-devs-lay-out-how-to-improve-your-text-animation",
-    "date": "2026-05-21",
+    "id": "exploring-steam-next-fest-with-an-ai-blo-mqfo9n0y",
+    "headline": "Exploring Steam Next Fest With An AI-Blocking Extension Is Very Depressing",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/exploring-steam-next-fest-with-an-ai-blocking-extension-is-very-depressing-2000706695",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "LATAM devs share text animation techniques; directly relevant to game art pipeline and animation production best practices.",
+    "summary": "Steam Next Fest overwhelmed by AI-generated games, highlighting market saturation and tool accessibility concerns for developers.",
     "score": 7,
     "tags": [
       "games",
+      "ai",
+      "tools"
+    ]
+  },
+  {
+    "id": "the-art-of-game-writing-in-non-narrative-mqfo9aiz",
+    "headline": "The art of game writing in 'non-narrative' games ft. Emma Kidwell and Harrison Pink",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/design/the-art-of-game-writing-in-non-narrative-games-ft-emma-kidwell-and-harrison-pink",
+    "date": "2026-06-12",
+    "section": "Studio Moves",
+    "summary": "Narrative design craft discussion offers general game development insights but limited studio pipeline relevance.",
+    "score": 6,
+    "tags": [
+      "games",
+      "art"
+    ]
+  },
+  {
+    "id": "playstack-sold-xbox-announces-business-r-mqfo9aiz",
+    "headline": "Playstack sold, Xbox announces business 'reset,' and is generative AI poisoning the well? - Patch Notes #56",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/playstack-sold-xbox-announces-business-reset-and-is-generative-ai-poisoning-the-well-patch-notes-55",
+    "date": "2026-06-12",
+    "section": "Studio Moves",
+    "summary": "Meta-summary covering studio consolidation and AI concerns directly relevant to audience's AI and business interests.",
+    "score": 6,
+    "tags": [
+      "games",
+      "business",
+      "ai"
+    ]
+  },
+  {
+    "id": "esa-says-anti-deepfake-act-could-devasta-mqfo9aiz",
+    "headline": "ESA says anti-deepfake act could 'devastate' video game industry",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/esa-says-anti-deepfake-act-could-devastate-video-game-industry",
+    "date": "2026-06-10",
+    "section": "Studio Moves",
+    "summary": "Anti-deepfake legislation threatens AI-generated content tools critical to modern game art pipelines.",
+    "score": 6,
+    "tags": [
+      "games",
+      "ai",
       "art",
       "tools"
     ]
   },
   {
-    "id": "former-bioware-inflexion-games-and-timbr-mpw6ibe4",
-    "headline": "Former BioWare, Inflexion Games, and Timbre Games developers launch Studio Reset",
+    "id": "telltale-games-is-back-but-can-it-learn--mqfo9hg7",
+    "headline": "Telltale Games is back, but can it learn from its past mistakes?",
     "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/former-bioware-inflexion-games-and-timbre-games-developers-launch-studio-reset",
-    "date": "2026-05-20",
+    "url": "https://www.gamedeveloper.com/production/can-telltale-games-learn-from-its-past-mistakes-",
+    "date": "2026-06-09",
     "section": "Studio Moves",
-    "summary": "Experienced game developers launching new studio signals talent mobility and potential competitive threat or partnership opportunity.",
-    "score": 7,
-    "tags": [
-      "games",
-      "business",
-      "people"
-    ]
-  },
-  {
-    "id": "embracer-to-spin-off-major-video-game-fr-mpw6ibe4",
-    "headline": "Embracer to spin off major video game franchises and studios",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/embracer-to-spin-off-major-video-game-franchises-and-studios",
-    "date": "2026-05-20",
-    "section": "Studio Moves",
-    "summary": "Major franchise restructuring at Embracer signals industry consolidation and shifts in IP ownership that affect partnerships and licensing opportunities.",
-    "score": 7,
+    "summary": "Telltale Games relaunches with focus on sustainable interactive storytelling; relevant for understanding narrative-driven game studio models.",
+    "score": 6,
     "tags": [
       "games",
       "business"
     ]
   },
   {
-    "id": "industry-news-room-8-group-appoints-juan-mpw6iurp",
-    "headline": "[Industry news] Room 8 Group appoints Juanita Draude as Chief Executive Officer",
-    "source": "MCV/Develop",
-    "url": "https://mcvuk.com/business-news/industry-news-room-8-group-appoints-juanita-draude-as-chief-executive-officer/",
-    "date": "2026-05-22",
+    "id": "embracer-owned-vr-developer-vertigo-game-mqfo9hg7",
+    "headline": "Embracer-owned VR developer Vertigo Games closes Amsterdam studio",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/embracer-owned-vr-developer-vertigo-games-closes-amsterdam-studio",
+    "date": "2026-06-09",
     "section": "Studio Moves",
-    "summary": "Room 8 Group, a key game development outsourcer, appoints new CEO signaling leadership transition and growth strategy shift.",
-    "score": 7,
+    "summary": "VR game studio closure signals consolidation in specialized dev segments; relevant for competitive landscape and team structure insights.",
+    "score": 6,
     "tags": [
       "business",
-      "people"
+      "games"
     ]
   },
   {
-    "id": "how-to-direct-unconventional-games-like--mpw6i0w0",
+    "id": "playerunknown-productions-is-laying-off--mqfo9hg7",
+    "headline": "PlayerUnknown Productions is laying off staff and halting development on Go Wayback",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/playerunknown-productions-is-laying-off-staff-and-halting-development",
+    "date": "2026-06-03",
+    "section": "Studio Moves",
+    "summary": "Studio layoffs and project halts signal market pressures; relevant for competitive intelligence and industry staffing trends.",
+    "score": 6,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "how-to-direct-unconventional-games-like--mqfo9n0y",
     "headline": "How to direct unconventional games like Control Resonant",
     "source": "Game Developer",
     "url": "https://www.gamedeveloper.com/production/how-to-direct-unconventional-games-like-control-resonant",
     "date": "2026-06-02",
     "section": "Studio Moves",
-    "summary": "Game Developer explores directing unconventional gameplay and maintaining team alignment on stylistic vision, relevant for studio creative leadership.",
+    "summary": "Game Developer article on directing unconventional games offers practical guidance for maintaining team alignment in experimental projects.",
     "score": 6,
     "tags": [
       "games",
@@ -131,214 +271,84 @@
     ]
   },
   {
-    "id": "remedy-entertainment-ceo-alan-wake-and-c-mpw6i0w0",
-    "headline": "Remedy Entertainment CEO: Alan Wake and Control should have sold more",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/remedy-entertainment-ceo-alan-wake-and-control-should-have-sold-more",
-    "date": "2026-05-28",
+    "id": "call-of-duty-studio-treyarch-is-losing-i-mqfo9n0y",
+    "headline": "Call Of Duty Studio Treyarch Is Losing Its Studio Head Of Nearly A Decade",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/call-of-duty-studio-treyarch-loses-studio-head-mark-gordon-2000706712",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "CEO commentary on IP performance and film/TV adaptations reflects broader trend of multimedia expansion strategy.",
+    "summary": "Treyarch studio head Mark Gordon departs after 19 years, impacting Call of Duty leadership structure.",
     "score": 6,
     "tags": [
       "games",
-      "business"
-    ]
-  },
-  {
-    "id": "global-game-jam-launches-micro-grant-pro-mpw6i0w0",
-    "headline": "Global Game Jam launches micro-grant program to support indies and emerging talent",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/global-game-jam-launches-micro-grant-program-to-support-indies-and-emerging-talent",
-    "date": "2026-05-28",
-    "section": "Studio Moves",
-    "summary": "Global Game Jam micro-grant program creates funding opportunities and talent pipeline relevant to emerging studios.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "splinter-cell-designer-says-modern-light-mpw6i5zm",
-    "headline": "Splinter Cell designer says modern lighting has made stealth games harder to read",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/design/splinter-cell-designer-says-modern-lighting-have-made-stealth-games-harder-to-read",
-    "date": "2026-05-21",
-    "section": "Studio Moves",
-    "summary": "Stealth game design discussion on modern lighting tools and readability; relevant to game art pipeline and technical art considerations.",
-    "score": 6,
-    "tags": [
-      "games",
-      "art",
-      "tools"
-    ]
-  },
-  {
-    "id": "hasbro-cancels-dungeons-amp-dragons-game-mpw6ibe4",
-    "headline": "Hasbro cancels Dungeons &amp; Dragons game led by Respawn veterans",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/hasbro-cancels-dungeons-dragons-game-led-by-respawn-veteran",
-    "date": "2026-05-20",
-    "section": "Studio Moves",
-    "summary": "D&D game cancellation shows TTRPG market volatility and partnership risks relevant to studios considering licensed IP work.",
-    "score": 6,
-    "tags": [
-      "games",
-      "ttrpg",
-      "business"
-    ]
-  },
-  {
-    "id": "former-housemarque-game-director-launche-mpw6ibe4",
-    "headline": "Former Housemarque game director launches new studio Cosmic Division",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/former-housemarque-game-director-launches-new-studio-cosmic-division",
-    "date": "2026-05-20",
-    "section": "Studio Moves",
-    "summary": "Established director launching new studio indicates market opportunities and competitive dynamics for mid-core game development.",
-    "score": 6,
-    "tags": [
-      "games",
-      "business",
       "people"
     ]
   },
   {
-    "id": "cataclysm-arcade-exclusive-tcg-previews--mpw6igt4",
-    "headline": "Cataclysm Arcade exclusive TCG previews reveal 3 new Endlings cards",
-    "source": "Polygon",
-    "url": "https://www.polygon.com/cataclysm-arcade-endlings-exclusive-card-reveal-kickstarter/",
-    "date": "2026-06-01",
+    "id": "the-head-of-xbox-game-studios-resigns-ah-mqfo9sx2",
+    "headline": "The Head Of Xbox Game Studios Resigns Ahead Of Mass Layoffs",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/the-head-of-xbox-game-studios-resigns-ahead-of-mass-layoffs-2000706634",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "TCG Kickstarter campaign reveals TTRPG card game art and monetization strategy relevant to TTRPG market analysis.",
+    "summary": "Xbox Game Studios leadership departure ahead of mass layoffs signals major industry restructuring affecting AAA studio landscape.",
     "score": 6,
     "tags": [
-      "ttrpg",
-      "art",
-      "business"
+      "business",
+      "games"
     ]
   },
   {
-    "id": "thatgamecompany-unveils-245-page-art-boo-mpw6inh6",
-    "headline": "Thatgamecompany unveils 245-page art book for Sky: Children of the Light",
+    "id": "electronic-arts-announces-plans-to-cram--mqfo9sx2",
+    "headline": "Electronic Arts Announces Plans To Cram Far More Advertising Into Its Games",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/ea-sports-fc-madden-advertising-ads-commercials-in-game-2000706601",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "EA expanding in-game advertising across Sports titles signals major monetization shift impacting game development economics.",
+    "score": 6,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "partner-contentif-players-can-clip-it-in-mqfo9zgn",
+    "headline": "Partner ContentIf players can clip it in 15 seconds, they’ll market it for you | GamesBeat Summit recap",
     "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/thatgamecompany-unveils-245-page-art-book-for-sky-children-of-the-light/",
-    "date": "2026-06-01",
+    "url": "https://gamesbeat.com/if-players-can-clip-it-in-15-seconds-theyll-market-it-for-you-gamesbeat-summit-recap/",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "Thatgamecompany releases 245-page art book for Sky—demonstrates art-forward studio monetization strategy and production value in visual-heavy games.",
+    "summary": "Clip-based marketing strategy for games leveraging player content; tangentially relevant for live service marketing insights.",
     "score": 6,
     "tags": [
       "games",
-      "art"
+      "business"
     ]
   },
   {
-    "id": "expo-gamers-2026-europe-s-premier-gamede-mpw6iurp",
-    "headline": "EXPO GAMERS 2026: Europe’s Premier Gamedev Summit Finalizes Executive Program",
+    "id": "industry-news-codedev-launches-the-perfo-mqfoa5zz",
+    "headline": "[Industry news] CodeDev Launches ‘The Performance Guys’ and Announces Hunt for Senior Optimisation Talent",
     "source": "MCV/Develop",
-    "url": "https://mcvuk.com/business-news/expo-gamers-2026-europes-premier-gamedev-summit-finalizes-executive-program/",
-    "date": "2026-05-22",
+    "url": "https://mcvuk.com/business-news/industry-news-codedev-launches-the-performance-guys-and-announces-hunt-for-senior-optimisation-talent/",
+    "date": "2026-06-10",
     "section": "Studio Moves",
-    "summary": "Expo Gamers 2026 announces full executive program with major studios (Larian, EA, Supercell, Housemarque) speaking on industry growth and technical innovation.",
+    "summary": "UK co-dev studio launches specialized performance optimization division; relevant for understanding outsourcing partnerships and technical art roles.",
     "score": 6,
     "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "crafting-clair-obscur-expedition-33-s-mo-mpw6i0w0",
-    "headline": "Crafting Clair Obscur: Expedition 33's mournful tale ft. Jennifer Svedeberg-Yen",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/design/crafting-clair-obscur-expedition-33-s-mournful-tale-ft-jennifer-svedeberg-yen",
-    "date": "2026-05-29",
-    "section": "Studio Moves",
-    "summary": "Narrative design interview on AAA production offers craft insights applicable to game storytelling pipelines.",
-    "score": 5,
-    "tags": [
-      "games",
-      "art"
-    ]
-  },
-  {
-    "id": "the-witcher-3-wild-hunt-is-getting-a-new-mpw6i0w0",
-    "headline": "The Witcher 3: Wild Hunt is getting a new expansion 12 years after launch",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/the-witcher-3-is-getting-a-new-expansion-12-years-after-launch",
-    "date": "2026-05-27",
-    "section": "Studio Moves",
-    "summary": "Expansion co-development model between major studio and boutique house illustrates partnership structure applicable to outsourcing strategy.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "update-last-flag-dev-night-street-games--mpw6i5zm",
-    "headline": "Update: Last Flag dev Night Street Games lays off 'about a dozen' staff",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/last-flag-dev-night-street-games-is-laying-off-staff",
-    "date": "2026-05-21",
-    "section": "Studio Moves",
-    "summary": "Indie studio layoffs after financial underperformance; relevant for understanding indie game market dynamics and studio viability.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "quantic-dream-cutting-jobs-after-scrappi-mpw6i5zm",
-    "headline": "Quantic Dream cutting jobs after scrapping Spellcasters Chronicles",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/quantic-dream-cutting-jobs-after-scrapping-spellcasters-chronicles",
-    "date": "2026-05-21",
-    "section": "Studio Moves",
-    "summary": "Quantic Dream cuts jobs after scrapping project; relevant for understanding project management and studio resilience in AAA art-heavy development.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "uk-publisher-edcorp-breaks-cover-after-s-mpw6ibe4",
-    "headline": "UK publisher EdCorp breaks cover after signing Garbage Country",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/uk-publisher-edcorp-breaks-cover-after-signing-garbage-country",
-    "date": "2026-05-20",
-    "section": "Studio Moves",
-    "summary": "New publisher emergence shows market consolidation patterns relevant to understanding distribution and funding landscape for studios.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "what-happened-when-one-game-writer-tried-mpw6ibe4",
-    "headline": "What happened when one game writer tried making a game in 30 days with Godot",
-    "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/programming/what-happened-when-one-game-writer-tried-making-a-game-in-30-days-with-godot",
-    "date": "2026-05-19",
-    "section": "Studio Moves",
-    "summary": "Narrative designer's Godot engine experience offers workflow insights tangentially relevant to tool evaluation for game development.",
-    "score": 5,
-    "tags": [
-      "games",
+      "business",
       "tools",
       "art"
     ]
   },
   {
-    "id": "arc-raiders-tops-16-million-sales-and-co-mpw6igt4",
-    "headline": "Arc Raiders tops 16 million sales and could be heading to China",
+    "id": "ea-announces-advertising-platform-to-lau-mqfo9aiz",
+    "headline": "EA announces advertising platform to launch ads 'directly into gameplay'",
     "source": "Game Developer",
-    "url": "https://www.gamedeveloper.com/business/arc-raiders-tops-16-million-sales-and-could-be-heading-to-china",
-    "date": "2026-05-18",
+    "url": "https://www.gamedeveloper.com/marketing/ea-announces-advertising-platform-to-launch-ads-directly-into-gameplay-",
+    "date": "2026-06-15",
     "section": "Studio Moves",
-    "summary": "Arc Raiders hits 16M sales with strong player retention, showing commercial viability of live-service games relevant to studio portfolio strategy.",
+    "summary": "EA's in-game advertising platform represents emerging monetization trends but has limited direct impact on art/animation studio operations.",
     "score": 5,
     "tags": [
       "games",
@@ -346,13 +356,137 @@
     ]
   },
   {
-    "id": "roblox-seeks-to-tame-the-wild-west-of-cr-mpw6igt4",
-    "headline": "Roblox seeks to tame the ‘Wild West’ of creator-brand partnerships with Brand Link",
-    "source": "VentureBeat Games",
-    "url": "https://gamesbeat.com/roblox-seeks-to-tame-the-wild-west-of-creator-brand-partnerships-with-brand-link/",
+    "id": "playstack-ceo-pledges-to-be-mindful-abou-mqfo9aiz",
+    "headline": "Playstack CEO pledges to be 'mindful' about growth after majority takeover",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/playstack-ceo-pledges-to-be-mindful-about-growth-after-majority-takeover",
+    "date": "2026-06-12",
+    "section": "Studio Moves",
+    "summary": "Publisher acquisition and ownership change is industry consolidation news with tangential business relevance.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "xbox-ceo-unsure-whether-activision-blizz-mqfo9aiz",
+    "headline": "Xbox CEO unsure whether Activision Blizzard merger is paying off",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/xbox-ceo-unsure-whether-activision-blizzard-merger-is-paying-off",
+    "date": "2026-06-10",
+    "section": "Studio Moves",
+    "summary": "Xbox CEO uncertainty about Activision merger signals strategic confusion at major publisher but limited direct studio impact.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "how-that-s-no-moon-s-crossfire-evolves-t-mqfo9hg7",
+    "headline": "How That's No Moon's Crossfire evolves the cover-based shooter",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/design/how-that-s-no-moon-s-crossfire-evolves-the-cover-based-shooter",
+    "date": "2026-06-08",
+    "section": "Studio Moves",
+    "summary": "Technical approach to modern shooter design using current technology; tangentially relevant for understanding art and tech implementation.",
+    "score": 5,
+    "tags": [
+      "games",
+      "tools"
+    ]
+  },
+  {
+    "id": "amazon-suggests-io-interactive-might-not-mqfo9hg7",
+    "headline": "Amazon suggests IO Interactive might not return for 007 First Light sequel",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/amazon-suggests-io-interactive-might-not-return-for-007-first-light-sequel",
+    "date": "2026-06-04",
+    "section": "Studio Moves",
+    "summary": "Publisher restructuring around major IP; tangentially relevant for understanding how franchise rights affect studio operations.",
+    "score": 5,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "tekken-8-game-director-kohei-ikeda-has-l-mqfo9n0y",
+    "headline": "Tekken 8 game director Kohei Ikeda has left Bandai Namco",
+    "source": "Game Developer",
+    "url": "https://www.gamedeveloper.com/business/tekken-8-game-director-kohei-ikeda-has-departed-bandai-namco",
     "date": "2026-06-02",
     "section": "Studio Moves",
-    "summary": "Roblox creator partnership platform addresses monetization ecosystem relevant to understanding creator economy dynamics.",
+    "summary": "Tekken 8 director Kohei Ikeda departed Bandai Namco after 20 years, a notable personnel shift at a major publisher.",
+    "score": 5,
+    "tags": [
+      "games",
+      "people"
+    ]
+  },
+  {
+    "id": "mobile-studio-hoping-to-end-tim-langdell-mqfo9sx2",
+    "headline": "Mobile Studio Hoping To End Tim Langdell’s Infamous ‘EDGE’ Trademark Trolling Once And For All",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/mobile-studio-hoping-to-end-tim-langdells-infamous-edge-trademark-trolling-once-and-for-all-2000706339",
+    "date": "2026-06-14",
+    "section": "Studio Moves",
+    "summary": "Mobile studio challenges decade-long trademark dispute against notorious IP troll; relevant to studio legal/IP risk landscape.",
+    "score": 5,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "microsoft-ceo-complains-about-poor-gamin-mqfo9sx2",
+    "headline": "Microsoft CEO Complains About Poor Gaming Profits: ‘There’s More Monetization Of Xbox Games Happening On YouTube’",
+    "source": "Kotaku",
+    "url": "https://kotaku.com/microsoft-ceo-complains-about-poor-gaming-profits-theres-more-monetization-of-xbox-games-happening-on-youtube-2000706326",
+    "date": "2026-06-14",
+    "section": "Studio Moves",
+    "summary": "Microsoft CEO addresses Xbox profitability gaps and YouTube monetization leakage; highlights platform economics relevant to distribution strategy.",
+    "score": 5,
+    "tags": [
+      "business",
+      "games"
+    ]
+  },
+  {
+    "id": "overwatch-season-3-skins-mythics-and-bat-mqfo9zgn",
+    "headline": "Overwatch season 3 skins, Mythics, and battle pass contents revealed",
+    "source": "Polygon",
+    "url": "https://www.polygon.com/overwatch-season-3-skins-nyan-cat-cafe-ultra-mythic-battle-pass/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Overwatch season 3 reveals new hero and cosmetics; relevant as general games industry content showing live service design but not directly applicable to SE Asian studio operations.",
+    "score": 5,
+    "tags": [
+      "games"
+    ]
+  },
+  {
+    "id": "titanfall-inspired-empulse-has-a-free-de-mqfo9zgn",
+    "headline": "Titanfall-inspired Empulse has a free demo for Steam Next Fest",
+    "source": "Polygon",
+    "url": "https://www.polygon.com/empulse-steam-next-fest-preview/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Titanfall-inspired indie shooter launches demo; relevant as competitor game release but limited strategic value for art-focused studio.",
+    "score": 5,
+    "tags": [
+      "games"
+    ]
+  },
+  {
+    "id": "electronic-arts-introduces-ea-advertisin-mqfo9zgn",
+    "headline": "Electronic Arts introduces EA Advertising, launching brands directly into gameplay and live experiences",
+    "source": "VentureBeat Games",
+    "url": "https://gamesbeat.com/electronic-arts-introduces-ea-advertising/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "EA launches in-game advertising platform; relevant for understanding monetization strategies but not directly applicable to art-focused studio.",
     "score": 5,
     "tags": [
       "games",
@@ -360,13 +494,55 @@
     ]
   },
   {
-    "id": "p-may-s-epic-learning-content-environmen-mpw6iurp",
-    "headline": "<p>May’s Epic learning content: Environments, lighting, and more</p>",
+    "id": "new-study-shows-80-of-mobile-developers--mqfo9zgn",
+    "headline": "New study shows 80% of mobile developers say engagement strategies lack innovation for growth",
+    "source": "VentureBeat Games",
+    "url": "https://gamesbeat.com/study-mobile-games-lack-innovation-for-growth/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Mobile developers report engagement strategy stagnation; relevant market insight for understanding player retention challenges across industry.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "amir-satvat-s-game-community-has-now-hel-mqfoa5zz",
+    "headline": "Amir Satvat’s game community has now helped 5,000 people find jobs in gaming",
+    "source": "VentureBeat Games",
+    "url": "https://gamesbeat.com/amir-satvats-game-community-has-now-helped-5000-people-find-jobs-in-gaming/",
+    "date": "2026-06-14",
+    "section": "Studio Moves",
+    "summary": "Gaming community leader Amir Satvat's job placement initiative has helped 5,000 people enter the industry, relevant for studio recruitment insights.",
+    "score": 5,
+    "tags": [
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "event-news-games-meets-music-2027-super--mqfoa5zz",
+    "headline": "[Event news] GAMES MEETS MUSIC 2027 — SUPER EARLY BIRD TICKETS NOW ON SALE",
+    "source": "MCV/Develop",
+    "url": "https://mcvuk.com/business-news/games-meets-music-2027-super-early-bird-tickets-now-on-sale/",
+    "date": "2026-06-15",
+    "section": "Studio Moves",
+    "summary": "Games industry music event announces 2027 conference; relevant for understanding art/audio pipeline ecosystem.",
+    "score": 5,
+    "tags": [
+      "art",
+      "business"
+    ]
+  },
+  {
+    "id": "p-free-professional-unreal-engine-course-mqfoa5zz",
+    "headline": "<p>Free professional Unreal Engine courses now available on the Epic Developer Community</p>",
     "source": "Unreal Engine",
-    "url": "https://www.unrealengine.com/learning/mays-epic-learning-content-environments-lighting-and-more",
-    "date": "2026-05-29",
+    "url": "https://www.unrealengine.com/news/free-professional-unreal-engine-courses-now-available-on-the-epic-developer-community",
+    "date": "2026-06-15",
     "section": "The Art Pipeline",
-    "summary": "Unreal Engine releases May tutorials on cinematic environments, lighting, and mesh manipulation—core pipeline skills for game art studios.",
+    "summary": "Epic releases 20+ free professional Unreal Engine courses covering animation and game development fundamentals; directly valuable for art pipeline training.",
     "score": 8,
     "tags": [
       "tools",
@@ -375,86 +551,142 @@
     ]
   },
   {
-    "id": "p-built-with-ue5-em-nba-the-run-em-looks-mpw6iurq",
-    "headline": "<p>Built with UE5, <em>NBA THE RUN</em> looks to bring back the golden age of basketball video games</p>",
+    "id": "p-uefn-student-bootcamp-application-is-o-mqfoa5zz",
+    "headline": "<p>UEFN Student Bootcamp application is open now </p>",
     "source": "Unreal Engine",
-    "url": "https://www.unrealengine.com/developer-interviews/built-with-ue5-nba-the-run-looks-to-bring-back-the-golden-age-of-basketball-video-games",
-    "date": "2026-05-28",
+    "url": "https://www.unrealengine.com/learning/uefn-student-bootcamp-application-is-open-now",
+    "date": "2026-06-08",
     "section": "The Art Pipeline",
-    "summary": "UE5 case study on stylized sports game NBA THE RUN demonstrates engine capabilities for art-heavy online multiplayer titles.",
+    "summary": "Fortnite UEFN Student Bootcamp opens applications for five-day intensive training plus live island development; relevant for artist/developer upskilling.",
+    "score": 7,
+    "tags": [
+      "tools",
+      "games"
+    ]
+  },
+  {
+    "id": "p-join-us-at-annecy-international-animat-mqfoacv8",
+    "headline": "<p>Join us at Annecy International Animation Film Festival 2026</p>",
+    "source": "Unreal Engine",
+    "url": "https://www.unrealengine.com/events/join-us-at-annecy-international-animation-film-festival-2026",
+    "date": "2026-06-03",
+    "section": "The Art Pipeline",
+    "summary": "Unreal Engine showcasing real-time animation developments at Annecy festival—relevant for animation studios tracking industry trends and tool capabilities.",
+    "score": 7,
+    "tags": [
+      "tools",
+      "art",
+      "film"
+    ]
+  },
+  {
+    "id": "p-start-building-games-with-our-new-cour-mqfoacv8",
+    "headline": "<p>Start building games with our new course: ‘Your First Game in Unreal Engine’</p>",
+    "source": "Unreal Engine",
+    "url": "https://www.unrealengine.com/learning/start-building-games-with-our-new-course-your-first-game-in-unreal-engine",
+    "date": "2026-06-04",
+    "section": "The Art Pipeline",
+    "summary": "Unreal Engine releases beginner course covering gameplay systems and animation—useful for studios building technical pipeline skills but entry-level focused.",
     "score": 6,
     "tags": [
       "tools",
-      "games",
       "art"
     ]
   },
   {
-    "id": "baldur-s-gate-2-and-probably-the-origina-mpw6jcvd",
-    "headline": "Baldur’s Gate 2 (And Probably The Original) Reportedly Getting Remakes",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/baldurs-gate-2-and-probably-the-original-reportedly-getting-remakes/",
-    "date": "2026-06-01",
-    "section": "On the Shelf",
-    "summary": "Baldur's Gate 2 remake in development by Wizards of the Coast signals major IP remakes trend and potential opportunities in legacy game modernization.",
-    "score": 7,
-    "tags": [
-      "games",
-      "business",
-      "ttrpg"
-    ]
-  },
-  {
-    "id": "maverick-games-new-open-world-driving-ga-mpw6izs4",
-    "headline": "Maverick Games’ New Open-World Driving Game Will Be Revealed in Under 12 Hours",
-    "source": "IGN",
-    "url": "https://www.ign.com/articles/maverick-games-new-open-world-driving-game-will-be-revealed-in-under-12-hours",
+    "id": "p-fab-june-flash-sale-is-now-on-p-mqfoacv9",
+    "headline": "<p>Fab June Flash Sale is now on!</p>",
+    "source": "Unreal Engine",
+    "url": "https://www.unrealengine.com/news/fab-june-flash-sale-is-now-on",
     "date": "2026-06-02",
-    "section": "On the Shelf",
-    "summary": "Maverick Games reveals AAA open-world driving game with Forza Horizon 5 director—competitor intelligence on production scale and leadership.",
-    "score": 6,
+    "section": "The Art Pipeline",
+    "summary": "Fab asset store flash sale offering discounts on game and animation assets—tangentially relevant for cost-conscious studio procurement but promotional.",
+    "score": 5,
     "tags": [
-      "games",
+      "tools",
       "business"
     ]
   },
   {
-    "id": "streets-of-rage-movie-finds-director-and-mpw6j4ts",
-    "headline": "Streets of Rage Movie Finds Director and Writers After Years of Silence",
-    "source": "IGN",
-    "url": "https://www.ign.com/articles/streets-of-rage-movie-finds-director-and-writers-after-years-of-silence",
-    "date": "2026-06-01",
-    "section": "On the Shelf",
-    "summary": "Streets of Rage film adaptation in development; relevant as game-to-film adaptation intelligence and potential outsourcing/partnership opportunities.",
+    "id": "microsoft-research-s-mirage-gives-video--mqfoacv9",
+    "headline": "Microsoft Research's Mirage gives video generation a persistent spatial memory that doesn't forget what's around the corner",
+    "source": "The Decoder",
+    "url": "https://the-decoder.com/microsoft-researchs-mirage-gives-video-generation-a-persistent-spatial-memory-that-doesnt-forget-whats-around-the-corner/",
+    "date": "2026-06-14",
+    "section": "AI & The Craft",
+    "summary": "Microsoft Research's Mirage video generation model improves spatial consistency and compute efficiency—relevant for AI-assisted animation and rendering pipelines.",
     "score": 6,
     "tags": [
-      "games",
-      "film",
-      "business"
-    ]
-  },
-  {
-    "id": "how-shovel-knight-s-kickstarter-resulted-mpw6jcvd",
-    "headline": "How Shovel Knight’s Kickstarter Resulted In Mina The Hollower’s Massive Modifier System",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/how-shovel-knights-kickstarter-resulted-in-mina-the-hollowers-massive-modifier-system/",
-    "date": "2026-06-01",
-    "section": "On the Shelf",
-    "summary": "Yacht Club Games' Modifiers system design philosophy offers insights into gameplay accessibility solutions relevant to game design thinking.",
-    "score": 6,
-    "tags": [
-      "games",
+      "ai",
+      "art",
       "tools"
     ]
   },
   {
-    "id": "the-surprising-factors-that-made-mina-th-mpw6jcvd",
-    "headline": "The Surprising Factors That Made Mina The Hollower A Game Of The Year Contender",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/mina-the-hollowers-developer-on-its-unusual-inspirations-and-approach-to-difficulty/",
-    "date": "2026-06-01",
+    "id": "ai-coding-agents-find-the-right-file-but-mqfoacv9",
+    "headline": "AI coding agents find the right file but miss the exact lines that matter, study shows",
+    "source": "The Decoder",
+    "url": "https://the-decoder.com/ai-coding-agents-find-the-right-file-but-miss-the-exact-lines-that-matter-study-shows/",
+    "date": "2026-06-14",
+    "section": "AI & The Craft",
+    "summary": "Study shows AI coding agents struggle with precise context—relevant to evaluating AI-assisted code generation tools for pipeline automation.",
+    "score": 5,
+    "tags": [
+      "ai",
+      "tools"
+    ]
+  },
+  {
+    "id": "microsoft-has-reportedly-shut-down-south-mqfoamk7",
+    "headline": "Microsoft Has Reportedly Shut Down South of Midnight Developer Compulsion Games",
+    "source": "IGN",
+    "url": "https://www.ign.com/articles/microsoft-has-reportedly-shut-down-south-of-midnight-developer-compulsion-games",
+    "date": "2026-06-15",
     "section": "On the Shelf",
-    "summary": "Post-mortem on Mina the Hollower's critical success after studio downsizing provides relevant case study on creative output during challenging circumstances.",
+    "summary": "Microsoft game studio shutdown signals major consolidation in AAA development, critical competitive intelligence for regional studios.",
+    "score": 8,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "xbox-game-studios-boss-is-out-ahead-of-r-mqfoat6c",
+    "headline": "Xbox Game Studios Boss Is Out Ahead Of Reported Layoffs And Other Major Changes To “Reset” Xbox",
+    "source": "GameSpot",
+    "url": "https://www.gamespot.com/articles/xbox-game-studios-boss-is-out-ahead-of-reported-layoffs-and-other-major-changes-to-reset-xbox/",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Xbox Game Studios leadership departure signals major studio restructuring and potential layoffs under new CEO; critical competitive intelligence for SE Asia studios.",
+    "score": 7,
+    "tags": [
+      "games",
+      "business",
+      "people"
+    ]
+  },
+  {
+    "id": "capcom-says-betting-on-teams-instead-of--mqfoat6c",
+    "headline": "Capcom Says Betting On Teams Instead Of Visionaries Changed The Company",
+    "source": "GameSpot",
+    "url": "https://www.gamespot.com/articles/capcom-says-betting-on-teams-instead-of-visionaries-changed-the-company/",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Capcom attributes success to team-based development over auteur model; strategic insight into studio organization and production philosophy.",
+    "score": 7,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "ubisoft-bids-farewell-to-assassin-s-cree-mqfoamk7",
+    "headline": "Ubisoft Bids Farewell to Assassin's Creed Shadows With Final Story Update",
+    "source": "IGN",
+    "url": "https://www.ign.com/articles/ubisoft-bids-farewell-to-assassins-creed-shadows-with-final-story-update",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Major AAA game's final content update reflects industry trends in live service strategy and character design.",
     "score": 6,
     "tags": [
       "games",
@@ -462,86 +694,101 @@
     ]
   },
   {
-    "id": "playstation-shovelware-crackdown-continu-mpw6izs4",
-    "headline": "PlayStation 'Shovelware' Crackdown Continues as Major Publisher Warns Its Games Will Soon Be Pulled",
+    "id": "final-fantasy-resonance-interview-the-fi-mqfoamk7",
+    "headline": "Final Fantasy Resonance Interview: The First HD-2D FF Was Conceptualized 6-7 Years Ago and Inspired by Final Fantasy V",
     "source": "IGN",
-    "url": "https://www.ign.com/articles/playstation-shovelware-crackdown-continues-as-major-publisher-warns-its-games-will-soon-be-pulled",
-    "date": "2026-06-02",
+    "url": "https://www.ign.com/articles/final-fantasy-resonance-interview-the-first-hd-2d-ff-was-conceptualized-6-7-years-ago-and-inspired-by-final-fantasy-v",
+    "date": "2026-06-15",
     "section": "On the Shelf",
-    "summary": "Sony PlayStation Store purging low-quality titles; signals platform quality standards relevant to distribution strategy.",
-    "score": 5,
-    "tags": [
-      "games",
-      "business"
-    ]
-  },
-  {
-    "id": "subnautica-2-dev-addresses-misunderstand-mpw6j4ts",
-    "headline": "Subnautica 2 Dev Addresses 'Misunderstanding' Around Decision Not to Let Players Kill Predators",
-    "source": "IGN",
-    "url": "https://www.ign.com/articles/subnautica-2-dev-addresses-misunderstanding-around-decision-not-to-let-players-kill-predators",
-    "date": "2026-06-01",
-    "section": "On the Shelf",
-    "summary": "Subnautica 2 game design decision addressed; relevant as competitive game design intelligence for pipeline understanding.",
-    "score": 5,
-    "tags": [
-      "games"
-    ]
-  },
-  {
-    "id": "this-horror-only-games-showcase-features-mpw6jcvd",
-    "headline": "This Horror-Only Games Showcase Features Very Creepy Pokemon And Lots More",
-    "source": "GameSpot",
-    "url": "https://www.gamespot.com/articles/this-all-horror-games-showcase-featured-these-15-favorites/",
-    "date": "2026-06-01",
-    "section": "On the Shelf",
-    "summary": "Horror Game Awards showcase highlights diverse art styles and game aesthetics from global developers, providing tangential market intelligence on visual trends.",
-    "score": 5,
+    "summary": "Final Fantasy's HD-2D art direction and development approach offers relevant pipeline insights for SE Asian art studios.",
+    "score": 6,
     "tags": [
       "games",
       "art"
     ]
   },
   {
-    "id": "how-to-run-an-actual-play-2-tricks-for-s-mpw6jfra",
-    "headline": "How to run an actual play | 2 Tricks for Stellar Showmanship – June 1, 2026",
-    "source": "Kobold Press",
-    "url": "https://koboldpress.com/how-to-run-an-actual-play-2-tricks-for-stellar-showmanship-june-1-2026/",
-    "date": "2026-06-01",
-    "section": "TTRPG Industry",
-    "summary": "Kobold Press shares showmanship techniques for actual play productions, relevant to studios considering TTRPG content creation and live streaming.",
+    "id": "the-dc-art-of-michael-turner-celebrates--mqfoamk7",
+    "headline": "The DC Art of Michael Turner Celebrates the Late Comic Book Legend",
+    "source": "IGN",
+    "url": "https://www.ign.com/articles/the-dc-art-of-michael-turner-clover-press-preview",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Comic book artist retrospective demonstrates art book publishing market and character art appreciation relevant to regional art studios.",
     "score": 6,
     "tags": [
-      "ttrpg",
-      "games"
+      "art",
+      "business"
     ]
   },
   {
-    "id": "how-to-run-an-actual-play-3-reasons-to-p-mpw6jfra",
-    "headline": "How to run an actual play | 3 reasons to put factions in your game – May 18, 2026",
-    "source": "Kobold Press",
-    "url": "https://koboldpress.com/how-to-run-an-actual-play-3-reasons-to-put-factions-in-your-game-may-18-2026/",
-    "date": "2026-05-18",
-    "section": "TTRPG Industry",
-    "summary": "Kobold Press shares faction-building strategies for actual play productions, useful for studios developing TTRPG broadcast content.",
+    "id": "xbox-closing-we-happy-few-south-of-midni-mqfoat6c",
+    "headline": "Xbox Closing We Happy Few, South Of Midnight Developer Compulsion Games – Report",
+    "source": "GameSpot",
+    "url": "https://www.gamespot.com/articles/xbox-closing-we-happy-few-south-of-midnight-developer-compulsion-games-report/",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Microsoft closes Compulsion Games after South of Midnight; demonstrates industry consolidation and studio closure trends affecting developer employment.",
     "score": 6,
     "tags": [
-      "ttrpg",
-      "games"
+      "games",
+      "business"
     ]
   },
   {
-    "id": "i-m-a-new-game-master-help-dos-and-dont--mpw6jfra",
-    "headline": "I’m a new game master. Help! Dos and Dont’s for New GMs – May 20, 2026",
-    "source": "Kobold Press",
-    "url": "https://koboldpress.com/im-a-new-game-master-help-dos-and-donts-for-new-gms-may-20-2026/",
-    "date": "2026-05-20",
-    "section": "TTRPG Industry",
-    "summary": "Guide for new game masters covers production skills applicable to TTRPG actual play shows and content creation.",
+    "id": "the-first-ever-official-studio-ghibli-st-mqfoamk7",
+    "headline": "The First-Ever Official Studio Ghibli Store in the U.S. Is Opening Later This Month in Los Angeles",
+    "source": "IGN",
+    "url": "https://www.ign.com/articles/exclusive-the-first-ever-official-studio-ghibli-store-in-the-us-is-opening-later-this-month-in-los-angeles",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Studio Ghibli retail expansion demonstrates animation IP monetization and brand strategy relevant to regional studios.",
     "score": 5,
     "tags": [
+      "art",
+      "business"
+    ]
+  },
+  {
+    "id": "microsoft-boss-wants-xbox-to-start-pulli-mqfoat6c",
+    "headline": "Microsoft Boss Wants Xbox to Start Pulling Its Weight Financially",
+    "source": "GameSpot",
+    "url": "https://www.gamespot.com/articles/microsoft-boss-wants-xbox-to-start-pulling-its-weight-financially/",
+    "date": "2026-06-15",
+    "section": "On the Shelf",
+    "summary": "Microsoft CEO demands Xbox profitability improvements; industry trend toward cost management affecting major publishers.",
+    "score": 5,
+    "tags": [
+      "games",
+      "business"
+    ]
+  },
+  {
+    "id": "rpg-imperium-maledictum-s-adeptus-mechan-mqfoat6c",
+    "headline": "RPG: Imperium Maledictum’s ‘Adeptus Mechanicus Guides’ – Because The Flesh Is Weak",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/06/rpg-imperium-maledictums-adeptus-mechanicus-guides-because-the-flesh-is-weak.html",
+    "date": "2026-06-15",
+    "section": "TTRPG Industry",
+    "summary": "Imperium Maledictum Adeptus Mechanicus sourcebook release for Warhammer 40K TTRPG; directly relevant to TTRPG market and art production opportunities.",
+    "score": 8,
+    "tags": [
       "ttrpg",
-      "games"
+      "art"
+    ]
+  },
+  {
+    "id": "rpg-legend-in-the-mist-s-launchfest-rais-mqfoat6c",
+    "headline": "RPG: Legend In The Mist’s Launchfest Raises Almost $2M With 48(ish) Hours To Go",
+    "source": "Bell of Lost Souls",
+    "url": "https://www.belloflostsouls.net/2026/06/rpg-legend-in-the-mists-launchfest-raises-almost-2m-with-48ish-hours-to-go.html",
+    "date": "2026-06-15",
+    "section": "TTRPG Industry",
+    "summary": "Legend in the Mist TTRPG LaunchFest reaches $2M with 48 hours remaining; major TTRPG market validation and demand signal for SE Asia studios.",
+    "score": 8,
+    "tags": [
+      "ttrpg",
+      "business"
     ]
   }
 ]
