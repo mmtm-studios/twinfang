@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Art Hiring Dashboard</title>
+<meta content="Twinfang recruitment benchmarks and hiring guidance." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="./theme-init.js"></script>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy"><span class="brand-line">Twinfang Dashboard</span></span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link is-active nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link is-active" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div aria-label="Theme display preference" class="theme-toggle">
+<span class="theme-toggle-label">Theme</span>
+<div aria-label="Theme selector" class="segmented" role="tablist">
+<button aria-pressed="false" class="segmented-item" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="segmented-item" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack">
+<header class="page-header hero-card">
+<span class="page-eyebrow">Art</span>
+<h1 class="page-title">Hiring benchmarks and market comparison</h1>
+<p class="page-subtitle">Use this page to compare salary ranges, pressure-test hiring assumptions, and anchor team discussions around practical recruitment targets. Indonesia remains the primary hiring market, with nearby markets used as tactical comparison benchmarks.</p>
+<div class="page-meta">
+<span>Default currency: <strong data-currency-display="">USD</strong></span>
+<span>Primary focus: artists first, production support second</span>
+<span>Intended use: internal hiring benchmarking</span>
+</div>
+</header>
+<section aria-labelledby="recruitment-controls" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="recruitment-controls">Role controls</h2>
+<p class="section-subtitle">Choose the role and market lens first. The selected role snapshot updates below the controls.</p>
+</div>
+</div>
+<div class="card card--raised">
+<div class="control-grid">
+<label class="control-group">
+<span class="control-label">Role</span>
+<select class="select" data-filter-role="">
+<option>Concept Artist</option>
+<option>3D Artist</option>
+<option>Producer</option>
+<option>Art Director</option>
+</select>
+</label>
+<label class="control-group">
+<span class="control-label">Seniority</span>
+<select class="select" data-filter-seniority="">
+<option>Mid</option>
+<option>Senior</option>
+<option>All</option>
+</select>
+</label>
+<label class="control-group">
+<span class="control-label">Primary market</span>
+<select class="select" data-filter-primary="">
+<option>Indonesia</option>
+<option>Malaysia</option>
+<option>Philippines</option>
+<option>Singapore</option>
+</select>
+</label>
+<label class="control-group">
+<span class="control-label">Comparison lens</span>
+<select class="select" data-filter-compare="">
+<option>Regional</option>
+<option>Indonesia</option>
+<option>Malaysia</option>
+<option>Philippines</option>
+<option>Singapore</option>
+</select>
+</label>
+</div>
+</div>
+</section>
+<section aria-labelledby="selected-role-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="selected-role-title">Selected role snapshot</h2>
+<p class="section-subtitle">Quick readout for the currently selected role and target market.</p>
+</div>
+</div>
+<div class="card card--callout">
+<div class="snapshot-grid">
+<div class="stack-16">
+<div class="badge-row">
+<span class="badge badge--accent" data-primary-market="">Primary market: Indonesia</span>
+</div>
+<div class="salary-band">
+<p class="kpi-label" data-role-title="">Concept Artist snapshot</p>
+<div class="salary-line">
+<span class="salary-range mono" data-role-range="">$0 USD – $0 USD</span>
+<span class="salary-local mono" data-role-local="">Rp0 IDR – Rp0 IDR</span>
+<span class="salary-caption" data-role-caption="">Yearly equivalent: $0 USD – $0 USD</span>
+<span class="salary-fx" data-role-fx="">FX used: —</span>
+</div>
+<p class="kpi-note" data-role-note="">Primary market note appears here.</p>
+</div>
+<div class="meta-row">
+<div class="mini-panel">
+<p class="menu-card-label">Hiring recommendation</p>
+<p class="m-0"><strong data-hiring-target="">Indonesia</strong></p>
+<p class="m-0 soft" data-hiring-purpose="">Recommended starting market for this role mix.</p>
+</div>
+<div class="mini-panel">
+<p class="menu-card-label">Use this page to</p>
+<p class="m-0 soft" data-page-use="">Set an opening benchmark, compare fallback markets, and sanity-check yearly cost before speaking to live candidates.</p>
+</div>
+</div>
+</div>
+<div class="card card--raised">
+<div class="card-header">
+<div>
+<h3 class="card-title" data-compare-title="">Regional comparison</h3>
+<p class="card-subtitle">Nearest practical markets to compare if the primary market cannot supply the role cleanly.</p>
+</div>
+</div>
+<div class="benchmark-list" data-benchmark-list=""></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="region-chart-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="region-chart-title">Selected role across markets</h2>
+<p class="section-subtitle">Compare salary ranges across markets using a vertical range chart with a median marker.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div>
+<h3 class="card-title" data-chart-title="">Selected role across all regions</h3>
+<p class="card-subtitle" data-chart-subtitle="">Each region is plotted on the X axis and salary value on the Y axis. The column shows the low-to-high range, and the median appears as a hoverable line marker.</p>
+</div>
+</div>
+<div class="region-chart" data-region-chart=""></div>
+</div>
+</section>
+<section aria-labelledby="hiring-guidance-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="hiring-guidance-title">What this section contains</h2>
+<p class="section-subtitle">This keeps the recruitment page useful as a decision page, not just a data table.</p>
+</div>
+</div>
+<div class="grid grid-12">
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">01</span>
+<h3 class="card-title">Role benchmarks</h3>
+</div>
+<p class="menu-card-copy">Salary ranges by market and seniority for the roles the studio is most likely to recruit next.</p>
+<ul class="insight-list">
+<li>Artists first</li>
+<li>Art directors later</li>
+<li>Production roles after that</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">02</span>
+<h3 class="card-title">Market comparison</h3>
+</div>
+<p class="menu-card-copy">A practical fallback view for nearby markets when the primary target market does not produce the right candidate fast enough.</p>
+<ul class="insight-list">
+<li>Indonesia as primary hiring pool</li>
+<li>Malaysia and Philippines as useful comparisons</li>
+<li>Singapore mainly as a leadership benchmark</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">03</span>
+<h3 class="card-title">Hiring guidance</h3>
+</div>
+<p class="menu-card-copy">Interpretation notes for founders and hiring managers so the numbers lead to action rather than just discussion.</p>
+<ul class="insight-list">
+<li>Benchmark ranges are directional</li>
+<li>Role level matters more than title alone</li>
+<li>Real offers should reflect portfolio strength and pipeline need</li>
+</ul>
+</article>
+</div>
+</section>
+<section aria-labelledby="method-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="method-title">Method and notes</h2>
+<p class="section-subtitle">This page is still a local test build, but the interaction logic is now behaving like a proper working page instead of a static mockup.</p>
+</div>
+</div>
+<div class="grid grid-12">
+<article class="card span-6">
+<h3 class="card-title">What is working now</h3>
+<ul class="insight-list">
+<li>All money values display their selected currency explicitly.</li>
+<li>Primary market selection now maps correctly to the selected market.</li>
+<li>Comparison lens works for Singapore and the other markets.</li>
+<li>The old dead benchmark table has been replaced with a functional bar chart.</li>
+</ul>
+</article>
+<article class="card span-6">
+<h3 class="card-title">What still comes next</h3>
+<ul class="insight-list">
+<li>Wire this page to your actual benchmark dataset.</li>
+<li>Add source notes and freshness metadata per market.</li>
+<li>Decide whether the bar chart should use midpoint, low end, high end, or average offer target.</li>
+<li>Refine hiring commentary once real data is loaded.</li>
+</ul>
+</article>
+</div>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

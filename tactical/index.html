@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Dashboard Home</title>
+<meta content="Twinfang dashboard landing page with navigation to art, production, sales, finance, and admin sections." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="./theme-init.js"></script>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy"><span class="brand-line">Twinfang Dashboard</span></span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link is-active" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div aria-label="Theme display preference" class="theme-toggle">
+<span class="theme-toggle-label">Theme</span>
+<div aria-label="Theme selector" class="segmented" role="tablist">
+<button aria-pressed="false" class="segmented-item" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="segmented-item" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack">
+<header class="page-header hero-card hero-card--home">
+<h1 class="page-title">Twinfang dashboard</h1>
+<p class="page-subtitle">This homepage is the internal landing page for the dashboard. Use it to orient users, explain what each section is for, and route people to the correct working area.</p>
+<div class="page-meta">
+<span>Purpose: internal navigation and orientation</span>
+<span>Audience: founders and team leads</span>
+<span>Default display currency: <strong data-currency-display="">USD</strong></span>
+</div>
+</header>
+<section aria-labelledby="home-menu-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="home-menu-title">Available sections</h2>
+<p class="section-subtitle">Each card below explains what the section contains and when the team should use it.</p>
+</div>
+</div>
+<div class="grid grid-12">
+<article class="card span-6 menu-card menu-card--primary">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">01</span><h3 class="card-title menu-card-title">Home</h3></div>
+<p class="menu-card-copy">The team overview and navigation hub. Use this page to orient new users and route people to the correct working section.</p>
+<div class="stack-12"><p class="menu-card-label">Contains</p><ul class="menu-list"><li>Section directory and page descriptions</li><li>Shared structure overview</li><li>Entry point for founders and team leads</li></ul></div>
+<div class="card-footer"><a class="button button--primary" href="./index.html">Current page</a></div>
+</article>
+<article class="card span-6 menu-card">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">02</span><h3 class="card-title menu-card-title">Art</h3></div>
+<p class="menu-card-copy">The art area covers creative hiring, talent benchmarking, and future capability planning.</p>
+<div class="stack-12"><p class="menu-card-label">Contains</p><ul class="menu-list"><li>Art overview page</li><li>Hiring dashboard and market benchmarks</li><li>Future creative capability pages</li></ul></div>
+<div class="card-footer"><a class="button button--secondary" href="./art.html">Open Art Overview</a></div>
+</article>
+<article class="card span-6 menu-card">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">03</span><h3 class="card-title menu-card-title">Production</h3></div>
+<p class="menu-card-copy">The production area is for project tracking. It separates live work from closed work so the team can quickly understand what is active and what has wrapped.</p>
+<div class="finance-subgrid">
+<div class="mini-panel"><p class="menu-card-label">Active Projects</p><p class="m-0 soft">Use this view for ongoing projects, milestones, owners, and delivery risks.</p><a class="text-link" href="./production-active.html">Go to Active Projects</a></div>
+<div class="mini-panel"><p class="menu-card-label">Closed Projects</p><p class="m-0 soft">Use this view for completed projects, archived records, and wrap-up visibility.</p><a class="text-link" href="./production-closed.html">Go to Closed Projects</a></div>
+</div>
+</article>
+<article class="card span-6 menu-card">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">04</span><h3 class="card-title menu-card-title">Sales</h3></div>
+<p class="menu-card-copy">The sales area groups commission today and leaves room for future pipeline and commercial tooling.</p>
+<div class="finance-subgrid">
+<div class="mini-panel"><p class="menu-card-label">Overview</p><p class="m-0 soft">Use this section for the sales overview page and future commercial navigation.</p><a class="text-link" href="./sales.html">Go to Sales Overview</a></div>
+<div class="mini-panel"><p class="menu-card-label">Commission</p><p class="m-0 soft">Explains sales commission logic, revenue origination, and anti-double-dipping rules.</p><a class="text-link" href="./commission.html">Go to Commission</a></div>
+</div>
+</article>
+<article class="card span-6 menu-card">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">05</span><h3 class="card-title menu-card-title">Finance</h3></div>
+<p class="menu-card-copy">The finance area covers fund flow, payout rules, and how money is allocated across the studio.</p>
+<div class="finance-subgrid">
+<div class="mini-panel"><p class="menu-card-label">Overview</p><p class="m-0 soft">Introduces the revenue waterfall, operating buckets, and finance structure.</p><a class="text-link" href="./finance.html">Go to Finance Overview</a></div>
+<div class="mini-panel"><p class="menu-card-label">Founder Payouts</p><p class="m-0 soft">Shows project-level founder payout totals, mix, and breakdown by project.</p><a class="text-link" href="./founder-payouts.html">Go to Founder Payouts</a></div>
+</div>
+</article>
+<article class="card span-6 menu-card">
+<div class="menu-card-top menu-card-top--inline"><span class="menu-card-code">06</span><h3 class="card-title menu-card-title">Admin</h3></div>
+<p class="menu-card-copy">The admin area is the home for governance, internal operations, policy, and future support systems behind the studio branches.</p>
+<div class="stack-12"><p class="menu-card-label">Contains</p><ul class="menu-list"><li>Admin overview page</li><li>Future governance and SOP pages</li><li>Internal systems and policy references</li></ul></div>
+<div class="card-footer"><a class="button button--secondary" href="./admin.html">Open Admin</a></div>
+</article>
+</div>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tactical Hiring Dashboard</title>
+  <meta name="description" content="SEA tactical hiring dashboard for game art outsourcing roles." />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .topbar {position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: rgba(4,10,24,.82); border-bottom:1px solid rgba(255,255,255,.08);}
+    .topbar-inner {width:min(1400px, calc(100% - 32px)); margin:0 auto; padding:14px 0; display:flex; justify-content:space-between; align-items:center; gap:16px;}
+    .topnav {display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .topnav a {color:#cfd8ea; text-decoration:none; font-weight:700; padding:8px 10px; border-radius:10px;}
+    .topnav a.active {color:#8dc8ff; background: rgba(124,199,255,.10);}
+    .currency-toggle {display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+    .currency-label {color: var(--muted, #9fb0d0); font-size:12px;}
+    .currency-btn {border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); color:#dce7ff; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:700;}
+    .currency-btn.active {background: linear-gradient(180deg, rgba(124,199,255,.25), rgba(124,199,255,.12)); border-color: rgba(124,199,255,.35); color:#fff;}
+    @media (max-width: 760px) {.topbar-inner{width:min(100% - 20px, 1400px); padding:12px 0; flex-direction:column; align-items:flex-start;}}
+
+.site-note{max-width:min(1400px, calc(100% - 32px)); margin: 10px auto 0; color:#94a3b8; font-size:12px;}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <nav class="topnav">
+        <a href="index.html" class="">Home</a>
+        <a href="founder_payouts.html" class="">Fund Allocation</a>
+        <a href="hiring_dashboard.html" class="active">Recruitment</a>
+      </nav>
+      <div class="currency-toggle" data-site-currency-toggle>
+        <span class="currency-label">Display currency</span>
+        <button class="currency-btn" data-currency="USD" type="button">USD</button>
+        <button class="currency-btn" data-currency="SGD" type="button">SGD</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-note">Site currency toggle is shared across the site. Recruitment values can be viewed in USD or SGD.</div>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Twin Fang · Tactical Hiring Dashboard</p>
+      <h1>SEA hiring benchmark for artists, art directors, and production roles</h1>
+      <p class="subhead">Indonesia is treated as the primary hiring pool. Other countries are shown as benchmark and fallback markets when target talent is unavailable.</p>
+    </div>
+    <div class="hero-note card">
+      <h2>What this page is for</h2>
+      <p>Use it to answer one practical question: <strong>if we cannot find the right person in our target country, what does the nearby market cost us?</strong></p>
+      <p class="muted">Built from your spreadsheet salary reference data and structured for GitHub Pages deployment.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls-panel">
+      <div class="section-heading">
+        <h2>Controls</h2>
+        <p>Drill down from country to role to seniority. Then stress test the fallback markets with relocation, cost-of-living, and fit assumptions.</p>
+      </div>
+
+      <div class="controls-grid">
+        <label>
+          <span>Selected country</span>
+          <select id="countrySelect"></select>
+        </label>
+        <label>
+          <span>Role track</span>
+          <select id="trackSelect"></select>
+        </label>
+        <label>
+          <span>Role / seniority</span>
+          <select id="roleSelect"></select>
+        </label>
+        <label>
+          <span>Base country for delta</span>
+          <select id="baseCountrySelect"></select>
+        </label>
+      </div>
+
+      <div class="inline-snapshot">
+        <div class="section-heading compact">
+          <h2>Selected role snapshot</h2>
+          <p>Core benchmark for the exact role you are evaluating.</p>
+        </div>
+        <div class="cards-grid" id="summaryCards"></div>
+      </div>
+
+      <div class="scenario-section">
+        <div class="section-heading split-heading compact">
+          <div>
+            <h2>Scenario lens</h2>
+            <p>Optional view. Turn this on when you want to pressure-test fallback markets with relocation, cost-of-living, and fit assumptions.</p>
+          </div>
+          <button id="scenarioToggle" class="toggle-btn" type="button" aria-expanded="false" aria-controls="scenarioPanel">Show scenario lens</button>
+        </div>
+
+        <div class="scenario-grid is-collapsed" id="scenarioPanel" hidden>
+          <div class="scenario-card">
+            <p class="muted">These values affect fallback ranking only. They help approximate relocation friction, living-cost changes, and how much quality or fit justifies a higher salary.</p>
+            <div class="scenario-table-wrap">
+              <table id="scenarioTable">
+                <thead>
+                  <tr>
+                    <th>Country</th>
+                    <th>Relocation %</th>
+                    <th>COL %</th>
+                    <th>Quality / fit</th>
+                    <th>Effective multiplier</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <div class="section-heading compact">
+          <h2>Country snapshot</h2>
+          <p>All roles for the chosen country, ordered by track and role seniority. Values follow the site currency toggle.</p>
+        </div>
+        <div class="table-wrap">
+          <table id="countrySnapshotTable">
+            <thead>
+              <tr>
+                <th>Track</th>
+                <th>Role</th>
+                <th>Experience</th>
+                <th>Displayed midpoint</th>
+                <th>Hiring band</th>
+                <th>Suggested local range</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading compact">
+          <h2>Fallback comparison</h2>
+          <p>Nearby-country comparison for the selected role, adjusted by your scenario lens. Chart rerenders with the site currency toggle.</p>
+        </div>
+        <div class="chart-card card">
+          <canvas id="comparisonChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <div class="section-heading compact">
+          <h2>Fallback ranking</h2>
+          <p>Ranked by effective cost after relocation, cost-of-living, and fit assumptions.</p>
+        </div>
+        <div class="table-wrap">
+          <table id="fallbackTable">
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Raw midpoint</th>
+                <th>Effective midpoint</th>
+                <th>Δ vs base</th>
+                <th>Δ vs selected</th>
+                <th>Hiring band</th>
+                <th>Recommendation tier</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading compact">
+          <h2>Recommendations</h2>
+          <p>Simple tactical read on low-cost, good-enough, and premium fallback markets.</p>
+        </div>
+        <div id="recommendationBuckets" class="recommendation-buckets"></div>
+        <div class="card notes-card">
+          <h3>Role note</h3>
+          <p id="roleRationale"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Method</h2>
+        <p>This page uses the same salary reference logic as the spreadsheet: country-specific role bands, suggested hiring bands, and a scenario-based effective cost adjustment for fallback comparison. Displayed values follow the site-wide USD / SGD toggle.</p>
+      </div>
+      <ul class="method-list">
+        <li><strong>Raw USD midpoint</strong> = midpoint of the reference salary band for that role and country.</li>
+        <li><strong>Effective midpoint</strong> = raw midpoint × (1 + relocation premium + cost-of-living premium) ÷ quality-fit score.</li>
+        <li><strong>Recommendation tiers</strong> are heuristic and meant for founder discussion, not automatic approval.</li>
+        <li><strong>Region</strong> is intentionally left open in the data model for later expansion to China and Taiwan.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Static site for GitHub Pages. No build step required.</p>
+  </footer>
+
+  <script src="app.js"></script>
+
+<script>
+(function(){
+  const KEY='tf_site_currency';
+  function normalizeCurrency(value){ return value==='SGD' ? 'SGD' : 'USD'; }
+  const current=normalizeCurrency(localStorage.getItem(KEY)||'USD');
+  function applyButtons(){
+    document.querySelectorAll('[data-site-currency-toggle]').forEach(wrap=>{
+      wrap.querySelectorAll('[data-currency]').forEach(btn=>{
+        btn.classList.toggle('active', btn.dataset.currency===current);
+        btn.addEventListener('click', ()=>{
+          localStorage.setItem(KEY, btn.dataset.currency);
+          window.dispatchEvent(new CustomEvent('tf-currency-change', {detail: btn.dataset.currency}));
+          document.querySelectorAll('[data-site-currency-toggle] [data-currency]').forEach(b=>b.classList.toggle('active', b.dataset.currency===btn.dataset.currency));
+        });
+      });
+    });
+  }
+  window.tfGetCurrency = ()=> normalizeCurrency(localStorage.getItem(KEY)||'USD');
+  applyButtons();
+})();
+</script>
+
+</body>
+</html>

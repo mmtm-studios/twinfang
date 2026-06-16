@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Finance</title>
+<meta content="Twinfang finance overview covering the revenue waterfall, operating buckets, and how money moves through the studio." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="./theme-init.js"></script>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy">
+<span class="brand-line">Twinfang Dashboard</span>
+</span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link is-active nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div aria-label="Theme display preference" class="theme-toggle">
+<span class="theme-toggle-label">Theme</span>
+<div aria-label="Theme selector" class="segmented" role="tablist">
+<button aria-pressed="false" class="segmented-item" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="segmented-item" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack">
+<header class="page-header hero-card">
+<span class="page-eyebrow">Finance</span>
+<h1 class="page-title">Revenue buckets and finance structure</h1>
+<p class="page-subtitle">
+            This page explains the money structure behind Twinfang. Use it to understand how gross revenue becomes
+            net revenue, how net revenue is allocated across operating buckets, and what each bucket is meant to fund.
+          </p>
+<div class="page-meta">
+<span>Purpose: finance orientation and bucket logic</span>
+<span>Audience: founders and team leads</span>
+<span>Default display currency: <strong data-currency-display="">USD</strong></span>
+</div>
+<div class="cluster">
+<span class="badge badge--accent">Buckets are applied to net revenue</span>
+<span class="badge">Commission comes off gross first</span>
+<span class="badge">Reserve is protection, not spare cash</span>
+</div>
+</header>
+<section class="grid grid-12">
+<article class="card span-8">
+<div class="card-header">
+<div>
+<h2 class="card-title">How money moves through the studio</h2>
+<p class="card-subtitle">The finance structure is meant to make payouts explainable, disciplined, and scalable.</p>
+</div>
+</div>
+<div class="card-body stack-16">
+<div class="mini-panel">
+<p class="menu-card-label">Waterfall</p>
+<p class="m-0"><strong>Gross revenue → Sales commission → Net revenue → Operating buckets</strong></p>
+<p class="m-0 soft">
+                  The core rule is that sales commission is treated as an above-the-line acquisition cost. Buckets are then
+                  applied to the net project revenue that remains.
+                </p>
+</div>
+<ul class="insight-list">
+<li>Delivery work should be paid from Delivery / Project Fulfilment.</li>
+<li>Non-delivery founder work should be paid from the Founder Fees Pool.</li>
+<li>Growth and infrastructure should stay true to purpose rather than patching payout issues.</li>
+<li>Reserve should be used to protect continuity, tax coverage, and cashflow resilience.</li>
+</ul>
+</div>
+</article>
+<article class="card span-4 card--callout">
+<div class="card-header">
+<div>
+<h2 class="card-title">Use this page for</h2>
+<p class="card-subtitle">What founders should come here to check first.</p>
+</div>
+</div>
+<div class="card-body">
+<ul class="menu-list">
+<li>Where a cost belongs</li>
+<li>What each bucket is allowed to fund</li>
+<li>Why reserve should be protected</li>
+<li>How finance links to payout logic and commission</li>
+</ul>
+</div>
+</article>
+</section>
+<section aria-labelledby="bucket-model-title" class="section-stack">
+<div class="section-header">
+<div>
+<h2 class="section-title" id="bucket-model-title">The five operating buckets</h2>
+<p class="section-subtitle">These are applied to net revenue, not gross revenue.</p>
+</div>
+</div>
+<div class="grid grid-12">
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">01</span>
+<h3 class="card-title">Delivery / Project Fulfilment</h3>
+</div>
+<p class="menu-card-copy">Funds all live client execution and fulfilment work.</p>
+<ul class="insight-list">
+<li>Art direction</li>
+<li>Artist execution</li>
+<li>Production and coordination</li>
+<li>Freelancers, specialists, and revisions</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">02</span>
+<h3 class="card-title">Founder Fees Pool</h3>
+</div>
+<p class="menu-card-copy">Funds non-delivery founder contribution and standing studio leadership work.</p>
+<ul class="insight-list">
+<li>Leadership and stewardship</li>
+<li>Systems and internal process work</li>
+<li>Company-building contribution</li>
+<li>Should not become a second delivery bucket</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">03</span>
+<h3 class="card-title">Growth / Capability Building</h3>
+</div>
+<p class="menu-card-copy">Funds future-facing investment that makes the studio stronger over time.</p>
+<ul class="insight-list">
+<li>Training and upskilling</li>
+<li>Sales materials and positioning</li>
+<li>R&amp;D and process improvement</li>
+<li>Capability-building, not routine ops</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">04</span>
+<h3 class="card-title">Infrastructure / Equipment</h3>
+</div>
+<p class="menu-card-copy">Funds the tools and operating systems needed to run the studio now.</p>
+<ul class="insight-list">
+<li>Software and subscriptions</li>
+<li>Hardware and peripherals</li>
+<li>Cloud storage and core tools</li>
+<li>Operational essentials, not speculative growth</li>
+</ul>
+</article>
+<article class="card span-4">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">05</span>
+<h3 class="card-title">Reserve / Tax Buffer</h3>
+</div>
+<p class="menu-card-copy">Protects continuity, cashflow health, tax exposure, and future operating resilience.</p>
+<ul class="insight-list">
+<li>Delayed payments and uneven project flow</li>
+<li>Tax obligations and timing gaps</li>
+<li>Unexpected operating pressure</li>
+<li>Should not be treated as casual founder draw</li>
+</ul>
+</article>
+<article class="card span-4 card--raised">
+<div class="menu-card-top--inline">
+<span class="menu-card-code">Phase 1</span>
+<h3 class="card-title">Recommended split</h3>
+</div>
+<p class="menu-card-copy">Current default allocation on net revenue.</p>
+<ul class="insight-list">
+<li>Delivery: 55%</li>
+<li>Founder Fees: 15%</li>
+<li>Growth: 10%</li>
+<li>Infrastructure: 5%</li>
+<li>Reserve: 15%</li>
+</ul>
+</article>
+</div>
+</section>
+<section class="grid grid-12">
+<article class="card span-6">
+<div class="card-header">
+<div>
+<h2 class="card-title">Key finance rules</h2>
+<p class="card-subtitle">These are the guardrails behind the bucket model.</p>
+</div>
+</div>
+<div class="card-body">
+<ul class="menu-list">
+<li>Pay sales commission first from gross revenue.</li>
+<li>Apply bucket percentages to net revenue, not gross.</li>
+<li>Pay live client execution work from Delivery.</li>
+<li>Use the Founder Fees Pool only for non-delivery founder work.</li>
+<li>Do not reward the same contribution twice in full.</li>
+</ul>
+</div>
+</article>
+<article class="card span-6">
+<div class="card-header">
+<div>
+<h2 class="card-title">Where to go next</h2>
+<p class="card-subtitle">Use the linked pages below for the deeper rule layers.</p>
+</div>
+</div>
+<div class="card-body stack-16">
+<div class="mini-panel">
+<p class="menu-card-label">Founder Payouts</p>
+<p class="m-0 soft">Go here for the project-level payout dashboard, founder totals, mix, and project payout review.</p>
+<a class="text-link" href="./founder-payouts.html">Open Founder Payouts</a>
+</div>
+<div class="mini-panel">
+<p class="menu-card-label">Payout Logic</p>
+<p class="m-0 soft">Go here for the fuller waterfall, founder fee structure, delivery cost model, and calculation rules.</p>
+<a class="text-link" href="./payout-logic.html">Open Payout Logic</a>
+</div>
+</div>
+</article>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Production</title>
+<meta content="Twinfang production placeholder landing page." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="./theme-init.js"></script>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy">
+<span class="brand-line">Twinfang Dashboard</span>
+</span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link is-active nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div aria-label="Theme display preference" class="theme-toggle">
+<span class="theme-toggle-label">Theme</span>
+<div aria-label="Theme selector" class="segmented" role="tablist">
+<button aria-pressed="false" class="segmented-item" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="segmented-item" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack">
+<header class="page-header hero-card">
+<span class="page-eyebrow">Production</span>
+<h1 class="page-title">Production</h1>
+<p class="page-subtitle">General landing page for the production section. Use this page to orient users before they move into active project tracking, closed work history, and future production tools.</p>
+<div class="page-meta">
+<span>Purpose: production section overview</span>
+<span>Audience: founders and team leads</span>
+<span>Default display currency: <strong data-currency-display="">USD</strong></span>
+</div>
+</header>
+<section class="grid grid-12">
+<article class="card span-8">
+<div class="card-header">
+<div>
+<h2 class="card-title">What this section is for</h2>
+<p class="card-subtitle">Use this page as the parent landing page for all production-related modules.</p>
+</div>
+</div>
+<div class="card-body">
+<p class="m-0 soft">This placeholder gives the Production top-level navigation a valid destination while the fuller production section is being built out.</p>
+<ul class="menu-list">
+<li><strong>Active</strong> is for current project status, owners, milestones, and delivery risks.</li>
+<li><strong>Closed</strong> is for completed work, archived records, and wrap-up visibility.</li>
+<li>Additional production tools can later be linked from this page without changing the site structure.</li>
+</ul>
+</div>
+</article>
+<article class="card span-4 card--callout">
+<div class="card-header">
+<div>
+<h2 class="card-title">Current build status</h2>
+<p class="card-subtitle">This page is ready to plug into the site now.</p>
+</div>
+</div>
+<div class="card-body">
+<p class="m-0 soft">Shared header, navigation, styling, and currency toggle behavior are already wired in through the existing site files.</p>
+<div class="cluster">
+<span class="badge">Placeholder</span>
+<span class="badge">Production parent</span>
+<span class="badge">Ready for dev</span>
+</div>
+</div>
+</article>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

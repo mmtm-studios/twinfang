@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Payouts</title>
+<meta content="Twinfang payouts dashboard showing project spread, founder payout totals, mix, and project-level founder breakdowns." name="description"/>
+<meta content="light dark" name="color-scheme"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<script src="./theme-init.js"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+<style>
+      :root {
+        color-scheme: light;
+        --bg: #f3f0e8;
+        --surface: #fbf8f2;
+        --surface-2: #e8e1d5;
+        --surface-3: #ede5d8;
+        --border: #cfc5b7;
+        --border-strong: #b7ab9a;
+        --text: #151515;
+        --text-soft: #4f463f;
+        --text-muted: #6a5f55;
+        --text-inverse: #ffffff;
+        --accent: #f41e1e;
+        --accent-strong: #d61d1d;
+        --accent-soft: #ffe2de;
+        --accent-soft-2: rgba(244, 30, 30, 0.14);
+        --accent-border: #f0b8b1;
+        --shadow-1: 0 1px 0 rgba(21,21,21,0.03);
+        --topbar-bg: rgba(251,248,242,0.94);
+        --nav-hover: rgba(255,255,255,0.45);
+        --table-head: #f6f1e7;
+        --chip-bg: #ede5d8;
+        --panel-subtle: #f7f2e8;
+        --panel-soft: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(244,240,232,0.8));
+        --bar-track: #ddd4c7;
+        --bar-delivery: linear-gradient(90deg, #68a2f2, #4f8fe7);
+        --bar-commission: linear-gradient(90deg, #f5bc35, #f0a000);
+        --bar-founder: linear-gradient(90deg, #39d0c4, #27b8ac);
+        --bar-variable: linear-gradient(90deg, #b07cf2, #9362de);
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #181512;
+        --surface: #221e1b;
+        --surface-2: #292420;
+        --surface-3: #312b27;
+        --border: #433a34;
+        --border-strong: #564a42;
+        --text: #f1ece4;
+        --text-soft: #d3c6b7;
+        --text-muted: #b2a596;
+        --text-inverse: #ffffff;
+        --accent: #f41e1e;
+        --accent-strong: #d61d1d;
+        --accent-soft: rgba(244, 30, 30, 0.08);
+        --accent-soft-2: rgba(244, 30, 30, 0.15);
+        --accent-border: rgba(244, 30, 30, 0.12);
+        --shadow-1: none;
+        --topbar-bg: rgba(34,30,27,0.94);
+        --nav-hover: rgba(255,255,255,0.02);
+        --table-head: rgba(255,255,255,0.015);
+        --chip-bg: #312b27;
+        --panel-subtle: #292420;
+        --panel-soft: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        --bar-track: #34405c;
+        --bar-delivery: linear-gradient(90deg, #68a2f2, #4f8fe7);
+        --bar-commission: linear-gradient(90deg, #f5bc35, #f0a000);
+        --bar-founder: linear-gradient(90deg, #39d0c4, #27b8ac);
+        --bar-variable: linear-gradient(90deg, #b07cf2, #9362de);
+      }
+
+      html, body { background: var(--bg); color: var(--text); }
+      body { transition: background-color 180ms ease, color 180ms ease; }
+      .site-header {
+        background: var(--topbar-bg);
+        border-bottom-color: var(--border);
+        backdrop-filter: blur(10px);
+      }
+      .brand-line { color: var(--text); }
+      .nav-mark {
+        background: var(--accent);
+        color: #fff;
+      }
+      .nav-link, .nav-dropdown-link { color: var(--text-muted); }
+      .nav-link:hover, .nav-link:focus-visible,
+      .nav-dropdown-link:hover, .nav-dropdown-link:focus-visible {
+        color: var(--text);
+        background: var(--nav-hover);
+      }
+      .nav-link.is-active, .nav-dropdown-link.is-active {
+        color: var(--accent);
+        background: var(--accent-soft);
+        box-shadow: inset 0 0 0 1px var(--accent-border);
+      }
+      .nav-dropdown-menu {
+        background: var(--surface);
+        border-color: var(--border);
+        box-shadow: var(--shadow-1);
+      }
+      .currency-toggle, .theme-toggle-shell { display:flex; align-items:center; gap:10px; }
+      .currency-toggle-label, .sr-only {
+        color: var(--text-muted);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+      }
+      .sr-only {
+        position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+      }
+      .nav-utility { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+      .segmented, .theme-toggle {
+        display:inline-flex; align-items:center; gap:4px; padding:4px;
+        border:1px solid var(--border); border-radius:999px; background: var(--surface);
+      }
+      .segmented-item, .theme-toggle__button {
+        height: 32px; padding: 0 11px; border:0; border-radius:999px; background:transparent; color:var(--text-muted); font: inherit; font-weight:600; cursor:pointer;
+      }
+      .segmented-item.is-active, .theme-toggle__button[aria-pressed="true"] {
+        background: var(--surface-2); color: var(--text);
+      }
+      .theme-toggle__button[aria-pressed="true"] {
+        box-shadow: inset 0 -2px 0 var(--accent);
+      }
+      .card, .hero-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-1);
+      }
+      .card--callout { background: var(--panel-soft); border-color: var(--accent-border); }
+      .button { box-shadow:none; }
+      .button--primary { background: var(--accent); color:#fff; }
+      .button--ghost { background: transparent; color: var(--text-soft); }
+      .page-title, .card-title, .project-title, .founder-card h4 { color: var(--text); }
+      .page-subtitle, .card-subtitle, .muted, .section-note, .currency-footnote, .page-meta { color: var(--text-muted); }
+      .badge, .pill, .chip { background: var(--chip-bg); color: var(--text); border: 1px solid var(--border); }
+      .dashboard-stack { display: grid; gap: 24px; }
+      .hero-card--payouts { display: grid; gap: 14px; }
+      .controls-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+      .field { display:grid; gap: 8px; }
+      .field label { font-size:12px; font-weight:600; color:var(--text-muted); }
+      .field select, .field input { width:100%; }
+      .tabs-inline { display:flex; flex-wrap:wrap; gap:8px; }
+      .tab-btn { border:none; cursor:pointer; }
+      .tab-btn.active { opacity:1; }
+      .page { display:none; }
+      .page.active { display:block; }
+      .grid-2 { display:grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 20px; }
+      .span-12 { grid-column: span 12; }
+      .span-7 { grid-column: span 7; }
+      .span-5 { grid-column: span 5; }
+      .kpi-grid { display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 16px; }
+      .stack-list { display:grid; gap:12px; }
+      .stack-row { display:grid; grid-template-columns: 190px minmax(0,1fr) 110px; gap:12px; align-items:center; }
+      .bar { height: 12px; border-radius:999px; overflow:hidden; background: var(--bar-track); }
+      .fill { height:100%; border-radius:999px; }
+      .fill.delivery { background: var(--bar-delivery); }
+      .fill.founder { background: var(--bar-founder); }
+      .fill.growth { background: var(--bar-commission); }
+      .fill.infra { background: var(--bar-variable); }
+      .fill.reserve { background: linear-gradient(90deg, #7ecb71, #5cb757); }
+      .table-shell {
+        overflow:auto; border:1px solid var(--border); border-radius:16px; background: var(--surface); box-shadow:none;
+      }
+      table { width:100%; border-collapse:collapse; }
+      th, td { padding:12px 14px; border-bottom:1px solid color-mix(in srgb, var(--border) 70%, transparent); text-align:left; vertical-align:middle; }
+      th { font-size:12px; color:var(--text-muted); font-weight:600; background:var(--table-head); }
+      td { color:var(--text); }
+      tbody tr { cursor:pointer; }
+      tbody tr:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+      tbody tr:last-child td { border-bottom:none; }
+      .right { text-align:right; }
+      .project-card { display:grid; gap:16px; }
+      .project-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+      .project-title { margin:4px 0 0; font-size:20px; line-height:1.15; letter-spacing:-0.02em; }
+      .mini-grid { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; }
+      .mini .label { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.03em; }
+      .mini .value { font-size:16px; font-weight:700; margin-top:6px; letter-spacing:-0.02em; color:var(--text); }
+      .metric-row { display:flex; justify-content:space-between; gap:16px; margin:10px 0; }
+      .metric-row .name { color:var(--text-soft); }
+      .legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; color:var(--text-muted); font-size:12px; }
+      .legend span::before { content:""; display:inline-block; width:10px; height:10px; border-radius:999px; background: currentColor; margin-right:6px; vertical-align:middle; }
+      .founder-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:20px; margin-top:24px; }
+      .founder-projects-card { margin-top:24px; }
+      .founder-card {
+        background: var(--surface);
+        border:1px solid var(--border);
+        border-top: 3px solid var(--accent);
+        border-radius:20px;
+        box-shadow:none;
+        padding:22px;
+      }
+      .founder-card .muted { color: var(--text-muted); font-size:13px; }
+      .founder-card-stack { margin-top:18px; padding:14px 16px; border-radius:16px; background: var(--surface-2); border:1px solid var(--border); }
+      .founder-card-breakdown { margin-top:18px; padding-top:14px; border-top:1px solid color-mix(in srgb, var(--border) 80%, transparent); }
+      .founder-card-breakdown .metric-row { margin:12px 0; }
+      .founder-card .stack-row { grid-template-columns: 1fr minmax(110px, 1fr) 70px; gap:14px; }
+      .founder-card .bar { background: var(--bar-track); box-shadow:none; }
+      .founder-card .metric-row strong { color:var(--text); }
+      .big-total { font-size:30px; line-height:1.05; font-weight:700; letter-spacing:-0.03em; margin-top:4px; color: var(--text); }
+      .donut-wrap { display:flex; justify-content:center; align-items:center; min-height:260px; }
+      .empty { padding:24px; border:1px dashed var(--border-strong); border-radius:16px; color:var(--text-muted); background: var(--panel-subtle); }
+      .donut-shell { position:relative; width:260px; height:260px; }
+      .donut-ring { width:260px; height:260px; border-radius:50%; box-shadow:none; }
+      .donut-center { position:absolute; inset:38px; border-radius:50%; background: var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; }
+      .donut-label { color:var(--text-muted); font-size:13px; font-weight:600; }
+      .donut-total { color:var(--text); text-shadow:none; }
+      .founder-mix-breakdown .metric-row { margin: 12px 0; }
+      .founder-projects-card .table-shell { background: var(--surface); border-color: var(--border); }
+      .founder-projects-card th { background: var(--surface-2); color: var(--text-muted); }
+      .founder-projects-card td { color: var(--text); }
+      .founder-projects-card tbody tr:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+      .founder-projects-card td strong { color:var(--text); }
+      @media (max-width: 1180px) {
+        .controls-grid, .kpi-grid, .founder-grid, .grid-2 { grid-template-columns: 1fr; }
+        .span-7, .span-5 { grid-column: span 12; }
+      }
+      @media (max-width: 900px) {
+        .controls-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .mini-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      }
+      @media (max-width: 768px) {
+        .nav { flex-direction: column; align-items: stretch; }
+        .nav-utility { margin-left: 0; justify-content: flex-start; }
+      }
+      @media (max-width: 720px) {
+        .controls-grid, .mini-grid, .kpi-grid { grid-template-columns: 1fr; }
+        .stack-row { grid-template-columns: 1fr; }
+      }
+    </style>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy">
+<span class="brand-line">Twinfang Dashboard</span>
+</span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link is-active nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link is-active" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div class="theme-toggle-shell">
+<span class="sr-only">Theme</span>
+<div aria-label="Theme switcher" class="theme-toggle" role="group">
+<button aria-pressed="false" class="theme-toggle__button" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="theme-toggle__button" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack dashboard-stack">
+<header class="page-header hero-card hero-card--payouts">
+<h1 class="page-title">Founder payouts</h1>
+<p class="page-subtitle">
+            Project-level payout reporting based on the original payout page logic. Use this page to inspect project spread,
+            founder payout composition, and per-project founder totals while keeping the same shared shell and navigation as the dashboard home.
+          </p>
+<div class="page-meta">
+<span>Purpose: payout visibility and project-level spread</span>
+<span>Audience: founders and finance review</span>
+<span>Default display currency: <strong data-currency-display="">USD</strong></span>
+</div>
+<div class="cluster">
+<span class="badge">Projects tracked: <strong id="badgeProjects">-</strong></span>
+<span class="badge">Primary transacting currency: <strong>USD</strong></span>
+<span class="badge">Original founder payouts functionality retained</span>
+<span class="badge">Shared header and style build from index</span>
+</div>
+</header>
+<section class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Report controls</h2>
+<p class="card-subtitle">Filter the reporting window and control displayed FX without breaking the original page logic.</p>
+</div>
+</div>
+<div class="card-body stack-16">
+<div class="controls-grid">
+<div class="field">
+<label for="timeframe">Timeframe</label>
+<select id="timeframe">
+<option selected="" value="all">All projects</option>
+<option value="month">Month</option>
+<option value="quarter">Quarter</option>
+<option value="half">Half year</option>
+<option value="year">Year</option>
+</select>
+</div>
+<div class="field">
+<label for="period">Period bucket</label>
+<select id="period"></select>
+</div>
+<div class="field">
+<label for="startDate">Start date</label>
+<input id="startDate" type="date"/>
+</div>
+<div class="field">
+<label for="endDate">End date</label>
+<input id="endDate" type="date"/>
+</div>
+<div class="field">
+<label>Currency display</label>
+<input readonly="" type="text" value="Use the shared header USD / SGD toggle"/>
+</div>
+<div class="field">
+<label for="fxRate">USD → SGD rate</label>
+<input id="fxRate" step="0.0001" type="number" value="1.2850"/>
+</div>
+</div>
+<p class="section-note">USD is the primary transacting currency. SGD view uses the editable FX rate shown above.</p>
+<p class="currency-footnote">This page uses the same site-wide currency preference pattern as the dashboard home.</p>
+</div>
+</section>
+<section class="card">
+<div class="card-body">
+<div class="tabs-inline">
+<button class="tab-btn button button--ghost" data-page="overview">Overall money overview</button>
+<button class="tab-btn button button--primary active" data-page="founders">Founder payouts</button>
+</div>
+</div>
+</section>
+<section class="page" id="page-overview">
+<div class="kpi-grid" id="kpis"></div>
+<div class="grid-2">
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Projects over time</h2>
+<p class="card-subtitle">Gross revenue, net revenue, and retained company funds by project.</p>
+</div>
+</div>
+<div class="card-body" id="timelineChart"></div>
+</article>
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Bucket allocation mix</h2>
+<p class="card-subtitle">Share of net project revenue across operating buckets.</p>
+</div>
+</div>
+<div class="card-body" id="bucketMix"></div>
+</article>
+</div>
+<div class="grid-2">
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Project breakdown</h2>
+<p class="card-subtitle">Click a project row to inspect the detailed payout structure.</p>
+</div>
+</div>
+<div class="card-body">
+<div class="table-shell">
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Period</th>
+<th class="right">Gross</th>
+<th class="right">Net</th>
+<th class="right">Founder pool</th>
+<th class="right">Retained</th>
+</tr>
+</thead>
+<tbody id="projectTable"></tbody>
+</table>
+</div>
+</div>
+</article>
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Selected project snapshot</h2>
+<p class="card-subtitle">Bucket flow, delivery split, and money destination breakdown.</p>
+</div>
+</div>
+<div class="card-body">
+<div class="empty" id="projectSnapshot">Select a project from the table to see its bucket flow, delivery split, and money destination breakdown.</div>
+</div>
+</article>
+</div>
+</section>
+<section class="page active" id="page-founders">
+<div class="grid-2">
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Founder payout totals</h2>
+<p class="card-subtitle">Total payout by founder across the selected reporting window.</p>
+</div>
+</div>
+<div class="card-body" id="founderTotals"></div>
+</article>
+<article class="card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Founder payout mix</h2>
+<p class="card-subtitle">Share of total founder payouts in the selected reporting window.</p>
+</div>
+</div>
+<div class="card-body" id="founderMix"></div>
+</article>
+</div>
+<div class="founder-grid" id="founderCards"></div>
+<article class="card founder-projects-card">
+<div class="card-header">
+<div>
+<h2 class="card-title">Founder payout by project</h2>
+<p class="card-subtitle">Delivery + commission + founder fee components.</p>
+</div>
+</div>
+<div class="card-body">
+<div class="table-shell">
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th class="right">Julian</th>
+<th class="right">Robby</th>
+<th class="right">Stephen</th>
+<th class="right">Founder total</th>
+</tr>
+</thead>
+<tbody id="founderProjectTable"></tbody>
+</table>
+</div>
+</div>
+</article>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script><script src="./app.js"></script>
+<script>
+      window.tfGetCurrency = function () {
+        return localStorage.getItem('twinfang_currency_preference') === 'SGD' ? 'SGD' : 'USD';
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('[data-currency-option]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            setTimeout(function () {
+              window.dispatchEvent(new CustomEvent('tf-currency-change', { detail: window.tfGetCurrency() }));
+            }, 0);
+          });
+        });
+      });
+    </script>
+<script>
+const rawProjects = [
+  {
+    "project": "J1003 | Riot Games Jakarta | VCT Art",
+    "start": "2026-03-01",
+    "end": "2026-03-20",
+    "gross": 9000.0,
+    "commission_rate": 0.05,
+    "commission": 450.0,
+    "net": 8550.0,
+    "buckets": {
+      "Delivery / Project Fulfilment": 4275.0,
+      "Founders Fees Pool": 1282.5,
+      "Company Growth / Org Building": 1282.5,
+      "Infrastructure / Equipment": 684.0,
+      "Reserve / Tax Buffer": 1026.0
+    },
+    "delivery_breakdown": {
+      "Art": 2992.5,
+      "Art Direction": 769.5,
+      "Production Support": 513.0
+    },
+    "commissions": {
+      "Julian": 256.0344827586207,
+      "Robby": 131.89655172413794,
+      "Stephen": 62.06896551724138
+    },
+    "founder_base": {
+      "Julian": 307.8,
+      "Robby": 230.85,
+      "Stephen": 230.85
+    },
+    "founder_variable": {
+      "Julian": 228.0,
+      "Robby": 182.4,
+      "Stephen": 102.6
+    },
+    "where": {
+      "ART / VENDOR": 0.0,
+      "JULIAN": 4553.834482758621,
+      "ROBBY": 981.196551724138,
+      "STEPHEN": 472.4689655172414,
+      "TWINFANG": 2992.5
+    },
+    "surplus_ratio": 0.3325,
+    "founder_totals": {
+      "Julian": 4553.834482758621,
+      "Robby": 981.196551724138,
+      "Stephen": 472.4689655172414
+    },
+    "founder_components": {
+      "Julian": {
+        "Delivery": 3762.0,
+        "Commission": 256.0344827586207,
+        "Founder Fees - Base": 307.8,
+        "Founder Fees - Variable": 228.0
+      },
+      "Robby": {
+        "Delivery": 436.05,
+        "Commission": 131.89655172413794,
+        "Founder Fees - Base": 230.85,
+        "Founder Fees - Variable": 182.4
+      },
+      "Stephen": {
+        "Delivery": 76.95,
+        "Commission": 62.06896551724138,
+        "Founder Fees - Base": 230.85,
+        "Founder Fees - Variable": 102.6
+      }
+    }
+  },
+  {
+    "project": "S1001 | Candy Valley | Character Art",
+    "start": "2025-11-01",
+    "end": "2025-12-14",
+    "gross": 3600.0,
+    "commission_rate": 0.05,
+    "commission": 180.0,
+    "net": 3420.0,
+    "buckets": {
+      "Delivery / Project Fulfilment": 1710.0,
+      "Founders Fees Pool": 513.0,
+      "Company Growth / Org Building": 513.0,
+      "Infrastructure / Equipment": 273.6,
+      "Reserve / Tax Buffer": 410.4
+    },
+    "delivery_breakdown": {
+      "Art": 1197.0,
+      "Art Direction": 307.8,
+      "Production Support": 205.2
+    },
+    "commissions": {
+      "Julian": 103.5,
+      "Robby": 0.0,
+      "Stephen": 76.5
+    },
+    "founder_base": {
+      "Julian": 123.12,
+      "Robby": 92.34,
+      "Stephen": 92.34
+    },
+    "founder_variable": {
+      "Julian": 110.10731707317075,
+      "Robby": 0.0,
+      "Stephen": 95.09268292682927
+    },
+    "where": {
+      "ART / VENDOR": 0.0,
+      "JULIAN": 1841.5273170731707,
+      "ROBBY": 92.34,
+      "STEPHEN": 469.13268292682926,
+      "TWINFANG": 1197.0
+    },
+    "surplus_ratio": 0.3325,
+    "founder_totals": {
+      "Julian": 1841.5273170731707,
+      "Robby": 92.34,
+      "Stephen": 469.13268292682926
+    },
+    "founder_components": {
+      "Julian": {
+        "Delivery": 1504.8,
+        "Commission": 103.5,
+        "Founder Fees - Base": 123.12,
+        "Founder Fees - Variable": 110.10731707317075
+      },
+      "Robby": {
+        "Delivery": 0,
+        "Commission": 0.0,
+        "Founder Fees - Base": 92.34,
+        "Founder Fees - Variable": 0.0
+      },
+      "Stephen": {
+        "Delivery": 205.2,
+        "Commission": 76.5,
+        "Founder Fees - Base": 92.34,
+        "Founder Fees - Variable": 95.09268292682927
+      }
+    }
+  }
+];
+
+    const els = {
+      timeframe: document.getElementById('timeframe'),
+      period: document.getElementById('period'),
+      startDate: document.getElementById('startDate'),
+      endDate: document.getElementById('endDate'),
+      fxRate: document.getElementById('fxRate'),
+      kpis: document.getElementById('kpis'),
+      timelineChart: document.getElementById('timelineChart'),
+      bucketMix: document.getElementById('bucketMix'),
+      projectTable: document.getElementById('projectTable'),
+      projectSnapshot: document.getElementById('projectSnapshot'),
+      founderTotals: document.getElementById('founderTotals'),
+      founderMix: document.getElementById('founderMix'),
+      founderCards: document.getElementById('founderCards'),
+      founderProjectTable: document.getElementById('founderProjectTable'),
+      badgeProjects: document.getElementById('badgeProjects')
+    };
+
+    let selectedProject = null;
+
+    const bucketOrder = [
+      'Delivery / Project Fulfilment',
+      'Founders Fees Pool',
+      'Company Growth / Org Building',
+      'Infrastructure / Equipment',
+      'Reserve / Tax Buffer'
+    ];
+
+    const bucketClass = {
+      'Delivery / Project Fulfilment': 'delivery',
+      'Founders Fees Pool': 'founder',
+      'Company Growth / Org Building': 'growth',
+      'Infrastructure / Equipment': 'infra',
+      'Reserve / Tax Buffer': 'reserve'
+    };
+
+    function currentFx() {
+      const v = parseFloat(els.fxRate.value);
+      return Number.isFinite(v) && v > 0 ? v : 1.285;
+    }
+
+    function currentCurrency() {
+      const mode = (window.tfGetCurrency && window.tfGetCurrency()) || 'USD';
+      return mode === 'SGD' ? 'SGD' : 'USD';
+    }
+
+    function fmtSingleMoney(n, currency) {
+      const symbol = '$';
+      const formatted = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(n);
+      return `${symbol}${formatted} ${currency}`;
+    }
+
+    function fmtMoney(n) {
+      const currency = currentCurrency();
+      const value = currency === 'USD' ? n : n * currentFx();
+      return `<span class="money-main-inline">${fmtSingleMoney(value, currency)}</span>`;
+    }
+
+    function fmtPct(n) {
+      return (n * 100).toFixed(1) + '%';
+    }
+
+    function periodKey(p, timeframe) {
+      const d = new Date(p.start);
+      const y = d.getFullYear();
+      const m = d.getMonth() + 1;
+      if (timeframe === 'month') return `${y}-${String(m).padStart(2,'0')}`;
+      if (timeframe === 'quarter') return `${y}-Q${Math.floor((m-1)/3)+1}`;
+      if (timeframe === 'half') return `${y}-H${m <= 6 ? 1 : 2}`;
+      return String(y);
+    }
+
+    function uniquePeriods(timeframe) {
+      return [...new Set(rawProjects.map(p => periodKey(p, timeframe)))].sort();
+    }
+
+    function refreshPeriodOptions() {
+      const tf = els.timeframe.value;
+      const current = els.period.value;
+      els.period.innerHTML = '';
+
+      if (tf === 'all') {
+        const opt = document.createElement('option');
+        opt.value = 'all';
+        opt.textContent = 'All projects';
+        els.period.appendChild(opt);
+        els.period.value = 'all';
+        els.period.disabled = true;
+      } else {
+        const periods = uniquePeriods(tf);
+        for (const p of periods) {
+          const opt = document.createElement('option');
+          opt.value = p;
+          opt.textContent = p;
+          els.period.appendChild(opt);
+        }
+        els.period.disabled = false;
+        if (periods.includes(current)) els.period.value = current;
+        else els.period.value = periods[periods.length - 1] || '';
+      }
+    }
+
+    function filteredProjects() {
+      const tf = els.timeframe.value;
+      const startDate = els.startDate.value ? new Date(els.startDate.value + 'T00:00:00') : null;
+      const endDate = els.endDate.value ? new Date(els.endDate.value + 'T23:59:59') : null;
+
+      return rawProjects.filter(p => {
+        const start = new Date(p.start + 'T00:00:00');
+        const inRange = (!startDate || start >= startDate) && (!endDate || start <= endDate);
+        if (!inRange) return false;
+        if (tf === 'all') return true;
+        return periodKey(p, tf) === els.period.value;
+      });
+    }
+
+    function sumProjects(projects, pathFn) {
+      return projects.reduce((acc, p) => acc + pathFn(p), 0);
+    }
+
+    function aggregateBuckets(projects) {
+      const out = Object.fromEntries(bucketOrder.map(k => [k, 0]));
+      projects.forEach(p => {
+        bucketOrder.forEach(k => out[k] += p.buckets[k]);
+      });
+      return out;
+    }
+
+    function aggregateFounders(projects) {
+      return {
+        Julian: sumProjects(projects, p => p.founder_totals.Julian),
+        Robby: sumProjects(projects, p => p.founder_totals.Robby),
+        Stephen: sumProjects(projects, p => p.founder_totals.Stephen),
+      };
+    }
+
+    function aggregateFounderComponents(projects, founder) {
+      const out = {
+        'Delivery': 0,
+        'Commission': 0,
+        'Founder Fees - Base': 0,
+        'Founder Fees - Variable': 0
+      };
+      projects.forEach(p => {
+        Object.keys(out).forEach(k => out[k] += p.founder_components[founder][k] || 0);
+      });
+      return out;
+    }
+
+    function renderKPIs(projects) {
+      const gross = sumProjects(projects, p => p.gross);
+      const net = sumProjects(projects, p => p.net);
+      const retained = sumProjects(projects, p => p.where.TWINFANG);
+      const founder = sumProjects(projects, p => p.buckets['Founders Fees Pool']);
+      const delivery = sumProjects(projects, p => p.buckets['Delivery / Project Fulfilment']);
+      const retainedMargin = gross ? retained / gross : 0;
+      const cards = [
+        ['Projects', String(projects.length), 'Projects in selected window'],
+        ['Gross revenue', fmtMoney(gross), 'Top-line value'],
+        ['Net revenue', fmtMoney(net), 'After commission'],
+        ['Delivery bucket', fmtMoney(delivery), 'Project fulfilment'],
+        ['Founder fee pool', fmtMoney(founder), 'Base + variable founder fees'],
+        ['Retained company funds', fmtMoney(retained), `Operating surplus ${fmtPct(retainedMargin)}`]
+      ];
+      els.kpis.innerHTML = cards.map(([label, value, foot]) => `
+        <div class="kpi">
+          <div class="label">${label}</div>
+          <div class="value">${value}</div>
+          <div class="foot">${foot}</div>
+        </div>
+      `).join('');
+      els.badgeProjects.textContent = projects.length;
+    }
+
+    function renderTimeline(projects) {
+      if (!projects.length) {
+        els.timelineChart.innerHTML = '<div class="empty">No projects in this period.</div>';
+        return;
+      }
+      const max = Math.max(...projects.map(p => Math.max(p.gross, p.net, p.where.TWINFANG)));
+      const rows = projects.map(p => {
+        const grossW = (p.gross / max) * 100;
+        const netW = (p.net / max) * 100;
+        const retW = (p.where.TWINFANG / max) * 100;
+        return `
+          <div style="display:grid;gap:8px;margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+              <strong>${p.project}</strong>
+              <span class="pill">${p.start} to ${p.end}</span>
+            </div>
+            <div>
+              <div class="metric-row"><span class="name">Gross revenue</span><strong>${fmtMoney(p.gross)}</strong></div>
+              <div class="bar"><div class="fill delivery" style="width:${grossW}%"></div></div>
+            </div>
+            <div>
+              <div class="metric-row"><span class="name">Net revenue</span><strong>${fmtMoney(p.net)}</strong></div>
+              <div class="bar"><div class="fill founder" style="width:${netW}%"></div></div>
+            </div>
+            <div>
+              <div class="metric-row"><span class="name">Retained company funds</span><strong>${fmtMoney(p.where.TWINFANG)}</strong></div>
+              <div class="bar"><div class="fill reserve" style="width:${retW}%"></div></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      els.timelineChart.innerHTML = rows;
+    }
+
+    function renderBucketMix(projects) {
+      const buckets = aggregateBuckets(projects);
+      const total = Object.values(buckets).reduce((a,b)=>a+b,0);
+      if (!total) {
+        els.bucketMix.innerHTML = '<div class="empty">No bucket data in this period.</div>';
+        return;
+      }
+      els.bucketMix.innerHTML = `
+        <div class="stack-list">
+          ${bucketOrder.map(k => `
+              <div class="stack-row">
+                <div>${k}</div>
+                <div class="bar"><div class="fill ${bucketClass[k]}" style="width:${(buckets[k]/total)*100}%"></div></div>
+                <div class="right">${fmtMoney(buckets[k])}</div>
+              </div>
+            `).join('')}
+        </div>
+        <div class="legend">
+          <span style="color:#7cc7ff;">Delivery</span>
+          <span style="color:#98f5e1;">Founder fees</span>
+          <span style="color:#ffcf70;">Growth</span>
+          <span style="color:#f3a6ff;">Infrastructure</span>
+          <span style="color:#8be28b;">Reserve</span>
+        </div>
+      `;
+    }
+
+    function renderProjectTable(projects) {
+      if (!projects.length) {
+        els.projectTable.innerHTML = '<tr><td colspan="6"><div class="empty">No projects in this period.</div></td></tr>';
+        return;
+      }
+      els.projectTable.innerHTML = projects.map(p => `
+        <tr data-project="${p.project}">
+          <td><strong>${p.project}</strong></td>
+          <td>${p.start}</td>
+          <td class="right">${fmtMoney(p.gross)}</td>
+          <td class="right">${fmtMoney(p.net)}</td>
+          <td class="right">${fmtMoney(p.buckets['Founders Fees Pool'])}</td>
+          <td class="right">${fmtMoney(p.where.TWINFANG)}</td>
+        </tr>
+      `).join('');
+      [...els.projectTable.querySelectorAll('tr[data-project]')].forEach(row => {
+        row.addEventListener('click', () => {
+          selectedProject = rawProjects.find(p => p.project === row.dataset.project);
+          renderProjectSnapshot();
+        });
+      });
+      if (!selectedProject || !projects.some(p => p.project === selectedProject.project)) {
+        selectedProject = projects[0];
+      }
+      renderProjectSnapshot();
+    }
+
+    function renderProjectSnapshot() {
+      const p = selectedProject;
+      if (!p) {
+        els.projectSnapshot.innerHTML = '<div class="empty">No project selected.</div>';
+        return;
+      }
+      const moneyRows = Object.entries(p.where).map(([k,v]) => `
+        <div class="metric-row"><span class="name">${k}</span><strong>${fmtMoney(v)}</strong></div>
+      `).join('');
+      const bucketRows = bucketOrder.map(k => `
+        <div class="stack-row">
+          <div>${k}</div>
+          <div class="bar"><div class="fill ${bucketClass[k]}" style="width:${(p.buckets[k]/p.net)*100}%"></div></div>
+          <div class="right">${fmtMoney(p.buckets[k])}</div>
+        </div>
+      `).join('');
+      const deliveryRows = Object.entries(p.delivery_breakdown).map(([k,v]) => `
+        <div class="metric-row"><span class="name">${k}</span><strong>${fmtMoney(v)}</strong></div>
+      `).join('');
+      els.projectSnapshot.innerHTML = `
+        <div class="project-card">
+          <div class="project-head">
+            <div>
+              <div class="pill">${p.start} to ${p.end}</div>
+              <h4 class="project-title">${p.project}</h4>
+            </div>
+            <div class="right">
+              <div class="muted">Operating surplus</div>
+              <strong>${fmtPct(p.surplus_ratio)}</strong>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini"><div class="label">Gross</div><div class="value">${fmtMoney(p.gross)}</div></div>
+            <div class="mini"><div class="label">Commission</div><div class="value">${fmtMoney(p.commission)}</div></div>
+            <div class="mini"><div class="label">Net</div><div class="value">${fmtMoney(p.net)}</div></div>
+            <div class="mini"><div class="label">Retained</div><div class="value">${fmtMoney(p.where.TWINFANG)}</div></div>
+          </div>
+          <div>
+            <h3 style="margin:0 0 10px;">Bucket flow</h3>
+            <div class="stack-list">${bucketRows}</div>
+          </div>
+          <div class="grid-2" style="margin:0;">
+            <div>
+              <h3 style="margin:0 0 10px;">Delivery split</h3>
+              ${deliveryRows}
+            </div>
+            <div>
+              <h3 style="margin:0 0 10px;">Where the money goes</h3>
+              ${moneyRows}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFounderTotals(projects) {
+      const totals = aggregateFounders(projects);
+      const max = Math.max(...Object.values(totals), 1);
+      els.founderTotals.innerHTML = Object.entries(totals).map(([name, value]) => `
+        <div style="margin-bottom:14px;">
+          <div class="metric-row"><span class="name">${name}</span><strong>${fmtMoney(value)}</strong></div>
+          <div class="bar"><div class="fill founder" style="width:${(value/max)*100}%"></div></div>
+        </div>
+      `).join('');
+    }
+
+    function renderFounderMix(projects) {
+      const totals = aggregateFounders(projects);
+      const total = Object.values(totals).reduce((a,b)=>a+b,0);
+      if (!total) {
+        els.founderMix.innerHTML = '<div class="empty">No founder payout data in this period.</div>';
+        return;
+      }
+      const colors = {Julian:'#78c4ff', Robby:'#50d6c5', Stephen:'#f6c65b'};
+      const segments = [];
+      let start = 0;
+      for (const [name, value] of Object.entries(totals)) {
+        const pct = value / total;
+        const end = start + pct * 100;
+        segments.push(`${colors[name]} ${start}% ${end}%`);
+        start = end;
+      }
+      els.founderMix.innerHTML = `
+        <div class="donut-wrap">
+          <div class="donut-shell">
+            <div class="donut-ring" style="background:conic-gradient(${segments.join(', ')});"></div>
+            <div class="donut-center">
+              <div class="donut-label">Founder payouts</div>
+              <div class="big-total donut-total">${fmtMoney(total)}</div>
+            </div>
+          </div>
+        </div>
+        <div class="legend">
+          <span style="color:#78c4ff;">Julian</span>
+          <span style="color:#50d6c5;">Robby</span>
+          <span style="color:#f6c65b;">Stephen</span>
+        </div>
+        <div class="founder-mix-breakdown" style="margin-top:10px;">
+          ${Object.entries(totals).map(([name, value]) => `
+              <div class="metric-row"><span class="name">${name}</span><strong>${fmtMoney(value)} · ${fmtPct(value/total)}</strong></div>
+            `).join('')}
+        </div>
+      `;
+    }
+
+    function renderFounderCards(projects) {
+      const founders = ['Julian','Robby','Stephen'];
+      els.founderCards.innerHTML = founders.map(name => {
+        const c = aggregateFounderComponents(projects, name);
+        const total = Object.values(c).reduce((a,b)=>a+b,0);
+        const rows = Object.entries(c).map(([k,v]) => `
+          <div class="metric-row"><span class="name">${k}</span><strong>${fmtMoney(v)}</strong></div>
+        `).join('');
+        const stack = Object.entries(c).map(([k,v]) => `
+          <div class="stack-row">
+            <div>${k}</div>
+            <div class="bar"><div class="fill ${
+              k==='Delivery' ? 'delivery' :
+              k==='Commission' ? 'growth' :
+              k==='Founder Fees - Base' ? 'founder' : 'infra'
+            }" style="width:${total ? (v/total)*100 : 0}%"></div></div>
+            <div class="right">${fmtPct(total ? v/total : 0)}</div>
+          </div>
+        `).join('');
+        return `
+          <div class="founder-card">
+            <h4>${name}</h4>
+            <div class="muted">Total payout</div>
+            <div class="big-total">${fmtMoney(total)}</div>
+            <div class="founder-card-stack">${stack}</div>
+            <div class="founder-card-breakdown">${rows}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderFounderProjectTable(projects) {
+      if (!projects.length) {
+        els.founderProjectTable.innerHTML = '<tr><td colspan="5"><div class="empty">No projects in this period.</div></td></tr>';
+        return;
+      }
+      els.founderProjectTable.innerHTML = projects.map(p => {
+        const total = p.founder_totals.Julian + p.founder_totals.Robby + p.founder_totals.Stephen;
+        return `
+          <tr>
+            <td><strong>${p.project}</strong></td>
+            <td class="right">${fmtMoney(p.founder_totals.Julian)}</td>
+            <td class="right">${fmtMoney(p.founder_totals.Robby)}</td>
+            <td class="right">${fmtMoney(p.founder_totals.Stephen)}</td>
+            <td class="right">${fmtMoney(total)}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAll() {
+      const projects = filteredProjects();
+      renderKPIs(projects);
+      renderTimeline(projects);
+      renderBucketMix(projects);
+      renderProjectTable(projects);
+      renderFounderTotals(projects);
+      renderFounderMix(projects);
+      renderFounderCards(projects);
+      renderFounderProjectTable(projects);
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const page = btn.dataset.page;
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+      });
+    });
+
+    [els.timeframe, els.period, els.startDate, els.endDate, els.fxRate].forEach(el => {
+      el.addEventListener('input', () => {
+        if (el === els.timeframe) refreshPeriodOptions();
+        renderAll();
+      });
+      el.addEventListener('change', () => {
+        if (el === els.timeframe) refreshPeriodOptions();
+        renderAll();
+      });
+    });
+
+    const starts = rawProjects.map(p => p.start).sort();
+    const ends = rawProjects.map(p => p.end).sort();
+    els.startDate.value = starts[0] || '';
+    els.endDate.value = ends[ends.length - 1] || '';
+    refreshPeriodOptions();
+    window.addEventListener('tf-currency-change', renderAll);
+    renderAll();
+  
+    </script>
+ </body>
+</html>

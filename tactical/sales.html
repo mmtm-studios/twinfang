@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Twinfang — Sales</title>
+<meta content="Twinfang sales overview covering commissions, business development, and future pipeline tooling." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="./theme-init.js"></script>
+<link href="./design-tokens.css" rel="stylesheet"/>
+<link href="./layout.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-shell">
+<header class="site-header">
+<div class="site-header-inner">
+<a aria-label="Twinfang home" class="brand-lockup" href="./index.html">
+<span class="nav-mark">TF</span>
+<span class="brand-copy"><span class="brand-line">Twinfang Dashboard</span></span>
+</a>
+<nav aria-label="Primary" class="nav nav--sub">
+<div class="nav-links nav-links--primary"><a class="nav-link" href="./index.html">Home</a><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./art.html">Art</a><div aria-label="Art submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./recruitment.html">Hiring Dashboard</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./production.html">Production</a><div aria-label="Production submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./production-active.html">Active Projects</a><a class="nav-dropdown-link" href="./production-closed.html">Closed Projects</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link is-active nav-link--dropdown" href="./sales.html">Sales</a><div aria-label="Sales submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./commission.html">Commission</a></div></div><div class="nav-dropdown"><a aria-haspopup="true" class="nav-link nav-link--dropdown" href="./finance.html">Finance</a><div aria-label="Finance submenu" class="nav-dropdown-menu"><a class="nav-dropdown-link" href="./founder-payouts.html">Founder Payouts</a><a class="nav-dropdown-link" href="./payout-logic.html">Payout Logic</a></div></div><a class="nav-link" href="./admin.html">Admin</a></div>
+<div class="nav-utility">
+<div aria-label="Theme display preference" class="theme-toggle">
+<span class="theme-toggle-label">Theme</span>
+<div aria-label="Theme selector" class="segmented" role="tablist">
+<button aria-pressed="false" class="segmented-item" data-theme-option="light" type="button">Light</button>
+<button aria-pressed="false" class="segmented-item" data-theme-option="dark" type="button">Dark</button>
+</div>
+</div>
+<div aria-label="Currency display preference" class="currency-toggle">
+<span class="currency-toggle-label">Currency</span>
+<div aria-label="Currency selector" class="segmented" role="tablist">
+<button aria-pressed="true" class="segmented-item is-active" data-currency-option="USD" type="button">USD</button>
+<button aria-pressed="false" class="segmented-item" data-currency-option="SGD" type="button">SGD</button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="page-wrap page-stack">
+<header class="page-header hero-card">
+<span class="page-eyebrow">Sales</span>
+<h1 class="page-title">Sales overview</h1>
+<p class="page-subtitle">Use this section for revenue acquisition, commission treatment, and future business development or pipeline views.</p>
+<div class="page-meta">
+<span>Purpose: sales section overview</span>
+<span>Audience: founders and commercial leads</span>
+<span>Default display currency: <strong data-currency-display="">USD</strong></span>
+</div>
+</header>
+<section class="grid grid-12">
+<article class="card span-8">
+<div class="card-header"><div><h2 class="card-title">What this section covers</h2><p class="card-subtitle">Sales should own acquisition and commission-related material.</p></div></div>
+<div class="card-body">
+<ul class="menu-list">
+<li><strong>Commission</strong> explains sales origination reward and its relationship to the wider money model.</li>
+<li>Future pages can include pipeline, client status, and business development tracking.</li>
+<li>This overview gives Sales a proper top-level home instead of hiding it inside Finance.</li>
+</ul>
+</div>
+</article>
+<article class="card span-4 card--callout">
+<div class="card-header"><div><h2 class="card-title">Current build status</h2><p class="card-subtitle">Commission is the current working child page.</p></div></div>
+<div class="card-body stack-12">
+<p class="m-0 soft">The nav now treats commission as a Sales page while Finance remains focused on fund flow and payout logic.</p>
+<div class="card-footer"><a class="button button--secondary" href="./commission.html">Open Commission</a></div>
+</div>
+</article>
+</section>
+</main>
+</div>
+<footer class="site-footer">
+<div class="site-footer-inner">
+<p class="site-footer-copy">Last updated: 9 Apr 2026 · © 2026 Twinfang Studio · Internal working build</p>
+</div>
+</footer>
+<script src="./theme.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
