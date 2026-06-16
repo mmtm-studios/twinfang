@@ -1,5 +1,17 @@
 [
   {
+    "issue": 4,
+    "date": "2026-06-16",
+    "headline": "Consolidation Storms Create Openings for Agile Studios",
+    "lead": "A wave of AAA publisher retrenchment is simultaneously shrinking the outsourcing buyer pool and freeing elite talent, while AI-saturation and new legislation are reshaping the competitive floor beneath independent art studios.",
+    "stats": {
+      "storiesApproved": 56,
+      "sourcesScanned": 56,
+      "sectionsActive": 8
+    },
+    "file": "issue-004.html"
+  },
+  {
     "issue": 3,
     "date": "2026-06-02",
     "headline": "Consolidation Pressure and the AI Art Pipeline Inflection",
