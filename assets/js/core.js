@@ -453,18 +453,22 @@ async function gate1ProceedAll() {
   const approved = Object.values(gate1Decisions).filter(d => d === 'approved').length;
   if (approved === 0) return;
 
-  if (!ghCheckPAT()) return;
+  const payload = {
+    date:      new Date().toISOString(),
+    decisions: gate1Decisions,
+  };
+
+  // No PAT → local flow
+  if (!localStorage.getItem('gh_pat')) {
+    showLocalDraftInstructions(payload);
+    return;
+  }
 
   const btn = document.getElementById('ii-gate1-proceed');
-  const orig = btn.textContent;
-  btn.disabled = true;
+  btn.disabled    = true;
   btn.textContent = 'Saving…';
 
   try {
-    const payload = {
-      date:      new Date().toISOString(),
-      decisions: gate1Decisions,
-    };
     await ghCommitFile(
       'data/gate1-decisions.json',
       JSON.stringify(payload, null, 2),
@@ -475,7 +479,6 @@ async function gate1ProceedAll() {
     document.getElementById('ii-gate1-status').textContent = 'Draft Generating…';
     document.getElementById('ii-gate1-status').className   = 'ii-gate-status-pill pending';
 
-    // Swap button for progress bar
     btn.style.display = 'none';
     const progressWrap = document.getElementById('ii-draft-progress');
     const progressBar  = document.getElementById('ii-draft-progress-bar');
@@ -484,7 +487,6 @@ async function gate1ProceedAll() {
     const gate2Link    = document.getElementById('ii-gate2-link');
     progressWrap.style.display = 'block';
 
-    // Animate over 3 minutes to 95%, then snap to 100% and reveal Gate 2 link
     const DURATION = 180;
     let elapsed = 0;
     const tick = setInterval(() => {
@@ -509,8 +511,96 @@ async function gate1ProceedAll() {
     btn.textContent = 'Error — retry';
     btn.disabled    = false;
     console.error(err);
-    alert('GitHub API error: ' + err.message + '\n\nCheck your PAT in Settings.');
+    if (err.message && err.message.startsWith('401')) {
+      localStorage.removeItem('gh_pat');
+      showLocalDraftInstructions(payload);
+    } else {
+      alert('GitHub API error: ' + err.message + '\n\nCheck your PAT in Admin settings.');
+    }
   }
+}
+
+function showLocalDraftInstructions(payload) {
+  const existing = document.getElementById('ii-local-draft-overlay');
+  if (existing) existing.remove();
+
+  // Download the decisions JSON so the user can save it locally if needed
+  try {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'gate1-decisions.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+  } catch (e) { /* download not critical */ }
+
+  const overlay = document.createElement('div');
+  overlay.id = 'ii-local-draft-overlay';
+  overlay.style.cssText = [
+    'position:fixed', 'inset:0', 'background:rgba(0,0,0,0.7)', 'z-index:9999',
+    'display:flex', 'align-items:center', 'justify-content:center', 'padding:24px'
+  ].join(';');
+
+  const cmd = (text) =>
+    '<div onclick="navigator.clipboard.writeText(\'' + text + '\');' +
+    'this.style.borderColor=\'#10B981\';this.querySelector(\'em\').textContent=\'Copied!\';' +
+    'setTimeout(()=>{this.style.borderColor=\'\';this.querySelector(\'em\').textContent=\'Click to copy\'},1500)" ' +
+    'style="background:var(--bg2);border:1px solid var(--bd);border-radius:3px;padding:10px 14px;' +
+    'font-family:monospace;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-top:6px">' +
+    '<code style="color:var(--tx)">' + text + '</code>' +
+    '<em style="font-size:11px;color:var(--tx3);font-style:normal">Click to copy</em></div>';
+
+  overlay.innerHTML =
+    '<div style="background:var(--bg);border:1px solid var(--bd);border-radius:4px;' +
+    'max-width:540px;width:100%;padding:32px;position:relative">' +
+
+    '<button onclick="document.getElementById(\'ii-local-draft-overlay\').remove()" ' +
+    'style="position:absolute;top:12px;right:16px;background:none;border:none;' +
+    'font-size:20px;cursor:pointer;color:var(--tx3);line-height:1">&times;</button>' +
+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;' +
+    'color:var(--red);margin-bottom:8px">GitHub Token Required</div>' +
+    '<div style="font-size:18px;font-weight:700;color:var(--tx);margin-bottom:12px">' +
+    'No valid GitHub token found</div>' +
+    '<p style="font-size:14px;color:var(--tx2);line-height:1.6;margin-bottom:24px">' +
+    'A GitHub Personal Access Token with <code>repo</code> and <code>workflow</code> scopes ' +
+    'is required to commit your decisions and trigger the draft workflow. ' +
+    'Set one up in Admin settings — it takes about 2 minutes.</p>' +
+
+    '<div style="display:flex;gap:10px;margin-bottom:28px">' +
+    '<a href="admin.html" style="flex:1;text-align:center;font-size:13px;font-weight:600;' +
+    'padding:11px 16px;background:var(--red);color:#fff;border-radius:2px;text-decoration:none">' +
+    'Set up GitHub token in Admin →</a>' +
+    '</div>' +
+
+    '<details style="border-top:1px solid var(--bd);padding-top:20px">' +
+    '<summary style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;' +
+    'color:var(--tx3);cursor:pointer;list-style:none;margin-bottom:0">&#9656; Local development alternative</summary>' +
+    '<div style="margin-top:16px;display:flex;flex-direction:column;gap:14px">' +
+
+    '<p style="font-size:12px;color:var(--tx2);line-height:1.5;margin:0">' +
+    'Your decisions were downloaded as <code>gate1-decisions.json</code>. ' +
+    'Save it to <code>data/</code>, then run:</p>' +
+    cmd('py tools/generate_draft.py') +
+    '<p style="font-size:11px;color:var(--tx3);margin:0">Calls Claude to draft each section locally (~2 min). ' +
+    'Prompts for <code>ANTHROPIC_API_KEY</code> on first run.</p>' +
+
+    '</div></details>' +
+
+    '<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:24px">' +
+    '<button onclick="document.getElementById(\'ii-local-draft-overlay\').remove()" ' +
+    'style="font-size:12px;padding:8px 16px;background:none;border:1px solid var(--bd);' +
+    'border-radius:2px;cursor:pointer;color:var(--tx)">Close</button>' +
+    '<a href="gate-2.html" ' +
+    'style="font-size:12px;padding:8px 16px;background:none;color:var(--tx2);border:1px solid var(--bd);' +
+    'border-radius:2px;text-decoration:none;display:inline-flex;align-items:center">' +
+    'Skip to Gate 2 →</a>' +
+    '</div></div>';
+
+  document.body.appendChild(overlay);
 }
 
 function sectionApproveAll(section) {
@@ -794,11 +884,17 @@ async function gate2Publish() {
     }, 1000);
 
   } catch (err) {
-    btn.textContent  = 'Error — retry';
-    btn.disabled     = false;
+    btn.textContent   = 'Error — retry';
+    btn.disabled      = false;
     btn.style.display = '';
     console.error(err);
-    alert('GitHub API error: ' + err.message + '\n\nCheck your PAT in Settings.');
+    // 401 = bad/missing PAT — clear it and show local publish instructions
+    if (err.message && err.message.startsWith('401')) {
+      localStorage.removeItem('gh_pat');
+      showLocalPublishInstructions();
+    } else {
+      alert('GitHub API error: ' + err.message + '\n\nCheck your PAT in Admin settings.');
+    }
   }
 }
 
@@ -1021,8 +1117,65 @@ async function ghTriggerWorkflow(workflow) {
 
 function ghCheckPAT() {
   if (localStorage.getItem('gh_pat')) return true;
-  openSettings();
+  showLocalPublishInstructions();
   return false;
+}
+
+function showLocalPublishInstructions() {
+  const existing = document.getElementById('ii-local-publish-overlay');
+  if (existing) existing.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'ii-local-publish-overlay';
+  overlay.style.cssText = `
+    position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;
+    display:flex;align-items:center;justify-content:center;padding:24px
+  `;
+
+  overlay.innerHTML = `
+    <div style="background:var(--bg);border:1px solid var(--bd);border-radius:4px;
+                max-width:520px;width:100%;padding:32px;position:relative">
+      <button onclick="document.getElementById('ii-local-publish-overlay').remove()"
+              style="position:absolute;top:12px;right:16px;background:none;border:none;
+                     font-size:20px;cursor:pointer;color:var(--tx3);line-height:1">×</button>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+                  color:var(--red);margin-bottom:8px">Local Publishing</div>
+      <div style="font-size:18px;font-weight:700;color:var(--tx);margin-bottom:12px">
+        Run the publish script
+      </div>
+      <p style="font-size:14px;color:var(--tx2);line-height:1.6;margin-bottom:20px">
+        No GitHub token is configured. To publish locally, run this command
+        in the VS&nbsp;Code terminal from the <strong>industry-insights/</strong> folder:
+      </p>
+      <div id="ii-lp-cmd" onclick="
+        navigator.clipboard.writeText('py tools/publish_local.py');
+        this.style.borderColor='#10B981';
+        this.querySelector('span').textContent='Copied!';
+        setTimeout(()=>{this.style.borderColor='';this.querySelector('span').textContent='Click to copy'},1500)
+      " style="background:var(--bg2);border:1px solid var(--bd);border-radius:3px;
+               padding:12px 16px;font-family:monospace;font-size:14px;cursor:pointer;
+               display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <code style="color:var(--tx)">py tools/publish_local.py</code>
+        <span style="font-size:11px;color:var(--tx3)">Click to copy</span>
+      </div>
+      <p style="font-size:11px;color:var(--tx3);margin-bottom:20px">
+        If <code>py</code> isn't recognised, try <code>python tools/publish_local.py</code>.
+        Then refresh the browser — the new issue will appear on the homepage.
+      </p>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <a href="admin.html" style="font-size:12px;color:var(--red);text-decoration:none;
+           padding:8px 16px;border:1px solid var(--red);border-radius:2px">
+          Set up GitHub token →
+        </a>
+        <button onclick="document.getElementById('ii-local-publish-overlay').remove()"
+                style="font-size:12px;padding:8px 16px;background:var(--tx);color:var(--bg);
+                       border:none;border-radius:2px;cursor:pointer">
+          Got it
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
 }
 
 
@@ -1049,8 +1202,4 @@ function initSettings() {
   navRight.insertBefore(gearLink, navRight.firstChild);
 }
 
-function ghCheckPAT() {
-  if (localStorage.getItem('gh_pat')) return true;
-  alert('No GitHub token found. Visit the Admin page to set your Personal Access Token.');
-  return false;
-}
+// ghCheckPAT defined above near showLocalPublishInstructions
