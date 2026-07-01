@@ -13,7 +13,12 @@ const RSSParser  = require('rss-parser');
 const nodemailer = require('nodemailer');
 const Anthropic  = require('@anthropic-ai/sdk');
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const ANTHROPIC_TIMEOUT_MS = Number(process.env.ANTHROPIC_TIMEOUT_MS || 90000);
+const client = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  timeout: ANTHROPIC_TIMEOUT_MS,
+  maxRetries: 0,
+});
 const parser = new RSSParser({ timeout: 10000 });
 const SCORE_RETRIES = Number(process.env.SCORE_RETRIES || 3);
 const SCORE_RETRY_DELAY_MS = Number(process.env.SCORE_RETRY_DELAY_MS || 2000);
