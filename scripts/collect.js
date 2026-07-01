@@ -15,6 +15,8 @@ const Anthropic  = require('@anthropic-ai/sdk');
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const parser = new RSSParser({ timeout: 10000 });
+const SCORE_RETRIES = Number(process.env.SCORE_RETRIES || 3);
+const SCORE_RETRY_DELAY_MS = Number(process.env.SCORE_RETRY_DELAY_MS || 2000);
 
 // ── RSS sources (loaded from data/sources.json) ───────────────────────────
 const SOURCES = JSON.parse(
@@ -31,6 +33,10 @@ function cutoffDate() {
   const d = new Date();
   d.setDate(d.getDate() - 16); // 16-day window catches any drift
   return d;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function fetchFeed(source) {
@@ -71,19 +77,26 @@ Tags: choose from games, art, ai, tools, business, ttrpg, film, people
 Articles:
 ${listText}`;
 
-  try {
-    const response = await client.messages.create({
-      model:      'claude-haiku-4-5-20251001',
-      max_tokens: 2048,
-      messages:   [{ role: 'user', content: prompt }],
-    });
-    const text  = response.content[0].text;
-    const match = text.match(/\[[\s\S]*\]/);
-    return match ? JSON.parse(match[0]) : [];
-  } catch (err) {
-    console.warn(`  ⚠ Scoring batch failed: ${err.message}`);
-    return [];
+  let lastErr;
+  for (let attempt = 1; attempt <= SCORE_RETRIES; attempt += 1) {
+    try {
+      const response = await client.messages.create({
+        model:      'claude-haiku-4-5-20251001',
+        max_tokens: 2048,
+        messages:   [{ role: 'user', content: prompt }],
+      });
+      const text  = response.content[0].text;
+      const match = text.match(/\[[\s\S]*\]/);
+      if (!match) throw new Error('Claude response did not include a JSON array');
+      return JSON.parse(match[0]);
+    } catch (err) {
+      lastErr = err;
+      console.warn(`  ⚠ Scoring batch attempt ${attempt}/${SCORE_RETRIES} failed: ${err.message}`);
+      if (attempt < SCORE_RETRIES) await sleep(SCORE_RETRY_DELAY_MS * attempt);
+    }
   }
+
+  throw lastErr;
 }
 
 async function sendEmail(stories, issueNum) {
@@ -151,6 +164,10 @@ async function sendEmail(stories, issueNum) {
 async function main() {
   console.log('── Twinfang Industry Insights: collect ──────────────────');
 
+  if (!process.env.ANTHROPIC_API_KEY) {
+    throw new Error('ANTHROPIC_API_KEY is required for story scoring');
+  }
+
   const metaPath    = path.join(__dirname, '..', 'data', 'meta.json');
   const storiesPath = path.join(__dirname, '..', 'data', 'stories.json');
   const meta        = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
@@ -185,6 +202,7 @@ async function main() {
     results.forEach(r => {
       if (r.score >= 5) {
         const article = batch[r.index];
+        if (!article) return;
         scored.push({
           id:       slugify(article.headline).slice(0, 40) + '-' + Date.now().toString(36),
           headline: article.headline,
@@ -213,6 +231,10 @@ async function main() {
     const si = SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section);
     return si !== 0 ? si : b.score - a.score;
   });
+
+  if (recent.length > 0 && scored.length === 0) {
+    throw new Error(`Scoring kept 0 of ${recent.length} recent articles; refusing to overwrite data/stories.json with an empty queue`);
+  }
 
   console.log(`\n[3/4] Writing ${scored.length} stories to data/stories.json…`);
   fs.writeFileSync(storiesPath, JSON.stringify(scored, null, 2));
