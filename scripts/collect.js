@@ -13,15 +13,16 @@ const RSSParser  = require('rss-parser');
 const nodemailer = require('nodemailer');
 const Anthropic  = require('@anthropic-ai/sdk');
 
-const ANTHROPIC_TIMEOUT_MS = Number(process.env.ANTHROPIC_TIMEOUT_MS || 90000);
+const ANTHROPIC_TIMEOUT_MS = Number(process.env.ANTHROPIC_TIMEOUT_MS || 20000);
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
   timeout: ANTHROPIC_TIMEOUT_MS,
   maxRetries: 0,
 });
 const parser = new RSSParser({ timeout: 10000 });
-const SCORE_RETRIES = Number(process.env.SCORE_RETRIES || 3);
+const SCORE_RETRIES = Number(process.env.SCORE_RETRIES || 1);
 const SCORE_RETRY_DELAY_MS = Number(process.env.SCORE_RETRY_DELAY_MS || 2000);
+const MAX_STORIES_PER_RUN = Number(process.env.MAX_STORIES_PER_RUN || 60);
 
 // ── RSS sources (loaded from data/sources.json) ───────────────────────────
 const SOURCES = JSON.parse(
@@ -42,6 +43,54 @@ function cutoffDate() {
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function stripHtml(str) {
+  return String(str || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function fallbackScoreBatch(articles) {
+  const sectionTags = {
+    'Studio Moves': ['games', 'business'],
+    'People on the Move': ['people', 'business'],
+    'The Art Pipeline': ['art', 'tools'],
+    'AI & The Craft': ['ai', 'tools'],
+    "Who's Buying What": ['business'],
+    'On the Shelf': ['games'],
+    'The Field': ['business'],
+    'TTRPG Industry': ['ttrpg', 'art'],
+  };
+  const weightedTerms = [
+    [/acqui|merger|funding|investment|revenue|layoff|closure|shutter|union|lawsuit|publisher|studio|market/i, 2, 'business'],
+    [/unreal|unity|blender|maya|houdini|pipeline|render|animation|asset|tool|engine|course/i, 2, 'tools'],
+    [/\bAI\b|artificial intelligence|generative|model|training|deepfake|agent/i, 2, 'ai'],
+    [/ttrpg|tabletop|dungeons|dragon|paizo|kickstarter|rpg/i, 2, 'ttrpg'],
+    [/artist|art|cinematic|film|animation|concept|visual/i, 1, 'art'],
+    [/director|ceo|founder|head|lead|executive|hire|resign/i, 1, 'people'],
+    [/game|gaming|xbox|playstation|nintendo|steam|mobile/i, 1, 'games'],
+  ];
+
+  return articles.map((article, index) => {
+    const text = `${article.headline} ${article.rawDesc} ${article.section}`;
+    const tags = new Set(sectionTags[article.section] || []);
+    let score = article.section === 'TTRPG Industry' || article.section === 'The Art Pipeline' ? 5 : 4;
+    weightedTerms.forEach(([pattern, weight, tag]) => {
+      if (pattern.test(text)) {
+        score += weight;
+        tags.add(tag);
+      }
+    });
+    const cleanDesc = stripHtml(article.rawDesc);
+    const summary = cleanDesc
+      ? `${cleanDesc.slice(0, 160)}${cleanDesc.length > 160 ? '...' : ''}`
+      : `${article.headline} is relevant to ${article.section}.`;
+    return {
+      index,
+      score: Math.max(1, Math.min(8, score)),
+      summary,
+      tags: Array.from(tags).slice(0, 4),
+    };
+  });
 }
 
 async function fetchFeed(source) {
@@ -101,7 +150,8 @@ ${listText}`;
     }
   }
 
-  throw lastErr;
+  console.warn(`  ⚠ Falling back to local scoring: ${lastErr.message}`);
+  return fallbackScoreBatch(articles);
 }
 
 async function sendEmail(stories, issueNum) {
@@ -236,6 +286,7 @@ async function main() {
     const si = SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section);
     return si !== 0 ? si : b.score - a.score;
   });
+  if (scored.length > MAX_STORIES_PER_RUN) scored.length = MAX_STORIES_PER_RUN;
 
   if (recent.length > 0 && scored.length === 0) {
     throw new Error(`Scoring kept 0 of ${recent.length} recent articles; refusing to overwrite data/stories.json with an empty queue`);
