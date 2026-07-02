@@ -304,6 +304,11 @@
       const totalSec    = (dr.sections || []).length;
       const filledSec   = (dr.sections || []).filter(sec => sec.sources?.length > 0).length;
       const issueNum    = m.nextIssue ? m.nextIssue - 1 : null;
+      const fetched     = m.storiesReviewed || 0;
+      const queued      = s.length;
+      const collectNote = fetched > 0 && queued === 0
+        ? '<div class="ii-pipeline-stat" style="color:var(--red)"><strong>Scoring failed</strong> no queue written</div>'
+        : '';
 
       const fmtDate = iso => iso
         ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -317,10 +322,12 @@
             <div class="ii-pipeline-name">Collect</div>
             <div class="ii-pipeline-stats">
               <div class="ii-pipeline-stat"><strong>${m.sourcesMonitored || 29}</strong> sources monitored</div>
-              <div class="ii-pipeline-stat"><strong>${m.storiesReviewed || s.length || '—'}</strong> articles scored</div>
+              <div class="ii-pipeline-stat"><strong>${fetched || queued || '—'}</strong> articles fetched</div>
+              <div class="ii-pipeline-stat"><strong>${queued}</strong> stories queued</div>
+              ${collectNote}
             </div>
             <div class="ii-pipeline-date">Last run: ${fmtDate(m.lastCollected)}</div>
-            <a class="ii-btn" href="gate-1.html">Open Gate 1 →</a>
+            <a class="ii-btn" href="gate-1.html">${queued > 0 ? 'Open Gate 1' : 'View Gate 1'} →</a>
           </div>
 
           <div class="ii-pipeline-arrow">›</div>
@@ -329,11 +336,11 @@
             <div class="ii-pipeline-num">02</div>
             <div class="ii-pipeline-name">Gate 1</div>
             <div class="ii-pipeline-stats">
-              <div class="ii-pipeline-stat"><strong>${s.length}</strong> stories available</div>
+              <div class="ii-pipeline-stat"><strong>${queued}</strong> stories available</div>
               <div class="ii-pipeline-stat"><strong>${approved}</strong> approved</div>
             </div>
             <div class="ii-pipeline-date">&nbsp;</div>
-            <a class="ii-btn" href="gate-1.html">Review Stories →</a>
+            <a class="ii-btn" href="gate-1.html">${queued > 0 ? 'Review Stories' : 'No Stories'} →</a>
           </div>
 
           <div class="ii-pipeline-arrow">›</div>

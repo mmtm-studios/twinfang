@@ -360,21 +360,42 @@ async function loadGate1() {
   const list = document.getElementById('ii-story-list');
   if (!list) return;
 
+  let gate1Meta = {};
   try {
-    const res = await fetch('data/stories.json');
-    if (!res.ok) throw new Error();
-    gate1Stories = await res.json();
+    const [storiesRes, metaRes] = await Promise.allSettled([
+      fetch('data/stories.json'),
+      fetch('data/meta.json'),
+    ]);
+    if (storiesRes.status === 'fulfilled' && storiesRes.value.ok) {
+      gate1Stories = await storiesRes.value.json();
+    }
+    if (metaRes.status === 'fulfilled' && metaRes.value.ok) {
+      gate1Meta = await metaRes.value.json();
+    }
   } catch (e) {
     gate1Stories = [];
   }
 
   if (gate1Stories.length === 0) {
+    const fetched = gate1Meta.storiesReviewed || 0;
+    const hasRecentCollection = Boolean(gate1Meta.lastCollected && fetched > 0);
+    const emptyCopy = hasRecentCollection
+      ? {
+          body: `The last collection fetched ${fetched} articles, but scoring did not produce a story queue.`,
+          hint: 'Scoring workflow needs attention',
+        }
+      : {
+          body: 'Run the collection workflow to populate stories for review.',
+          hint: 'Waiting for automation run',
+        };
     list.innerHTML = `<div class="ii-empty">
       <div class="ii-empty-mark"></div>
       <h3>No stories queued</h3>
-      <p>Run the collection workflow to populate stories for review.</p>
-      <span class="ii-empty-hint">Waiting for automation run</span>
+      <p>${emptyCopy.body}</p>
+      <span class="ii-empty-hint">${emptyCopy.hint}</span>
     </div>`;
+    const tally = document.getElementById('ii-gate1-tally');
+    if (tally) tally.textContent = '0 stories queued';
     return;
   }
 
