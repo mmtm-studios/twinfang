@@ -1,5 +1,22 @@
 [
   {
+    "issue": 10,
+    "collectionId": "collection-2026-09-16T03-33-43-971Z-9d3cf5b5-c74d-43d5-aa92-96f1af0ed0f3",
+    "collectionRange": {
+      "start": "2026-08-31",
+      "end": "2026-09-16"
+    },
+    "date": "2026-09-16",
+    "headline": "Consolidation Tightens While Human Craft Gains Premium",
+    "lead": "A wave of M&A, studio closures, and AI adoption is reshaping who survives and who gets acquired, but a countercurrent of publisher deals and anti-AI positioning signals real commercial demand for what Twinfang does.",
+    "stats": {
+      "storiesApproved": 42,
+      "sourcesScanned": 42,
+      "sectionsActive": 8
+    },
+    "file": "issue-010.html"
+  },
+  {
     "issue": 9,
     "superseded": true,
     "supersededNotice": "Superseded: this issue reused an expired collection and should not be relied on as a current briefing.",
