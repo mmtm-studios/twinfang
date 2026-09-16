@@ -12,6 +12,7 @@ const path       = require('path');
 const RSSParser  = require('rss-parser');
 const nodemailer = require('nodemailer');
 const Anthropic  = require('@anthropic-ai/sdk');
+const { createCollectionMetadata } = require('./lib/collection');
 
 const ANTHROPIC_TIMEOUT_MS = Number(process.env.ANTHROPIC_TIMEOUT_MS || 20000);
 const client = new Anthropic({
@@ -296,12 +297,17 @@ async function main() {
   fs.writeFileSync(storiesPath, JSON.stringify(scored, null, 2));
 
   // Update meta
-  meta.lastCollected = new Date().toISOString();
+  const collection = createCollectionMetadata(new Date(), cutoff);
+  Object.assign(meta, collection, { lastCollected: collection.collectedAt });
   fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
 
   // 4. Send email
   console.log('\n[4/4] Sending notification email…');
-  await sendEmail(scored, meta.nextIssue);
+  try {
+    await sendEmail(scored, meta.nextIssue);
+  } catch (err) {
+    console.warn(`  ⚠ Notification email failed (collection remains valid): ${err.message}`);
+  }
 
   console.log('\n── Done ─────────────────────────────────────────────────');
   const bySec = {};

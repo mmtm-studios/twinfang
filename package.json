@@ -4,6 +4,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
+    "test": "node --test",
     "collect": "node scripts/collect.js",
     "draft": "node scripts/draft.js",
     "publish": "node scripts/publish.js"

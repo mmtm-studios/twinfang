@@ -16,7 +16,7 @@ or just run the script and it will prompt you once.
 
 import json, os, sys, re
 from urllib import request as urequest, error as uerror
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 SCRIPT_DIR     = os.path.dirname(os.path.abspath(__file__))
 ROOT           = os.path.dirname(SCRIPT_DIR)
@@ -233,6 +233,18 @@ def main():
     if os.path.exists(META_FILE):
         with open(META_FILE, 'r', encoding='utf-8') as f:
             meta = json.load(f)
+    collection_id = decisions_data.get('collectionId')
+    if not collection_id or collection_id != meta.get('collectionId'):
+        print('ERROR: Gate 1 decisions do not belong to the current collection.')
+        sys.exit(1)
+    try:
+        collected_at = datetime.fromisoformat(meta['collectedAt'].replace('Z', '+00:00'))
+    except (KeyError, ValueError):
+        print('ERROR: Collection metadata is missing or invalid.')
+        sys.exit(1)
+    if datetime.now(timezone.utc) - collected_at > timedelta(days=18):
+        print('ERROR: Collection is stale. Run collection again before drafting.')
+        sys.exit(1)
     issue_num  = meta.get('nextIssue', 3)
     issue_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
 
@@ -295,6 +307,9 @@ def main():
     # Write draft.json
     draft = {
         'generationId': generation_id,
+        'collectionId': collection_id,
+        'collectionRange': decisions_data.get('collectionRange'),
+        'collectedAt': decisions_data.get('collectedAt'),
         'decisionsDate': decisions_data.get('date'),
         'generatedAt': datetime.now(timezone.utc).isoformat(),
         'issue':    issue_num,

@@ -8,15 +8,24 @@
 
 const fs   = require('fs');
 const path = require('path');
+const { collectionIsStale, sameCollection } = require('./lib/collection');
 
 const ROOT  = path.join(__dirname, '..');
 const draft = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'draft.json'), 'utf8'));
 const meta  = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'meta.json'),  'utf8'));
 const decisions = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'gate1-decisions.json'), 'utf8'));
 const requestedGeneration = process.env.GENERATION_ID;
+const requestedCollection = process.env.COLLECTION_ID;
 
 if (!requestedGeneration || draft.generationId !== requestedGeneration || decisions.generationId !== requestedGeneration) {
   throw new Error('Refusing to publish: draft, Gate 1 decisions, and requested generation do not match.');
+}
+if (!requestedCollection || requestedCollection !== draft.collectionId ||
+    !sameCollection(draft, decisions, meta)) {
+  throw new Error('Refusing to publish: draft, Gate 1 decisions, and current collection do not match.');
+}
+if (collectionIsStale(meta)) {
+  throw new Error('Refusing to publish: the collection is stale. Run collection and review again first.');
 }
 if (draft.issue !== meta.nextIssue) {
   throw new Error(`Refusing to publish: draft issue ${draft.issue} is not the next issue (${meta.nextIssue}).`);
@@ -178,7 +187,7 @@ const gapPanelHTML = `
 
 // Full issue content
 const issueContent = `
-      <div class="ii-issue-header">
+      <div class="ii-issue-header" data-collection-id="${draft.collectionId}" data-collection-start="${draft.collectionRange?.start || ''}" data-collection-end="${draft.collectionRange?.end || ''}">
         <div class="ii-issue-kicker">
           <span class="ii-issue-num-badge">Issue ${String(draft.issue).padStart(3, '0')}</span>
           <span class="ii-issue-date-badge">${formatDate(draft.date)}</span>
@@ -215,6 +224,8 @@ if (fs.existsSync(archivePath)) {
 archive = archive.filter(a => a.issue !== draft.issue);
 archive.unshift({
   issue:    draft.issue,
+  collectionId: draft.collectionId,
+  collectionRange: draft.collectionRange,
   date:     draft.date,
   headline: draft.headline,
   lead:     draft.lead || '',

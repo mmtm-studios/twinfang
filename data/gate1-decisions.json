@@ -1,5 +1,11 @@
 {
   "generationId": "e8c6750a-d3c1-437c-90f8-e8bb1dab7c37",
+  "collectionId": "legacy-collection-2026-07-02",
+  "collectionRange": {
+    "start": "2026-06-16",
+    "end": "2026-07-02"
+  },
+  "collectedAt": "2026-07-02T02:08:01.291Z",
   "date": "2026-09-16T03:12:57.435Z",
   "decisions": {
     "godot-confirms-it-tolerates-some-ai-assi-mr2v5vp8": "approved",

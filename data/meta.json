@@ -1,6 +1,12 @@
 {
   "nextIssue": 10,
   "lastCollected": "2026-07-02T02:08:01.291Z",
+  "collectionId": "legacy-collection-2026-07-02",
+  "collectionRange": {
+    "start": "2026-06-16",
+    "end": "2026-07-02"
+  },
+  "collectedAt": "2026-07-02T02:08:01.291Z",
   "lastPublished": "2026-09-03T02:16:52.989Z",
   "storiesReviewed": 186,
   "sourcesMonitored": 29

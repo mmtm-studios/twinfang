@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json, re, os, sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 ROOT         = os.path.dirname(SCRIPT_DIR)
@@ -179,6 +179,8 @@ def update_archive(draft):
     if not already:
         entry = {
             'issue':    issue_num,
+            'collectionId': draft.get('collectionId'),
+            'collectionRange': draft.get('collectionRange'),
             'date':     draft.get('date', ''),
             'headline': draft.get('headline') or draft.get('title') or '',
             'lead':     draft.get('lead', ''),
@@ -245,6 +247,17 @@ def main():
             meta = json.load(f)
     if draft.get('issue') != meta.get('nextIssue'):
         print('ERROR: Draft issue is not the next issue. Refusing to publish.')
+        sys.exit(1)
+    if not draft.get('collectionId') or draft.get('collectionId') != decisions.get('collectionId') or draft.get('collectionId') != meta.get('collectionId'):
+        print('ERROR: Draft, Gate 1 decisions, and collection do not match. Refusing to publish.')
+        sys.exit(1)
+    try:
+        collected_at = datetime.fromisoformat(meta['collectedAt'].replace('Z', '+00:00'))
+    except (KeyError, ValueError):
+        print('ERROR: Collection metadata is missing or invalid. Refusing to publish.')
+        sys.exit(1)
+    if datetime.now(timezone.utc) - collected_at > timedelta(days=18):
+        print('ERROR: Collection is stale. Refusing to publish.')
         sys.exit(1)
 
     issue_num = draft.get('issue', 1)

@@ -1,6 +1,8 @@
 [
   {
     "issue": 9,
+    "superseded": true,
+    "supersededNotice": "Superseded: this issue reused an expired collection and should not be relied on as a current briefing.",
     "date": "2026-09-03",
     "headline": "Consolidation Pressure Creates Openings for Lean Studios",
     "lead": "As major publishers retrench and AI governance fractures the industry, nimble art-focused studios with clear positioning stand to capture displaced talent, skittish clients, and underserved platform aesthetics.",
@@ -13,6 +15,8 @@
   },
   {
     "issue": 8,
+    "superseded": true,
+    "supersededNotice": "Superseded: this issue reused an expired collection and should not be relied on as a current briefing.",
     "date": "2026-08-16",
     "headline": "Consolidation Pressure Opens Doors for Nimble Studios",
     "lead": "A wave of publisher retrenchment, AI governance uncertainty, and indie funding innovation is simultaneously squeezing large studios and creating exploitable whitespace for focused art and animation specialists like Twinfang.",
@@ -25,6 +29,8 @@
   },
   {
     "issue": 7,
+    "superseded": true,
+    "supersededNotice": "Superseded: this issue reused an expired collection and should not be relied on as a current briefing.",
     "date": "2026-08-04",
     "headline": "Consolidation Fractures Open Doors for Nimble Studios",
     "lead": "As major publishers shed studios and AI governance creates new fault lines, art-specialist studios with clear creative identities are positioned to capture displaced talent, nervous clients, and fresh funding.",
@@ -37,6 +43,8 @@
   },
   {
     "issue": 6,
+    "superseded": true,
+    "supersededNotice": "Superseded: this issue reused an expired collection and should not be relied on as a current briefing.",
     "date": "2026-07-18",
     "headline": "AI Fault Lines and the Indie Leverage Moment",
     "lead": "The industry is fracturing along AI adoption lines while publisher retrenchment simultaneously opens space for lean, art-specialist studios to capture outsourced work and platform-native contracts.",

@@ -7,6 +7,10 @@ on:
         description: Gate 1 generation identifier
         required: true
         type: string
+      collection_id:
+        description: Collection identifier approved at Gate 1
+        required: true
+        type: string
 
 concurrency:
   group: industry-insights-draft
@@ -34,11 +38,12 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GENERATION_ID: ${{ inputs.generation_id }}
+          COLLECTION_ID: ${{ inputs.collection_id }}
 
       - name: Commit draft
         run: |
           git fetch origin main
-          node scripts/verify-generation.js "${{ inputs.generation_id }}" origin/main
+          node scripts/verify-generation.js "${{ inputs.generation_id }}" origin/main "${{ inputs.collection_id }}"
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/draft.json

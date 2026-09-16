@@ -7,6 +7,10 @@ on:
         description: Verified draft generation identifier
         required: true
         type: string
+      collection_id:
+        description: Collection identifier carried by the approved draft
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -31,6 +35,7 @@ jobs:
         run: node scripts/publish.js
         env:
           GENERATION_ID: ${{ inputs.generation_id }}
+          COLLECTION_ID: ${{ inputs.collection_id }}
 
       - name: Commit and push published files
         run: |

@@ -604,6 +604,39 @@ img, svg { display: block; }
   flex-shrink: 0;
 }
 .ii-issue-card:hover .ii-issue-arrow { color: var(--red); }
+.ii-issue-card.superseded { opacity: .72; border-style: dashed; }
+.ii-superseded-label {
+  display: inline-block;
+  margin: 2px 0 8px;
+  padding: 3px 7px;
+  background: var(--red);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.ii-rectification-notice {
+  border: 2px solid var(--red);
+  background: color-mix(in srgb, var(--red) 7%, var(--bg));
+  padding: 20px 24px;
+  margin: 24px 0 32px;
+  color: var(--tx);
+}
+.ii-rectification-notice strong {
+  display: block;
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ii-publication-paused {
+  margin-top: 48px;
+  font-size: var(--f-lg);
+  line-height: 1.6;
+}
+.ii-publication-paused ~ * { display: none !important; }
 
 
 /* ============================================================

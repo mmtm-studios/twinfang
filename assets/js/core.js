@@ -355,6 +355,15 @@ window.calNext = calNext;
    ============================================================ */
 let gate1Stories = [];
 let gate1Decisions = {};
+let gate1Collection = {};
+let gate1CollectionStale = true;
+
+function isCollectionStale(meta, now = Date.now()) {
+  if (!meta || !meta.collectionId || !meta.collectedAt ||
+      !meta.collectionRange || !meta.collectionRange.start || !meta.collectionRange.end) return true;
+  const collectedAt = Date.parse(meta.collectedAt);
+  return !Number.isFinite(collectedAt) || now - collectedAt > 18 * 86400000;
+}
 
 async function loadGate1() {
   const list = document.getElementById('ii-story-list');
@@ -374,6 +383,25 @@ async function loadGate1() {
     }
   } catch (e) {
     gate1Stories = [];
+  }
+
+  gate1Collection = gate1Meta;
+  gate1CollectionStale = isCollectionStale(gate1Meta);
+
+  if (gate1CollectionStale) {
+    list.innerHTML = `<div class="ii-empty ii-blocked-state">
+      <div class="ii-empty-mark"></div>
+      <h3>Collection expired</h3>
+      <p>This queue is not tied to a current collection window. Gate 1 is blocked to prevent another issue being produced from stale stories.</p>
+      <span class="ii-empty-hint">Run a fresh collection before reviewing</span>
+    </div>`;
+    const status = document.getElementById('ii-gate1-status');
+    if (status) { status.textContent = 'Collection Stale'; status.className = 'ii-gate-status-pill'; }
+    const tally = document.getElementById('ii-gate1-tally');
+    if (tally) tally.textContent = 'Gate 1 blocked';
+    const btn = document.getElementById('ii-gate1-proceed');
+    if (btn) btn.disabled = true;
+    return;
   }
 
   if (gate1Stories.length === 0) {
@@ -467,10 +495,11 @@ function updateGate1Tally() {
   const el = document.getElementById('ii-gate1-tally');
   if (el) el.innerHTML = `<strong>${approved}</strong> approved &nbsp;·&nbsp; <strong>${killed}</strong> killed &nbsp;·&nbsp; <strong>${pending}</strong> pending`;
   const btn = document.getElementById('ii-gate1-proceed');
-  if (btn) btn.disabled = approved === 0;
+  if (btn) btn.disabled = approved === 0 || gate1CollectionStale;
 }
 
 async function gate1ProceedAll() {
+  if (gate1CollectionStale || !gate1Collection.collectionId) return;
   const approved = Object.values(gate1Decisions).filter(d => d === 'approved').length;
   if (approved === 0) return;
 
@@ -479,6 +508,9 @@ async function gate1ProceedAll() {
     : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
   const payload = {
     generationId,
+    collectionId: gate1Collection.collectionId,
+    collectionRange: gate1Collection.collectionRange,
+    collectedAt: gate1Collection.collectedAt,
     date:      new Date().toISOString(),
     decisions: gate1Decisions,
   };
@@ -501,7 +533,10 @@ async function gate1ProceedAll() {
     );
     btn.textContent = 'Triggering draft…';
     localStorage.setItem('ii-current-generation', generationId);
-    await ghTriggerWorkflow('draft.yml', { generation_id: generationId });
+    await ghTriggerWorkflow('draft.yml', {
+      generation_id: generationId,
+      collection_id: gate1Collection.collectionId,
+    });
     document.getElementById('ii-gate1-status').textContent = 'Draft Generating…';
     document.getElementById('ii-gate1-status').className   = 'ii-gate-status-pill pending';
 
@@ -692,9 +727,17 @@ async function loadGate2() {
       currentDecisions = await decisionsRes.value.json();
   } catch (e) { currentDecisions = {}; }
 
+  let currentMeta = {};
+  try {
+    const metaRes = await fetch('data/meta.json' + cacheBust, { cache: 'no-store' });
+    if (metaRes.ok) currentMeta = await metaRes.json();
+  } catch (e) { currentMeta = {}; }
+
   const expectedGeneration = currentDecisions.generationId;
   gate2GenerationVerified = Boolean(
-    expectedGeneration && gate2Draft.generationId === expectedGeneration
+    expectedGeneration && gate2Draft.generationId === expectedGeneration &&
+    currentMeta.collectionId && currentDecisions.collectionId === currentMeta.collectionId &&
+    gate2Draft.collectionId === currentMeta.collectionId && !isCollectionStale(currentMeta)
   );
 
   if (!gate2GenerationVerified || !gate2Draft.sections || gate2Draft.sections.length === 0) {
@@ -892,7 +935,11 @@ async function gate2Publish() {
   try {
     const decisionsCheck = await fetch(`data/gate1-decisions.json?v=${Date.now()}`, { cache: 'no-store' });
     const latestDecisions = decisionsCheck.ok ? await decisionsCheck.json() : {};
-    if (latestDecisions.generationId !== gate2Draft.generationId) {
+    const metaCheck = await fetch(`data/meta.json?v=${Date.now()}`, { cache: 'no-store' });
+    const latestMeta = metaCheck.ok ? await metaCheck.json() : {};
+    if (latestDecisions.generationId !== gate2Draft.generationId ||
+        latestDecisions.collectionId !== gate2Draft.collectionId ||
+        latestMeta.collectionId !== gate2Draft.collectionId || isCollectionStale(latestMeta)) {
       gate2GenerationVerified = false;
       throw new Error('This draft is no longer current. Return to Gate 2 and wait for the latest draft.');
     }
@@ -911,7 +958,10 @@ async function gate2Publish() {
     );
 
     btn.textContent = 'Triggering publish…';
-    await ghTriggerWorkflow('publish.yml', { generation_id: gate2Draft.generationId });
+    await ghTriggerWorkflow('publish.yml', {
+      generation_id: gate2Draft.generationId,
+      collection_id: gate2Draft.collectionId,
+    });
 
     // Swap button + approve-all for progress bar
     btn.style.display = 'none';
@@ -1093,11 +1143,12 @@ async function loadArchive() {
       const date   = new Date(iss.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
       const teaser = iss.lead ? (iss.lead.length > 150 ? iss.lead.slice(0, 147) + '…' : iss.lead) : '';
       return `
-      <a class="ii-issue-card" href="${iss.file}">
+      <a class="ii-issue-card${iss.superseded ? ' superseded' : ''}" href="${iss.file}">
         <div class="ii-issue-card-meta">
           <div class="ii-issue-badge">Issue ${String(iss.issue).padStart(3, '0')} · ${date}</div>
+          ${iss.superseded ? `<div class="ii-superseded-label">Superseded</div>` : ''}
           <div class="ii-issue-headline">${iss.headline}</div>
-          <div class="ii-issue-teaser">${teaser}</div>
+          <div class="ii-issue-teaser">${iss.supersededNotice || teaser}</div>
         </div>
         <span class="ii-issue-arrow">→</span>
       </a>`;

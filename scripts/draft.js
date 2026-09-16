@@ -10,6 +10,7 @@
 const fs        = require('fs');
 const path      = require('path');
 const Anthropic = require('@anthropic-ai/sdk');
+const { collectionIsStale, sameCollection } = require('./lib/collection');
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -102,9 +103,16 @@ async function main() {
   const stories   = JSON.parse(fs.readFileSync(storiesPath,   'utf8'));
   const meta      = JSON.parse(fs.readFileSync(metaPath,      'utf8'));
   const generationId = process.env.GENERATION_ID;
+  const collectionId = process.env.COLLECTION_ID;
 
   if (!generationId || decisions.generationId !== generationId) {
     throw new Error('Refusing to draft: workflow generation does not match the current Gate 1 decisions.');
+  }
+  if (!collectionId || collectionId !== decisions.collectionId || !sameCollection(decisions, meta)) {
+    throw new Error('Refusing to draft: Gate 1 decisions do not match the current collection.');
+  }
+  if (collectionIsStale(meta)) {
+    throw new Error('Refusing to draft: the current collection is stale. Run collection again first.');
   }
 
   const approvedIds = Object.entries(decisions.decisions || {})
@@ -162,6 +170,9 @@ async function main() {
 
   const draft = {
     generationId,
+    collectionId,
+    collectionRange: decisions.collectionRange,
+    collectedAt: decisions.collectedAt,
     decisionsDate: decisions.date,
     generatedAt: new Date().toISOString(),
     issue:     meta.nextIssue,
