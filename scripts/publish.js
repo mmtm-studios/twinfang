@@ -12,6 +12,15 @@ const path = require('path');
 const ROOT  = path.join(__dirname, '..');
 const draft = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'draft.json'), 'utf8'));
 const meta  = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'meta.json'),  'utf8'));
+const decisions = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'gate1-decisions.json'), 'utf8'));
+const requestedGeneration = process.env.GENERATION_ID;
+
+if (!requestedGeneration || draft.generationId !== requestedGeneration || decisions.generationId !== requestedGeneration) {
+  throw new Error('Refusing to publish: draft, Gate 1 decisions, and requested generation do not match.');
+}
+if (draft.issue !== meta.nextIssue) {
+  throw new Error(`Refusing to publish: draft issue ${draft.issue} is not the next issue (${meta.nextIssue}).`);
+}
 
 // Load stories.json to get total scored count
 let storiesScored = 0;

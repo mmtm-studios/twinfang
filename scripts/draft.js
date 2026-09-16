@@ -101,6 +101,11 @@ async function main() {
   const decisions = JSON.parse(fs.readFileSync(decisionsPath, 'utf8'));
   const stories   = JSON.parse(fs.readFileSync(storiesPath,   'utf8'));
   const meta      = JSON.parse(fs.readFileSync(metaPath,      'utf8'));
+  const generationId = process.env.GENERATION_ID;
+
+  if (!generationId || decisions.generationId !== generationId) {
+    throw new Error('Refusing to draft: workflow generation does not match the current Gate 1 decisions.');
+  }
 
   const approvedIds = Object.entries(decisions.decisions || {})
     .filter(([, d]) => d === 'approved')
@@ -156,6 +161,9 @@ async function main() {
   const gapScan = await draftGapScan(approved);
 
   const draft = {
+    generationId,
+    decisionsDate: decisions.date,
+    generatedAt: new Date().toISOString(),
     issue:     meta.nextIssue,
     date:      new Date().toISOString().slice(0, 10),
     headline:  gapScan.title,

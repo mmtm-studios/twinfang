@@ -474,7 +474,11 @@ async function gate1ProceedAll() {
   const approved = Object.values(gate1Decisions).filter(d => d === 'approved').length;
   if (approved === 0) return;
 
+  const generationId = (typeof crypto.randomUUID === 'function'
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
   const payload = {
+    generationId,
     date:      new Date().toISOString(),
     decisions: gate1Decisions,
   };
@@ -496,7 +500,8 @@ async function gate1ProceedAll() {
       'chore: gate1 decisions'
     );
     btn.textContent = 'Triggering draft…';
-    await ghTriggerWorkflow('draft.yml');
+    localStorage.setItem('ii-current-generation', generationId);
+    await ghTriggerWorkflow('draft.yml', { generation_id: generationId });
     document.getElementById('ii-gate1-status').textContent = 'Draft Generating…';
     document.getElementById('ii-gate1-status').className   = 'ii-gate-status-pill pending';
 
@@ -643,6 +648,8 @@ window.sectionKillAll    = sectionKillAll;
    ============================================================ */
 let gate2Draft   = {};
 let gate2Stories = [];
+let gate2GenerationVerified = false;
+const gate2ApprovedSections = new Set();
 
 const SECTION_COLORS = {
   'Studio Moves':       '#E8272A',
@@ -659,10 +666,14 @@ async function loadGate2() {
   const wrap = document.getElementById('ii-draft-wrap');
   if (!wrap) return;
 
-  const [draftRes, storiesRes] = await Promise.allSettled([
-    fetch('data/draft.json'),
-    fetch('data/stories.json'),
+  setGate2ActionsEnabled(false);
+  const cacheBust = `?v=${Date.now()}`;
+  const [draftRes, storiesRes, decisionsRes] = await Promise.allSettled([
+    fetch('data/draft.json' + cacheBust, { cache: 'no-store' }),
+    fetch('data/stories.json' + cacheBust, { cache: 'no-store' }),
+    fetch('data/gate1-decisions.json' + cacheBust, { cache: 'no-store' }),
   ]);
+  let currentDecisions = {};
 
   try {
     if (draftRes.status === 'fulfilled' && draftRes.value.ok)
@@ -676,17 +687,42 @@ async function loadGate2() {
     }
   } catch (e) { gate2Stories = []; }
 
-  if (!gate2Draft.sections || gate2Draft.sections.length === 0) {
+  try {
+    if (decisionsRes.status === 'fulfilled' && decisionsRes.value.ok)
+      currentDecisions = await decisionsRes.value.json();
+  } catch (e) { currentDecisions = {}; }
+
+  const expectedGeneration = currentDecisions.generationId;
+  gate2GenerationVerified = Boolean(
+    expectedGeneration && gate2Draft.generationId === expectedGeneration
+  );
+
+  if (!gate2GenerationVerified || !gate2Draft.sections || gate2Draft.sections.length === 0) {
+    gate2Draft = {};
+    gate2ApprovedSections.clear();
     wrap.innerHTML = `<div class="ii-empty">
       <div class="ii-empty-mark"></div>
-      <h3>No draft ready</h3>
-      <p>Complete Gate 1 story approval first, then run the drafting workflow to generate a full issue draft.</p>
-      <span class="ii-empty-hint">Waiting for Gate 1</span>
+      <h3>Awaiting draft</h3>
+      <p>The current Gate 1 selection is still being drafted. Previous issue content cannot be reviewed or published here.</p>
+      <span class="ii-empty-hint">Waiting for the current generation</span>
     </div>`;
     return;
   }
 
+  localStorage.setItem('ii-current-generation', expectedGeneration);
+  document.getElementById('ii-gate2-status').textContent = 'Draft Ready';
+  document.getElementById('ii-gate2-status').className = 'ii-gate-status-pill ready';
+  setGate2ActionsEnabled(true);
   renderGate2Draft();
+}
+
+function setGate2ActionsEnabled(hasCurrentDraft) {
+  const approve = document.getElementById('ii-gate2-approve-all');
+  const publish = document.getElementById('ii-gate2-publish');
+  if (approve) approve.disabled = !hasCurrentDraft;
+  if (publish) publish.disabled = true;
+  const tally = document.getElementById('ii-gate2-tally');
+  if (tally && !hasCurrentDraft) tally.textContent = 'Awaiting the current draft';
 }
 
 function renderGate2Draft() {
@@ -814,6 +850,8 @@ function toggleSection(i) {
 }
 
 function approveSection(i) {
+  if (!gate2GenerationVerified) return;
+  gate2ApprovedSections.add(i);
   const status = document.getElementById('sec-status-' + i);
   if (status) {
     status.textContent = '✓ Approved';
@@ -823,7 +861,7 @@ function approveSection(i) {
 }
 
 function approveAll() {
-  if (!gate2Draft.sections) return;
+  if (!gate2GenerationVerified || !gate2Draft.sections) return;
   gate2Draft.sections.forEach((_, i) => approveSection(i));
 }
 
@@ -834,19 +872,17 @@ function regenerateSection(i) {
 }
 
 function checkAllApproved() {
-  if (!gate2Draft.sections) return;
+  if (!gate2GenerationVerified || !gate2Draft.sections) return;
   const total = gate2Draft.sections.length;
-  let count = 0;
-  document.querySelectorAll('[id^="sec-status-"]').forEach(s => {
-    if (s.textContent.includes('✓')) count++;
-  });
+  const count = gate2ApprovedSections.size;
   const tally = document.getElementById('ii-gate2-tally');
   if (tally) tally.textContent = `${count} of ${total} sections approved`;
   const btn = document.getElementById('ii-gate2-publish');
-  if (btn) btn.disabled = count < total;
+  if (btn) btn.disabled = !gate2GenerationVerified || count < total;
 }
 
 async function gate2Publish() {
+  if (!gate2GenerationVerified || !gate2Draft.generationId) return;
   if (!ghCheckPAT()) return;
 
   const btn = document.getElementById('ii-gate2-publish');
@@ -854,6 +890,13 @@ async function gate2Publish() {
   btn.textContent = 'Saving edits…';
 
   try {
+    const decisionsCheck = await fetch(`data/gate1-decisions.json?v=${Date.now()}`, { cache: 'no-store' });
+    const latestDecisions = decisionsCheck.ok ? await decisionsCheck.json() : {};
+    if (latestDecisions.generationId !== gate2Draft.generationId) {
+      gate2GenerationVerified = false;
+      throw new Error('This draft is no longer current. Return to Gate 2 and wait for the latest draft.');
+    }
+
     if (gate2Draft.sections) {
       gate2Draft.sections.forEach((sec, i) => {
         const el = document.getElementById('sec-text-' + i);
@@ -868,7 +911,7 @@ async function gate2Publish() {
     );
 
     btn.textContent = 'Triggering publish…';
-    await ghTriggerWorkflow('publish.yml');
+    await ghTriggerWorkflow('publish.yml', { generation_id: gate2Draft.generationId });
 
     // Swap button + approve-all for progress bar
     btn.style.display = 'none';
@@ -906,7 +949,7 @@ async function gate2Publish() {
 
   } catch (err) {
     btn.textContent   = 'Error — retry';
-    btn.disabled      = false;
+    btn.disabled      = !gate2GenerationVerified;
     btn.style.display = '';
     console.error(err);
     // 401 = bad/missing PAT — clear it and show local publish instructions
@@ -1128,11 +1171,11 @@ async function ghCommitFile(filePath, content, message) {
   return ghRequest('PUT', `/repos/${GH_OWNER}/${GH_REPO}/contents/${filePath}`, body);
 }
 
-async function ghTriggerWorkflow(workflow) {
+async function ghTriggerWorkflow(workflow, inputs = {}) {
   return ghRequest(
     'POST',
     `/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/${workflow}/dispatches`,
-    { ref: 'main' }
+    { ref: 'main', inputs }
   );
 }
 

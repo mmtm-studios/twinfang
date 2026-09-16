@@ -288,11 +288,12 @@
 
     /* ── Pipeline status ─────────────────────────────────── */
     async function loadPipeline() {
+      const cacheBust = `?v=${Date.now()}`;
       const [meta, stories, decisions, draft] = await Promise.allSettled([
-        fetch('data/meta.json').then(r => r.json()),
-        fetch('data/stories.json').then(r => r.json()),
-        fetch('data/gate1-decisions.json').then(r => r.json()),
-        fetch('data/draft.json').then(r => r.json()),
+        fetch('data/meta.json' + cacheBust, { cache: 'no-store' }).then(r => r.json()),
+        fetch('data/stories.json' + cacheBust, { cache: 'no-store' }).then(r => r.json()),
+        fetch('data/gate1-decisions.json' + cacheBust, { cache: 'no-store' }).then(r => r.json()),
+        fetch('data/draft.json' + cacheBust, { cache: 'no-store' }).then(r => r.json()),
       ]);
 
       const m  = meta.value      || {};
@@ -300,9 +301,10 @@
       const d  = decisions.value || {};
       const dr = draft.value     || {};
 
-      const approved    = Object.values(d).filter(v => v === 'approved').length;
-      const totalSec    = (dr.sections || []).length;
-      const filledSec   = (dr.sections || []).filter(sec => sec.sources?.length > 0).length;
+      const approved    = Object.values(d.decisions || {}).filter(v => v === 'approved').length;
+      const currentDraft = Boolean(d.generationId && dr.generationId === d.generationId);
+      const totalSec    = currentDraft ? (dr.sections || []).length : 0;
+      const filledSec   = currentDraft ? (dr.sections || []).filter(sec => sec.sources?.length > 0).length : 0;
       const issueNum    = m.nextIssue ? m.nextIssue - 1 : null;
       const fetched     = m.storiesReviewed || 0;
       const queued      = s.length;
@@ -350,7 +352,7 @@
             <div class="ii-pipeline-name">Gate 2</div>
             <div class="ii-pipeline-stats">
               <div class="ii-pipeline-stat"><strong>${filledSec}/${totalSec}</strong> sections drafted</div>
-              <div class="ii-pipeline-stat"><strong>${dr.issue ? 'Issue ' + String(dr.issue).padStart(3,'0') : '—'}</strong> in progress</div>
+              <div class="ii-pipeline-stat"><strong>${currentDraft ? 'Issue ' + String(dr.issue).padStart(3,'0') : 'Awaiting draft'}</strong> in progress</div>
             </div>
             <div class="ii-pipeline-date">&nbsp;</div>
             <a class="ii-btn" href="gate-2.html">Review Draft →</a>

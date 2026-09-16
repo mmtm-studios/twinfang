@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 ROOT         = os.path.dirname(SCRIPT_DIR)
 DRAFT_FILE   = os.path.join(ROOT, 'data', 'draft.json')
+DECISIONS_FILE = os.path.join(ROOT, 'data', 'gate1-decisions.json')
 INDEX_FILE   = os.path.join(ROOT, 'index.html')
 ARCHIVE_FILE = os.path.join(ROOT, 'data', 'archive.json')
 META_FILE    = os.path.join(ROOT, 'data', 'meta.json')
@@ -228,6 +229,23 @@ def main():
 
     with open(DRAFT_FILE, 'r', encoding='utf-8') as f:
         draft = json.load(f)
+
+    if not os.path.exists(DECISIONS_FILE):
+        print('ERROR: Current Gate 1 decisions are missing. Refusing to publish.')
+        sys.exit(1)
+    with open(DECISIONS_FILE, 'r', encoding='utf-8') as f:
+        decisions = json.load(f)
+    if not draft.get('generationId') or draft.get('generationId') != decisions.get('generationId'):
+        print('ERROR: Draft does not belong to the current Gate 1 generation. Refusing to publish.')
+        sys.exit(1)
+
+    meta = {}
+    if os.path.exists(META_FILE):
+        with open(META_FILE, 'r', encoding='utf-8') as f:
+            meta = json.load(f)
+    if draft.get('issue') != meta.get('nextIssue'):
+        print('ERROR: Draft issue is not the next issue. Refusing to publish.')
+        sys.exit(1)
 
     issue_num = draft.get('issue', 1)
     headline  = draft.get('headline') or draft.get('title') or '?'

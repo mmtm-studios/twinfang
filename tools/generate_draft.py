@@ -195,6 +195,11 @@ def main():
     with open(DECISIONS_FILE, 'r', encoding='utf-8') as f:
         decisions_data = json.load(f)
 
+    generation_id = decisions_data.get('generationId')
+    if not generation_id:
+        print('ERROR: gate1-decisions.json has no generationId. Download fresh Gate 1 decisions.')
+        sys.exit(1)
+
     decisions    = decisions_data.get('decisions', decisions_data)
     approved_ids = {k for k, v in decisions.items() if v == 'approved'}
     print('Gate 1 decisions: ' + str(len(approved_ids)) + ' approved')
@@ -289,6 +294,9 @@ def main():
 
     # Write draft.json
     draft = {
+        'generationId': generation_id,
+        'decisionsDate': decisions_data.get('date'),
+        'generatedAt': datetime.now(timezone.utc).isoformat(),
         'issue':    issue_num,
         'date':     issue_date,
         'headline': gap_scan.get('title', 'Issue #' + str(issue_num)),

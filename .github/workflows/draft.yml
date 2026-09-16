@@ -2,7 +2,15 @@ name: Generate Draft
 
 on:
   workflow_dispatch:
-    # Triggered by Gate 1 "Proceed to Drafting" button in the browser
+    inputs:
+      generation_id:
+        description: Gate 1 generation identifier
+        required: true
+        type: string
+
+concurrency:
+  group: industry-insights-draft
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -25,9 +33,12 @@ jobs:
         run: node scripts/draft.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GENERATION_ID: ${{ inputs.generation_id }}
 
       - name: Commit draft
         run: |
+          git fetch origin main
+          node scripts/verify-generation.js "${{ inputs.generation_id }}" origin/main
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/draft.json
