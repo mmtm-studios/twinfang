@@ -156,7 +156,7 @@
     },
     {
       "title": "People on the Move",
-      "content": "<p>No updates this period.</p>",
+      "content": "<p style=\"color:var(--tx3);font-style:italic\">No updates this period.</p>",
       "sources": []
     },
     {
@@ -198,7 +198,7 @@
     },
     {
       "title": "Who's Buying What",
-      "content": "<p>No updates this period.</p>",
+      "content": "<p style=\"color:var(--tx3);font-style:italic\">No updates this period.</p>",
       "sources": []
     },
     {
@@ -234,7 +234,7 @@
     },
     {
       "title": "The Field",
-      "content": "<p>No updates this period.</p>",
+      "content": "<p style=\"color:var(--tx3);font-style:italic\">No updates this period.</p>",
       "sources": []
     },
     {
