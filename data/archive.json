@@ -1,5 +1,22 @@
 [
   {
+    "issue": 11,
+    "collectionId": "collection-2026-09-16T03-33-43-971Z-9d3cf5b5-c74d-43d5-aa92-96f1af0ed0f3",
+    "collectionRange": {
+      "start": "2026-08-31",
+      "end": "2026-09-16"
+    },
+    "date": "2026-10-02",
+    "headline": "Consolidation Accelerates While Human Craft Finds Its Market",
+    "lead": "This period's signals converge on a single tension: the industry is consolidating fast around AI efficiency and publisher scale, while a countervailing market is hardening around studios that visibly reject automation in favour of human artistry.",
+    "stats": {
+      "storiesApproved": 42,
+      "sourcesScanned": 42,
+      "sectionsActive": 8
+    },
+    "file": "issue-011.html"
+  },
+  {
     "issue": 10,
     "collectionId": "collection-2026-09-16T03-33-43-971Z-9d3cf5b5-c74d-43d5-aa92-96f1af0ed0f3",
     "collectionRange": {
