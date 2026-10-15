@@ -1,13 +1,13 @@
 {
   "nextIssue": 12,
-  "lastCollected": "2026-09-16T03:33:43.971Z",
-  "collectionId": "collection-2026-09-16T03-33-43-971Z-9d3cf5b5-c74d-43d5-aa92-96f1af0ed0f3",
+  "lastCollected": "2026-10-15T13:15:35.539Z",
+  "collectionId": "collection-2026-10-15T13-15-35-539Z-3881084a-dd78-44b5-8328-2620d9cba2e8",
   "collectionRange": {
-    "start": "2026-08-31",
-    "end": "2026-09-16"
+    "start": "2026-09-29",
+    "end": "2026-10-15"
   },
-  "collectedAt": "2026-09-16T03:33:43.971Z",
+  "collectedAt": "2026-10-15T13:15:35.539Z",
   "lastPublished": "2026-10-02T01:00:22.309Z",
-  "storiesReviewed": 148,
+  "storiesReviewed": 139,
   "sourcesMonitored": 29
 }
