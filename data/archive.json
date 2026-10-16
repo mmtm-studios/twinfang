@@ -1,5 +1,22 @@
 [
   {
+    "issue": 12,
+    "collectionId": "collection-2026-10-15T13-15-35-539Z-3881084a-dd78-44b5-8328-2620d9cba2e8",
+    "collectionRange": {
+      "start": "2026-09-29",
+      "end": "2026-10-15"
+    },
+    "date": "2026-10-16",
+    "headline": "AI Disruption, Studio Fragility, and Co-Dev Opportunity",
+    "lead": "A wave of AI-driven pipeline shifts, major publisher consolidation, and indie studio failures is reshaping who survives in game development — and where specialist Southeast Asian studios can insert themselves.",
+    "stats": {
+      "storiesApproved": 36,
+      "sourcesScanned": 36,
+      "sectionsActive": 8
+    },
+    "file": "issue-012.html"
+  },
+  {
     "issue": 11,
     "collectionId": "collection-2026-09-16T03-33-43-971Z-9d3cf5b5-c74d-43d5-aa92-96f1af0ed0f3",
     "collectionRange": {
