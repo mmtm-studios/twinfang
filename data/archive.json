@@ -1,5 +1,22 @@
 [
   {
+    "issue": 13,
+    "collectionId": "collection-2026-11-01T14-54-03-689Z-495a2114-87cf-41db-b7cf-f09ccfc864f8",
+    "collectionRange": {
+      "start": "2026-10-16",
+      "end": "2026-11-01"
+    },
+    "date": "2026-11-03",
+    "headline": "AI Guardrails and Studio Consolidation Reshape Outsourcing",
+    "lead": "This period's signals cluster around two converging pressures: AI tools are being simultaneously weaponised against studios and constrained by platform holders, while major AAA restructuring is quietly reshaping who needs outsourcing partners and on what terms.",
+    "stats": {
+      "storiesApproved": 49,
+      "sourcesScanned": 49,
+      "sectionsActive": 8
+    },
+    "file": "issue-013.html"
+  },
+  {
     "issue": 12,
     "collectionId": "collection-2026-10-15T13-15-35-539Z-3881084a-dd78-44b5-8328-2620d9cba2e8",
     "collectionRange": {
