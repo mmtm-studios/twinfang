@@ -1,5 +1,5 @@
 {
-  "nextIssue": 14,
+  "nextIssue": 15,
   "lastCollected": "2026-11-15T15:32:11.112Z",
   "collectionId": "collection-2026-11-15T15-32-11-112Z-77501096-07c4-4753-93e7-1d3291604a44",
   "collectionRange": {
@@ -7,7 +7,7 @@
     "end": "2026-11-15"
   },
   "collectedAt": "2026-11-15T15:32:11.112Z",
-  "lastPublished": "2026-11-03T02:58:34.541Z",
+  "lastPublished": "2026-11-17T04:19:29.655Z",
   "storiesReviewed": 149,
   "sourcesMonitored": 29
 }

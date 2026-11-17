@@ -1,5 +1,22 @@
 [
   {
+    "issue": 14,
+    "collectionId": "collection-2026-11-15T15-32-11-112Z-77501096-07c4-4753-93e7-1d3291604a44",
+    "collectionRange": {
+      "start": "2026-10-30",
+      "end": "2026-11-15"
+    },
+    "date": "2026-11-17",
+    "headline": "AI Flood, Funding Cuts, and the Art Studio's Edge",
+    "lead": "A wave of AI-driven content saturation is colliding with publisher funding volatility and platform gatekeeping, creating both a threat to commodity art work and a window for studios with craft differentiation.",
+    "stats": {
+      "storiesApproved": 51,
+      "sourcesScanned": 51,
+      "sectionsActive": 8
+    },
+    "file": "issue-014.html"
+  },
+  {
     "issue": 13,
     "collectionId": "collection-2026-11-01T14-54-03-689Z-495a2114-87cf-41db-b7cf-f09ccfc864f8",
     "collectionRange": {
